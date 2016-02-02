@@ -3,7 +3,7 @@
 let Rx = require('rx');
 let rp = require('request-promise');
 
-const requestUrl = 'https://api.github.com/users/AscaL';
+const requestUrl = 'https://api.github.com/users';
 const options = {
 	uri: requestUrl,
 	headers: {
@@ -18,20 +18,13 @@ requestStream.subscribe(function (requestUrl) {
 	let responseStream = Rx.Observable.create(function (observer) {
 		rp(options)
 			.then(resp => {
-				console.log('resp: ', resp);
+				observer.onNext(resp)
+				observer.onCompleted()
 			})
 			.catch(error => {
 				console.log('error: ', error);
+				observer.onError(error)
 			})
-//			.always(() => {
-//				observer.onComplete();
-//			})
-			//			.done(response => {
-			//				observer.onNext(response)
-			//			})
-			//			.fail((jqXHR, status, error) => {
-			//				observer.onError(error)
-			//			})
 	});
 
 	responseStream.subscribe(response => {

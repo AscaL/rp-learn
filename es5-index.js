@@ -5320,24 +5320,35 @@
 	let Rx = __webpack_require__(192);
 	let rp = __webpack_require__(194);
 
-	const requestUrl = 'https://api.github.com/users';
+	const requestUrl = 'https://api.github.com/users/AscaL';
+	const options = {
+		uri: requestUrl,
+		headers: {
+			'User-Agent': 'AscaL'
+		},
+		json: true // Automatically parses the JSON string in the response
+	};
 
 	let requestStream = Rx.Observable.just(requestUrl);
 
 	requestStream.subscribe(function (requestUrl) {
 		let responseStream = Rx.Observable.create(function (observer) {
-			rp({
-				uri: requestUrl,
-				json: true
-			})
-			.then(resp => {
-				console.log('resp: ', resp);
-			})
-			.catch(error => {
-				console.log('error: ', error);
-			})
-			.done(response => {observer.onNext(response)})
-			.fail((jqXHR, status, error) => {observer.onError(error)})
+			rp(options)
+				.then(resp => {
+					console.log('resp: ', resp);
+				})
+				.catch(error => {
+					console.log('error: ', error);
+				})
+	//			.always(() => {
+	//				observer.onComplete();
+	//			})
+				//			.done(response => {
+				//				observer.onNext(response)
+				//			})
+				//			.fail((jqXHR, status, error) => {
+				//				observer.onError(error)
+				//			})
 		});
 
 		responseStream.subscribe(response => {
@@ -5345,6 +5356,17 @@
 		})
 
 	});
+
+
+
+	//rp(options)
+	//    .then(function (repos) {
+	//        console.log(`User has ${repos} repos`);
+	//    })
+	//    .catch(function (err) {
+	//        console.log('err:', err);
+	//    });
+
 
 /***/ },
 /* 192 */
@@ -24408,7 +24430,7 @@
 	var Store = __webpack_require__(246).Store;
 	var MemoryCookieStore = __webpack_require__(247).MemoryCookieStore;
 	var pathMatch = __webpack_require__(249).pathMatch;
-	var VERSION = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../package.json\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())).version;
+	var VERSION = __webpack_require__(253).version;
 
 	var punycode;
 	try {
@@ -28787,7 +28809,127 @@
 
 
 /***/ },
-/* 253 */,
+/* 253 */
+/***/ function(module, exports) {
+
+	module.exports = {
+		"_args": [
+			[
+				"tough-cookie@~2.2.0",
+				"C:\\Users\\AscaL\\Desktop\\projects\\rp-learn\\node_modules\\request"
+			]
+		],
+		"_from": "tough-cookie@>=2.2.0 <2.3.0",
+		"_id": "tough-cookie@2.2.1",
+		"_inCache": true,
+		"_installable": true,
+		"_location": "/tough-cookie",
+		"_nodeVersion": "0.12.5",
+		"_npmUser": {
+			"email": "jstash@gmail.com",
+			"name": "jstash"
+		},
+		"_npmVersion": "2.11.2",
+		"_phantomChildren": {},
+		"_requested": {
+			"name": "tough-cookie",
+			"raw": "tough-cookie@~2.2.0",
+			"rawSpec": "~2.2.0",
+			"scope": null,
+			"spec": ">=2.2.0 <2.3.0",
+			"type": "range"
+		},
+		"_requiredBy": [
+			"/request"
+		],
+		"_resolved": "https://registry.npmjs.org/tough-cookie/-/tough-cookie-2.2.1.tgz",
+		"_shasum": "3b0516b799e70e8164436a1446e7e5877fda118e",
+		"_shrinkwrap": null,
+		"_spec": "tough-cookie@~2.2.0",
+		"_where": "C:\\Users\\AscaL\\Desktop\\projects\\rp-learn\\node_modules\\request",
+		"author": {
+			"email": "jstashewsky@salesforce.com",
+			"name": "Jeremy Stashewsky"
+		},
+		"bugs": {
+			"url": "https://github.com/SalesforceEng/tough-cookie/issues"
+		},
+		"contributors": [
+			{
+				"name": "Alexander Savin"
+			},
+			{
+				"name": "Ian Livingstone"
+			},
+			{
+				"name": "Ivan Nikulin"
+			},
+			{
+				"name": "Lalit Kapoor"
+			},
+			{
+				"name": "Sam Thompson"
+			},
+			{
+				"name": "Sebastian Mayr"
+			}
+		],
+		"dependencies": {},
+		"description": "RFC6265 Cookies and Cookie Jar for node.js",
+		"devDependencies": {
+			"async": "^1.4.2",
+			"vows": "^0.8.1"
+		},
+		"directories": {},
+		"dist": {
+			"shasum": "3b0516b799e70e8164436a1446e7e5877fda118e",
+			"tarball": "http://registry.npmjs.org/tough-cookie/-/tough-cookie-2.2.1.tgz"
+		},
+		"engines": {
+			"node": ">=0.10.0"
+		},
+		"files": [
+			"lib"
+		],
+		"gitHead": "f1055655ea56c85bd384aaf7d5b740b916700b6f",
+		"homepage": "https://github.com/SalesforceEng/tough-cookie",
+		"keywords": [
+			"HTTP",
+			"RFC2965",
+			"RFC6265",
+			"cookie",
+			"cookiejar",
+			"cookies",
+			"jar",
+			"set-cookie"
+		],
+		"license": "BSD-3-Clause",
+		"main": "./lib/cookie",
+		"maintainers": [
+			{
+				"name": "jstash",
+				"email": "jeremy@goinstant.com"
+			},
+			{
+				"name": "goinstant",
+				"email": "services@goinstant.com"
+			}
+		],
+		"name": "tough-cookie",
+		"optionalDependencies": {},
+		"readme": "ERROR: No README data found!",
+		"repository": {
+			"type": "git",
+			"url": "git://github.com/SalesforceEng/tough-cookie.git"
+		},
+		"scripts": {
+			"suffixup": "curl -o public_suffix_list.dat https://publicsuffix.org/list/public_suffix_list.dat && ./generate-pubsuffix.js",
+			"test": "vows test/*_test.js"
+		},
+		"version": "2.2.1"
+	};
+
+/***/ },
 /* 254 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -32058,24 +32200,25 @@
 	  , zlib = __webpack_require__(297)
 	  , bl = __webpack_require__(317)
 	  , hawk = __webpack_require__(325)
-	  , aws = __webpack_require__(326)
+	  , aws2 = __webpack_require__(326)
 	  , httpSignature = __webpack_require__(327)
-	  , mime = __webpack_require__(375)
-	  , stringstream = __webpack_require__(379)
-	  , caseless = __webpack_require__(380)
-	  , ForeverAgent = __webpack_require__(381)
-	  , FormData = __webpack_require__(382)
-	  , isTypedArray = __webpack_require__(383).strict
+	  , mime = __webpack_require__(374)
+	  , stringstream = __webpack_require__(378)
+	  , caseless = __webpack_require__(379)
+	  , ForeverAgent = __webpack_require__(380)
+	  , FormData = __webpack_require__(381)
+	  , extend = __webpack_require__(236)
+	  , isTypedArray = __webpack_require__(382).strict
 	  , helpers = __webpack_require__(254)
 	  , cookies = __webpack_require__(237)
-	  , getProxyFromURI = __webpack_require__(384)
-	  , Querystring = __webpack_require__(385).Querystring
-	  , Har = __webpack_require__(390).Har
-	  , Auth = __webpack_require__(419).Auth
-	  , OAuth = __webpack_require__(421).OAuth
-	  , Multipart = __webpack_require__(423).Multipart
-	  , Redirect = __webpack_require__(427).Redirect
-	  , Tunnel = __webpack_require__(428).Tunnel
+	  , getProxyFromURI = __webpack_require__(383)
+	  , Querystring = __webpack_require__(384).Querystring
+	  , Har = __webpack_require__(389).Har
+	  , Auth = __webpack_require__(418).Auth
+	  , OAuth = __webpack_require__(420).OAuth
+	  , Multipart = __webpack_require__(422).Multipart
+	  , Redirect = __webpack_require__(426).Redirect
+	  , Tunnel = __webpack_require__(427).Tunnel
 
 	var safeStringify = helpers.safeStringify
 	  , isReadStream = helpers.isReadStream
@@ -32173,7 +32316,7 @@
 	  var reserved = Object.keys(Request.prototype)
 	  var nonReserved = filterForNonReserved(reserved, options)
 
-	  util._extend(self, nonReserved)
+	  extend(self, nonReserved)
 	  options = filterOutReservedFunctions(reserved, options)
 
 	  self.readable = true
@@ -32629,7 +32772,7 @@
 	      // Before ending the request, we had to compute the length of the whole form, asyncly
 	      self.setHeader(self._form.getHeaders(), true)
 	      self._form.getLength(function (err, length) {
-	        if (!err) {
+	        if (!err && !isNaN(length)) {
 	          self.setHeader('content-length', length)
 	        }
 	        end()
@@ -33094,7 +33237,7 @@
 	    self.req.abort()
 	  }
 	  else if (self.response) {
-	    self.response.abort()
+	    self.response.destroy()
 	  }
 
 	  self.emit('abort')
@@ -33278,29 +33421,52 @@
 	    self._aws = opts
 	    return self
 	  }
-	  var date = new Date()
-	  self.setHeader('date', date.toUTCString())
-	  var auth =
-	    { key: opts.key
-	    , secret: opts.secret
-	    , verb: self.method.toUpperCase()
-	    , date: date
-	    , contentType: self.getHeader('content-type') || ''
-	    , md5: self.getHeader('content-md5') || ''
-	    , amazonHeaders: aws.canonicalizeHeaders(self.headers)
+
+	  if (opts.sign_version == 4 || opts.sign_version == '4') {
+	    var aws4 = __webpack_require__(429)
+	    // use aws4
+	    var options = {
+	      host: self.uri.host,
+	      path: self.uri.path,
+	      method: self.method,
+	      headers: {
+	        'content-type': self.getHeader('content-type') || ''
+	      },
+	      body: self.body
 	    }
-	  var path = self.uri.path
-	  if (opts.bucket && path) {
-	    auth.resource = '/' + opts.bucket + path
-	  } else if (opts.bucket && !path) {
-	    auth.resource = '/' + opts.bucket
-	  } else if (!opts.bucket && path) {
-	    auth.resource = path
-	  } else if (!opts.bucket && !path) {
-	    auth.resource = '/'
+	    var signRes = aws4.sign(options, {
+	      accessKeyId: opts.key,
+	      secretAccessKey: opts.secret
+	    })
+	    self.setHeader('authorization', signRes.headers.Authorization)
+	    self.setHeader('x-amz-date', signRes.headers['X-Amz-Date'])
 	  }
-	  auth.resource = aws.canonicalizeResource(auth.resource)
-	  self.setHeader('authorization', aws.authorization(auth))
+	  else {
+	    // default: use aws-sign2
+	    var date = new Date()
+	    self.setHeader('date', date.toUTCString())
+	    var auth =
+	      { key: opts.key
+	      , secret: opts.secret
+	      , verb: self.method.toUpperCase()
+	      , date: date
+	      , contentType: self.getHeader('content-type') || ''
+	      , md5: self.getHeader('content-md5') || ''
+	      , amazonHeaders: aws2.canonicalizeHeaders(self.headers)
+	      }
+	    var path = self.uri.path
+	    if (opts.bucket && path) {
+	      auth.resource = '/' + opts.bucket + path
+	    } else if (opts.bucket && !path) {
+	      auth.resource = '/' + opts.bucket
+	    } else if (!opts.bucket && path) {
+	      auth.resource = path
+	    } else if (!opts.bucket && !path) {
+	      auth.resource = '/'
+	    }
+	    auth.resource = aws2.canonicalizeResource(auth.resource)
+	    self.setHeader('authorization', aws2.authorization(auth))
+	  }
 
 	  return self
 	}
@@ -47917,8 +48083,8 @@
 	// Copyright 2015 Joyent, Inc.
 
 	var parser = __webpack_require__(328);
-	var signer = __webpack_require__(368);
-	var verify = __webpack_require__(374);
+	var signer = __webpack_require__(367);
+	var verify = __webpack_require__(373);
 	var utils = __webpack_require__(330);
 
 
@@ -48273,253 +48439,214 @@
 /* 329 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process, Buffer) {// Copyright (c) 2012, Mark Cavage. All rights reserved.
+	/* WEBPACK VAR INJECTION */(function(Buffer, process) {// Copyright (c) 2012, Mark Cavage. All rights reserved.
+	// Copyright 2015 Joyent, Inc.
 
 	var assert = __webpack_require__(316);
 	var Stream = __webpack_require__(279).Stream;
 	var util = __webpack_require__(250);
 
 
-
 	///--- Globals
 
-	var NDEBUG = process.env.NODE_NDEBUG || false;
+	/* JSSTYLED */
 	var UUID_REGEXP = /^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$/;
-
-
-
-	///--- Messages
-
-	var ARRAY_TYPE_REQUIRED = '%s ([%s]) required';
-	var TYPE_REQUIRED = '%s (%s) is required';
-
 
 
 	///--- Internal
 
-	function capitalize(str) {
-	        return (str.charAt(0).toUpperCase() + str.slice(1));
+	function _capitalize(str) {
+	    return (str.charAt(0).toUpperCase() + str.slice(1));
 	}
 
-	function uncapitalize(str) {
-	        return (str.charAt(0).toLowerCase() + str.slice(1));
+	function _toss(name, expected, oper, arg, actual) {
+	    throw new assert.AssertionError({
+	        message: util.format('%s (%s) is required', name, expected),
+	        actual: (actual === undefined) ? typeof (arg) : actual(arg),
+	        expected: expected,
+	        operator: oper || '===',
+	        stackStartFunction: _toss.caller
+	    });
 	}
 
-	function _() {
-	        return (util.format.apply(util, arguments));
+	function _getClass(arg) {
+	    return (Object.prototype.toString.call(arg).slice(8, -1));
 	}
 
-
-	function _assert(arg, type, name, stackFunc) {
-	        if (!NDEBUG) {
-	                name = name || type;
-	                stackFunc = stackFunc || _assert.caller;
-	                var t = typeof (arg);
-
-	                if (t !== type) {
-	                        throw new assert.AssertionError({
-	                                message: _(TYPE_REQUIRED, name, type),
-	                                actual: t,
-	                                expected: type,
-	                                operator: '===',
-	                                stackStartFunction: stackFunc
-	                        });
-	                }
-	        }
-	}
-
-
-	function _instanceof(arg, type, name, stackFunc) {
-	        if (!NDEBUG) {
-	                name = name || type;
-	                stackFunc = stackFunc || _instanceof.caller;
-
-	                if (!(arg instanceof type)) {
-	                        throw new assert.AssertionError({
-	                                message: _(TYPE_REQUIRED, name, type.name),
-	                                actual: _getClass(arg),
-	                                expected: type.name,
-	                                operator: 'instanceof',
-	                                stackStartFunction: stackFunc
-	                        });
-	                }
-	        }
-	}
-
-	function _getClass(object) {
-	        return (Object.prototype.toString.call(object).slice(8, -1));
-	};
-
-
-
-	///--- API
-
-	function array(arr, type, name) {
-	        if (!NDEBUG) {
-	                name = name || type;
-
-	                if (!Array.isArray(arr)) {
-	                        throw new assert.AssertionError({
-	                                message: _(ARRAY_TYPE_REQUIRED, name, type),
-	                                actual: typeof (arr),
-	                                expected: 'array',
-	                                operator: 'Array.isArray',
-	                                stackStartFunction: array.caller
-	                        });
-	                }
-
-	                for (var i = 0; i < arr.length; i++) {
-	                        _assert(arr[i], type, name, array);
-	                }
-	        }
-	}
-
-
-	function bool(arg, name) {
-	        _assert(arg, 'boolean', name, bool);
-	}
-
-
-	function buffer(arg, name) {
-	        if (!Buffer.isBuffer(arg)) {
-	                throw new assert.AssertionError({
-	                        message: _(TYPE_REQUIRED, name || '', 'Buffer'),
-	                        actual: typeof (arg),
-	                        expected: 'buffer',
-	                        operator: 'Buffer.isBuffer',
-	                        stackStartFunction: buffer
-	                });
-	        }
-	}
-
-
-	function func(arg, name) {
-	        _assert(arg, 'function', name);
-	}
-
-
-	function number(arg, name) {
-	        _assert(arg, 'number', name);
-	        if (!NDEBUG && (isNaN(arg) || !isFinite(arg))) {
-	                throw new assert.AssertionError({
-	                        message: _(TYPE_REQUIRED, name, 'number'),
-	                        actual: arg,
-	                        expected: 'number',
-	                        operator: 'isNaN',
-	                        stackStartFunction: number
-	                });
-	        }
-	}
-
-
-	function object(arg, name) {
-	        _assert(arg, 'object', name);
-	}
-
-
-	function stream(arg, name) {
-	        _instanceof(arg, Stream, name);
-	}
-
-
-	function date(arg, name) {
-	        _instanceof(arg, Date, name);
-	}
-
-	function regexp(arg, name) {
-	        _instanceof(arg, RegExp, name);
-	}
-
-
-	function string(arg, name) {
-	        _assert(arg, 'string', name);
-	}
-
-
-	function uuid(arg, name) {
-	        string(arg, name);
-	        if (!NDEBUG && !UUID_REGEXP.test(arg)) {
-	                throw new assert.AssertionError({
-	                        message: _(TYPE_REQUIRED, name, 'uuid'),
-	                        actual: 'string',
-	                        expected: 'uuid',
-	                        operator: 'test',
-	                        stackStartFunction: uuid
-	                });
-	        }
+	function noop() {
+	    // Why even bother with asserts?
 	}
 
 
 	///--- Exports
 
-	module.exports = {
-	        bool: bool,
-	        buffer: buffer,
-	        date: date,
-	        func: func,
-	        number: number,
-	        object: object,
-	        regexp: regexp,
-	        stream: stream,
-	        string: string,
-	        uuid: uuid
+	var types = {
+	    bool: {
+	        check: function (arg) { return typeof (arg) === 'boolean'; }
+	    },
+	    func: {
+	        check: function (arg) { return typeof (arg) === 'function'; }
+	    },
+	    string: {
+	        check: function (arg) { return typeof (arg) === 'string'; }
+	    },
+	    object: {
+	        check: function (arg) {
+	            return typeof (arg) === 'object' && arg !== null;
+	        }
+	    },
+	    number: {
+	        check: function (arg) {
+	            return typeof (arg) === 'number' && !isNaN(arg) && isFinite(arg);
+	        }
+	    },
+	    buffer: {
+	        check: function (arg) { return Buffer.isBuffer(arg); },
+	        operator: 'Buffer.isBuffer'
+	    },
+	    array: {
+	        check: function (arg) { return Array.isArray(arg); },
+	        operator: 'Array.isArray'
+	    },
+	    stream: {
+	        check: function (arg) { return arg instanceof Stream; },
+	        operator: 'instanceof',
+	        actual: _getClass
+	    },
+	    date: {
+	        check: function (arg) { return arg instanceof Date; },
+	        operator: 'instanceof',
+	        actual: _getClass
+	    },
+	    regexp: {
+	        check: function (arg) { return arg instanceof RegExp; },
+	        operator: 'instanceof',
+	        actual: _getClass
+	    },
+	    uuid: {
+	        check: function (arg) {
+	            return typeof (arg) === 'string' && UUID_REGEXP.test(arg);
+	        },
+	        operator: 'isUUID'
+	    }
 	};
 
+	function _setExports(ndebug) {
+	    var keys = Object.keys(types);
+	    var out;
 
-	Object.keys(module.exports).forEach(function (k) {
-	        if (k === 'buffer')
-	                return;
-
-	        var name = 'arrayOf' + capitalize(k);
-
-	        if (k === 'bool')
-	                k = 'boolean';
-	        if (k === 'func')
-	                k = 'function';
-	        module.exports[name] = function (arg, name) {
-	                array(arg, k, name);
+	    /* re-export standard assert */
+	    if (process.env.NODE_NDEBUG) {
+	        out = noop;
+	    } else {
+	        out = function (arg, msg) {
+	            if (!arg) {
+	                _toss(msg, 'true', arg);
+	            }
 	        };
-	});
+	    }
 
-	Object.keys(module.exports).forEach(function (k) {
-	        var _name = 'optional' + capitalize(k);
-	        var s = uncapitalize(k.replace('arrayOf', ''));
-	        if (s === 'bool')
-	                s = 'boolean';
-	        if (s === 'func')
-	                s = 'function';
-
-	        if (k.indexOf('arrayOf') !== -1) {
-	          module.exports[_name] = function (arg, name) {
-	                  if (!NDEBUG && arg !== undefined) {
-	                          array(arg, s, name);
-	                  }
-	          };
-	        } else {
-	          module.exports[_name] = function (arg, name) {
-	                  if (!NDEBUG && arg !== undefined) {
-	                          _assert(arg, s, name);
-	                  }
-	          };
+	    /* standard checks */
+	    keys.forEach(function (k) {
+	        if (ndebug) {
+	            out[k] = noop;
+	            return;
 	        }
-	});
+	        var type = types[k];
+	        out[k] = function (arg, msg) {
+	            if (!type.check(arg)) {
+	                _toss(msg, k, type.operator, arg, type.actual);
+	            }
+	        };
+	    });
 
-
-	// Reexport built-in assertions
-	Object.keys(assert).forEach(function (k) {
-	        if (k === 'AssertionError') {
-	                module.exports[k] = assert[k];
+	    /* optional checks */
+	    keys.forEach(function (k) {
+	        var name = 'optional' + _capitalize(k);
+	        if (ndebug) {
+	            out[name] = noop;
+	            return;
+	        }
+	        var type = types[k];
+	        out[name] = function (arg, msg) {
+	            if (arg === undefined || arg === null) {
 	                return;
-	        }
+	            }
+	            if (!type.check(arg)) {
+	                _toss(msg, k, type.operator, arg, type.actual);
+	            }
+	        };
+	    });
 
-	        module.exports[k] = function () {
-	                if (!NDEBUG) {
-	                        assert[k].apply(assert[k], arguments);
+	    /* arrayOf checks */
+	    keys.forEach(function (k) {
+	        var name = 'arrayOf' + _capitalize(k);
+	        if (ndebug) {
+	            out[name] = noop;
+	            return;
+	        }
+	        var type = types[k];
+	        var expected = '[' + k + ']';
+	        out[name] = function (arg, msg) {
+	            if (!Array.isArray(arg)) {
+	                _toss(msg, expected, type.operator, arg, type.actual);
+	            }
+	            var i;
+	            for (i = 0; i < arg.length; i++) {
+	                if (!type.check(arg[i])) {
+	                    _toss(msg, expected, type.operator, arg, type.actual);
 	                }
+	            }
 	        };
-	});
+	    });
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(190), __webpack_require__(255).Buffer))
+	    /* optionalArrayOf checks */
+	    keys.forEach(function (k) {
+	        var name = 'optionalArrayOf' + _capitalize(k);
+	        if (ndebug) {
+	            out[name] = noop;
+	            return;
+	        }
+	        var type = types[k];
+	        var expected = '[' + k + ']';
+	        out[name] = function (arg, msg) {
+	            if (arg === undefined || arg === null) {
+	                return;
+	            }
+	            if (!Array.isArray(arg)) {
+	                _toss(msg, expected, type.operator, arg, type.actual);
+	            }
+	            var i;
+	            for (i = 0; i < arg.length; i++) {
+	                if (!type.check(arg[i])) {
+	                    _toss(msg, expected, type.operator, arg, type.actual);
+	                }
+	            }
+	        };
+	    });
+
+	    /* re-export built-in assertions */
+	    Object.keys(assert).forEach(function (k) {
+	        if (k === 'AssertionError') {
+	            out[k] = assert[k];
+	            return;
+	        }
+	        if (ndebug) {
+	            out[k] = noop;
+	            return;
+	        }
+	        out[k] = assert[k];
+	    });
+
+	    /* export ourselves (for unit tests _only_) */
+	    out._setExports = _setExports;
+
+	    return out;
+	}
+
+	module.exports = _setExports(process.env.NODE_NDEBUG);
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(255).Buffer, __webpack_require__(190)))
 
 /***/ },
 /* 330 */
@@ -48646,10 +48773,10 @@
 	// Copyright 2015 Joyent, Inc.
 
 	var Key = __webpack_require__(332);
-	var Fingerprint = __webpack_require__(335);
-	var Signature = __webpack_require__(339);
-	var PrivateKey = __webpack_require__(338);
-	var errs = __webpack_require__(336);
+	var Fingerprint = __webpack_require__(334);
+	var Signature = __webpack_require__(338);
+	var PrivateKey = __webpack_require__(337);
+	var errs = __webpack_require__(335);
 
 	module.exports = {
 		/* top-level classes */
@@ -48678,19 +48805,19 @@
 
 	module.exports = Key;
 
-	var assert = __webpack_require__(333);
-	var algs = __webpack_require__(334);
+	var assert = __webpack_require__(329);
+	var algs = __webpack_require__(333);
 	var crypto = __webpack_require__(260);
-	var Fingerprint = __webpack_require__(335);
-	var Signature = __webpack_require__(339);
-	var DiffieHellman = __webpack_require__(364);
-	var errs = __webpack_require__(336);
-	var utils = __webpack_require__(337);
-	var PrivateKey = __webpack_require__(338);
+	var Fingerprint = __webpack_require__(334);
+	var Signature = __webpack_require__(338);
+	var DiffieHellman = __webpack_require__(363);
+	var errs = __webpack_require__(335);
+	var utils = __webpack_require__(336);
+	var PrivateKey = __webpack_require__(337);
 	var edCompat;
 
 	try {
-		edCompat = __webpack_require__(347);
+		edCompat = __webpack_require__(346);
 	} catch (e) {
 		/* Just continue through, and bail out if we try to use it. */
 	}
@@ -48699,13 +48826,13 @@
 	var KeyParseError = errs.KeyParseError;
 
 	var formats = {};
-	formats['auto'] = __webpack_require__(350);
-	formats['pem'] = __webpack_require__(351);
-	formats['pkcs1'] = __webpack_require__(352);
-	formats['pkcs8'] = __webpack_require__(353);
-	formats['rfc4253'] = __webpack_require__(355);
-	formats['ssh'] = __webpack_require__(356);
-	formats['ssh-private'] = __webpack_require__(354);
+	formats['auto'] = __webpack_require__(349);
+	formats['pem'] = __webpack_require__(350);
+	formats['pkcs1'] = __webpack_require__(351);
+	formats['pkcs8'] = __webpack_require__(352);
+	formats['rfc4253'] = __webpack_require__(354);
+	formats['ssh'] = __webpack_require__(355);
+	formats['ssh-private'] = __webpack_require__(353);
 	formats['openssh'] = formats['ssh-private'];
 
 	function Key(opts) {
@@ -48947,219 +49074,6 @@
 /* 333 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(Buffer, process) {// Copyright (c) 2012, Mark Cavage. All rights reserved.
-	// Copyright 2015 Joyent, Inc.
-
-	var assert = __webpack_require__(316);
-	var Stream = __webpack_require__(279).Stream;
-	var util = __webpack_require__(250);
-
-
-	///--- Globals
-
-	/* JSSTYLED */
-	var UUID_REGEXP = /^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$/;
-
-
-	///--- Internal
-
-	function _capitalize(str) {
-	    return (str.charAt(0).toUpperCase() + str.slice(1));
-	}
-
-	function _toss(name, expected, oper, arg, actual) {
-	    throw new assert.AssertionError({
-	        message: util.format('%s (%s) is required', name, expected),
-	        actual: (actual === undefined) ? typeof (arg) : actual(arg),
-	        expected: expected,
-	        operator: oper || '===',
-	        stackStartFunction: _toss.caller
-	    });
-	}
-
-	function _getClass(arg) {
-	    return (Object.prototype.toString.call(arg).slice(8, -1));
-	}
-
-	function noop() {
-	    // Why even bother with asserts?
-	}
-
-
-	///--- Exports
-
-	var types = {
-	    bool: {
-	        check: function (arg) { return typeof (arg) === 'boolean'; }
-	    },
-	    func: {
-	        check: function (arg) { return typeof (arg) === 'function'; }
-	    },
-	    string: {
-	        check: function (arg) { return typeof (arg) === 'string'; }
-	    },
-	    object: {
-	        check: function (arg) {
-	            return typeof (arg) === 'object' && arg !== null;
-	        }
-	    },
-	    number: {
-	        check: function (arg) {
-	            return typeof (arg) === 'number' && !isNaN(arg) && isFinite(arg);
-	        }
-	    },
-	    buffer: {
-	        check: function (arg) { return Buffer.isBuffer(arg); },
-	        operator: 'Buffer.isBuffer'
-	    },
-	    array: {
-	        check: function (arg) { return Array.isArray(arg); },
-	        operator: 'Array.isArray'
-	    },
-	    stream: {
-	        check: function (arg) { return arg instanceof Stream; },
-	        operator: 'instanceof',
-	        actual: _getClass
-	    },
-	    date: {
-	        check: function (arg) { return arg instanceof Date; },
-	        operator: 'instanceof',
-	        actual: _getClass
-	    },
-	    regexp: {
-	        check: function (arg) { return arg instanceof RegExp; },
-	        operator: 'instanceof',
-	        actual: _getClass
-	    },
-	    uuid: {
-	        check: function (arg) {
-	            return typeof (arg) === 'string' && UUID_REGEXP.test(arg);
-	        },
-	        operator: 'isUUID'
-	    }
-	};
-
-	function _setExports(ndebug) {
-	    var keys = Object.keys(types);
-	    var out;
-
-	    /* re-export standard assert */
-	    if (process.env.NODE_NDEBUG) {
-	        out = noop;
-	    } else {
-	        out = function (arg, msg) {
-	            if (!arg) {
-	                _toss(msg, 'true', arg);
-	            }
-	        };
-	    }
-
-	    /* standard checks */
-	    keys.forEach(function (k) {
-	        if (ndebug) {
-	            out[k] = noop;
-	            return;
-	        }
-	        var type = types[k];
-	        out[k] = function (arg, msg) {
-	            if (!type.check(arg)) {
-	                _toss(msg, k, type.operator, arg, type.actual);
-	            }
-	        };
-	    });
-
-	    /* optional checks */
-	    keys.forEach(function (k) {
-	        var name = 'optional' + _capitalize(k);
-	        if (ndebug) {
-	            out[name] = noop;
-	            return;
-	        }
-	        var type = types[k];
-	        out[name] = function (arg, msg) {
-	            if (arg === undefined || arg === null) {
-	                return;
-	            }
-	            if (!type.check(arg)) {
-	                _toss(msg, k, type.operator, arg, type.actual);
-	            }
-	        };
-	    });
-
-	    /* arrayOf checks */
-	    keys.forEach(function (k) {
-	        var name = 'arrayOf' + _capitalize(k);
-	        if (ndebug) {
-	            out[name] = noop;
-	            return;
-	        }
-	        var type = types[k];
-	        var expected = '[' + k + ']';
-	        out[name] = function (arg, msg) {
-	            if (!Array.isArray(arg)) {
-	                _toss(msg, expected, type.operator, arg, type.actual);
-	            }
-	            var i;
-	            for (i = 0; i < arg.length; i++) {
-	                if (!type.check(arg[i])) {
-	                    _toss(msg, expected, type.operator, arg, type.actual);
-	                }
-	            }
-	        };
-	    });
-
-	    /* optionalArrayOf checks */
-	    keys.forEach(function (k) {
-	        var name = 'optionalArrayOf' + _capitalize(k);
-	        if (ndebug) {
-	            out[name] = noop;
-	            return;
-	        }
-	        var type = types[k];
-	        var expected = '[' + k + ']';
-	        out[name] = function (arg, msg) {
-	            if (arg === undefined || arg === null) {
-	                return;
-	            }
-	            if (!Array.isArray(arg)) {
-	                _toss(msg, expected, type.operator, arg, type.actual);
-	            }
-	            var i;
-	            for (i = 0; i < arg.length; i++) {
-	                if (!type.check(arg[i])) {
-	                    _toss(msg, expected, type.operator, arg, type.actual);
-	                }
-	            }
-	        };
-	    });
-
-	    /* re-export built-in assertions */
-	    Object.keys(assert).forEach(function (k) {
-	        if (k === 'AssertionError') {
-	            out[k] = assert[k];
-	            return;
-	        }
-	        if (ndebug) {
-	            out[k] = noop;
-	            return;
-	        }
-	        out[k] = assert[k];
-	    });
-
-	    /* export ourselves (for unit tests _only_) */
-	    out._setExports = _setExports;
-
-	    return out;
-	}
-
-	module.exports = _setExports(process.env.NODE_NDEBUG);
-
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(255).Buffer, __webpack_require__(190)))
-
-/***/ },
-/* 334 */
-/***/ function(module, exports, __webpack_require__) {
-
 	/* WEBPACK VAR INJECTION */(function(Buffer) {// Copyright 2015 Joyent, Inc.
 
 	var algInfo = {
@@ -49332,19 +49246,19 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(255).Buffer))
 
 /***/ },
-/* 335 */
+/* 334 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {// Copyright 2015 Joyent, Inc.
 
 	module.exports = Fingerprint;
 
-	var assert = __webpack_require__(333);
-	var algs = __webpack_require__(334);
+	var assert = __webpack_require__(329);
+	var algs = __webpack_require__(333);
 	var crypto = __webpack_require__(260);
-	var errs = __webpack_require__(336);
+	var errs = __webpack_require__(335);
 	var Key = __webpack_require__(332);
-	var utils = __webpack_require__(337);
+	var utils = __webpack_require__(336);
 
 	var FingerprintFormatError = errs.FingerprintFormatError;
 	var InvalidAlgorithmError = errs.InvalidAlgorithmError;
@@ -49479,12 +49393,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(255).Buffer))
 
 /***/ },
-/* 336 */
+/* 335 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Copyright 2015 Joyent, Inc.
 
-	var assert = __webpack_require__(333);
+	var assert = __webpack_require__(329);
 	var util = __webpack_require__(250);
 
 	function FingerprintFormatError(fp, format) {
@@ -49543,7 +49457,7 @@
 
 
 /***/ },
-/* 337 */
+/* 336 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {// Copyright 2015 Joyent, Inc.
@@ -49559,8 +49473,8 @@
 		isCompatible: isCompatible
 	};
 
-	var assert = __webpack_require__(333);
-	var PrivateKey = __webpack_require__(338);
+	var assert = __webpack_require__(329);
+	var PrivateKey = __webpack_require__(337);
 
 	var MAX_CLASS_DEPTH = 3;
 
@@ -49710,7 +49624,7 @@
 		assert.buffer(p);
 		assert.buffer(x);
 		try {
-			var bigInt = __webpack_require__(363).BigInteger;
+			var bigInt = __webpack_require__(362).BigInteger;
 		} catch (e) {
 			throw (new Error('To load a PKCS#8 format DSA private key, ' +
 			    'the node jsbn library is required.'));
@@ -49727,7 +49641,7 @@
 		assert.object(key);
 		assertCompatible(key, PrivateKey, [1, 1]);
 		try {
-			var bigInt = __webpack_require__(363).BigInteger;
+			var bigInt = __webpack_require__(362).BigInteger;
 		} catch (e) {
 			throw (new Error('To write a PEM private key from ' +
 			    'this source, the node jsbn lib is required.'));
@@ -49757,26 +49671,26 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(255).Buffer))
 
 /***/ },
-/* 338 */
+/* 337 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {// Copyright 2015 Joyent, Inc.
 
 	module.exports = PrivateKey;
 
-	var assert = __webpack_require__(333);
-	var algs = __webpack_require__(334);
+	var assert = __webpack_require__(329);
+	var algs = __webpack_require__(333);
 	var crypto = __webpack_require__(260);
-	var Fingerprint = __webpack_require__(335);
-	var Signature = __webpack_require__(339);
-	var errs = __webpack_require__(336);
+	var Fingerprint = __webpack_require__(334);
+	var Signature = __webpack_require__(338);
+	var errs = __webpack_require__(335);
 	var util = __webpack_require__(250);
-	var utils = __webpack_require__(337);
+	var utils = __webpack_require__(336);
 	var edCompat;
 	var ed;
 
 	try {
-		edCompat = __webpack_require__(347);
+		edCompat = __webpack_require__(346);
 	} catch (e) {
 		/* Just continue through, and bail out if we try to use it. */
 	}
@@ -49787,12 +49701,12 @@
 	var KeyParseError = errs.KeyParseError;
 
 	var formats = {};
-	formats['auto'] = __webpack_require__(350);
-	formats['pem'] = __webpack_require__(351);
-	formats['pkcs1'] = __webpack_require__(352);
-	formats['pkcs8'] = __webpack_require__(353);
-	formats['rfc4253'] = __webpack_require__(355);
-	formats['ssh-private'] = __webpack_require__(354);
+	formats['auto'] = __webpack_require__(349);
+	formats['pem'] = __webpack_require__(350);
+	formats['pkcs1'] = __webpack_require__(351);
+	formats['pkcs8'] = __webpack_require__(352);
+	formats['rfc4253'] = __webpack_require__(354);
+	formats['ssh-private'] = __webpack_require__(353);
 	formats['openssh'] = formats['ssh-private'];
 	formats['ssh'] = formats['ssh-private'];
 
@@ -49847,7 +49761,7 @@
 
 		if (this.type === 'ed25519' && newType === 'curve25519') {
 			if (ed === undefined)
-				ed = __webpack_require__(357);
+				ed = __webpack_require__(356);
 
 			priv = this.part.r.data;
 			if (priv[0] === 0x00)
@@ -49866,7 +49780,7 @@
 			}));
 		} else if (this.type === 'curve25519' && newType === 'ed25519') {
 			if (ed === undefined)
-				ed = __webpack_require__(357);
+				ed = __webpack_require__(356);
 
 			priv = this.part.r.data;
 			if (priv[0] === 0x00)
@@ -49988,20 +49902,20 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(255).Buffer))
 
 /***/ },
-/* 339 */
+/* 338 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {// Copyright 2015 Joyent, Inc.
 
 	module.exports = Signature;
 
-	var assert = __webpack_require__(333);
-	var algs = __webpack_require__(334);
+	var assert = __webpack_require__(329);
+	var algs = __webpack_require__(333);
 	var crypto = __webpack_require__(260);
-	var errs = __webpack_require__(336);
-	var utils = __webpack_require__(337);
-	var asn1 = __webpack_require__(340);
-	var SSHBuffer = __webpack_require__(346);
+	var errs = __webpack_require__(335);
+	var utils = __webpack_require__(336);
+	var asn1 = __webpack_require__(339);
+	var SSHBuffer = __webpack_require__(345);
 
 	var InvalidAlgorithmError = errs.InvalidAlgorithmError;
 	var SignatureParseError = errs.SignatureParseError;
@@ -50232,7 +50146,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(255).Buffer))
 
 /***/ },
-/* 340 */
+/* 339 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Copyright 2011 Mark Cavage <mcavage@gmail.com> All rights reserved.
@@ -50240,7 +50154,7 @@
 	// If you have no idea what ASN.1 or BER is, see this:
 	// ftp://ftp.rsa.com/pub/pkcs/ascii/layman.asc
 
-	var Ber = __webpack_require__(341);
+	var Ber = __webpack_require__(340);
 
 
 
@@ -50258,16 +50172,16 @@
 
 
 /***/ },
-/* 341 */
+/* 340 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Copyright 2011 Mark Cavage <mcavage@gmail.com> All rights reserved.
 
-	var errors = __webpack_require__(342);
-	var types = __webpack_require__(343);
+	var errors = __webpack_require__(341);
+	var types = __webpack_require__(342);
 
-	var Reader = __webpack_require__(344);
-	var Writer = __webpack_require__(345);
+	var Reader = __webpack_require__(343);
+	var Writer = __webpack_require__(344);
 
 
 	///--- Exports
@@ -50291,7 +50205,7 @@
 
 
 /***/ },
-/* 342 */
+/* 341 */
 /***/ function(module, exports) {
 
 	// Copyright 2011 Mark Cavage <mcavage@gmail.com> All rights reserved.
@@ -50310,7 +50224,7 @@
 
 
 /***/ },
-/* 343 */
+/* 342 */
 /***/ function(module, exports) {
 
 	// Copyright 2011 Mark Cavage <mcavage@gmail.com> All rights reserved.
@@ -50352,15 +50266,15 @@
 
 
 /***/ },
-/* 344 */
+/* 343 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {// Copyright 2011 Mark Cavage <mcavage@gmail.com> All rights reserved.
 
 	var assert = __webpack_require__(316);
 
-	var ASN1 = __webpack_require__(343);
-	var errors = __webpack_require__(342);
+	var ASN1 = __webpack_require__(342);
+	var errors = __webpack_require__(341);
 
 
 	///--- Globals
@@ -50620,14 +50534,14 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(255).Buffer))
 
 /***/ },
-/* 345 */
+/* 344 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {// Copyright 2011 Mark Cavage <mcavage@gmail.com> All rights reserved.
 
 	var assert = __webpack_require__(316);
-	var ASN1 = __webpack_require__(343);
-	var errors = __webpack_require__(342);
+	var ASN1 = __webpack_require__(342);
+	var errors = __webpack_require__(341);
 
 
 	///--- Globals
@@ -50943,14 +50857,14 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(255).Buffer))
 
 /***/ },
-/* 346 */
+/* 345 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {// Copyright 2015 Joyent, Inc.
 
 	module.exports = SSHBuffer;
 
-	var assert = __webpack_require__(333);
+	var assert = __webpack_require__(329);
 
 	function SSHBuffer(opts) {
 		assert.object(opts, 'options');
@@ -51074,7 +50988,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(255).Buffer))
 
 /***/ },
-/* 347 */
+/* 346 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {// Copyright 2015 Joyent, Inc.
@@ -51087,12 +51001,12 @@
 	var nacl;
 	var stream = __webpack_require__(279);
 	var util = __webpack_require__(250);
-	var assert = __webpack_require__(333);
-	var Signature = __webpack_require__(339);
+	var assert = __webpack_require__(329);
+	var Signature = __webpack_require__(338);
 
 	function Verifier(key, hashAlgo) {
 		if (nacl === undefined)
-			nacl = __webpack_require__(348);
+			nacl = __webpack_require__(347);
 
 		if (hashAlgo.toLowerCase() !== 'sha512')
 			throw (new Error('ED25519 only supports the use of ' +
@@ -51140,7 +51054,7 @@
 
 	function Signer(key, hashAlgo) {
 		if (nacl === undefined)
-			nacl = __webpack_require__(348);
+			nacl = __webpack_require__(347);
 
 		if (hashAlgo.toLowerCase() !== 'sha512')
 			throw (new Error('ED25519 only supports the use of ' +
@@ -51177,7 +51091,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(255).Buffer))
 
 /***/ },
-/* 348 */
+/* 347 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {(function(nacl) {
@@ -53586,7 +53500,7 @@
 	    }
 	  } else if (true) {
 	    // Node.js.
-	    crypto = __webpack_require__(349);
+	    crypto = __webpack_require__(348);
 	    if (crypto) {
 	      nacl.setPRNG(function(x, n) {
 	        var i, v = crypto.randomBytes(n);
@@ -53602,13 +53516,13 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(255).Buffer))
 
 /***/ },
-/* 349 */
+/* 348 */
 /***/ function(module, exports) {
 
 	/* (ignored) */
 
 /***/ },
-/* 350 */
+/* 349 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {// Copyright 2015 Joyent, Inc.
@@ -53618,14 +53532,14 @@
 		write: write
 	};
 
-	var assert = __webpack_require__(333);
-	var utils = __webpack_require__(337);
+	var assert = __webpack_require__(329);
+	var utils = __webpack_require__(336);
 	var Key = __webpack_require__(332);
-	var PrivateKey = __webpack_require__(338);
+	var PrivateKey = __webpack_require__(337);
 
-	var pem = __webpack_require__(351);
-	var ssh = __webpack_require__(356);
-	var rfc4253 = __webpack_require__(355);
+	var pem = __webpack_require__(350);
+	var ssh = __webpack_require__(355);
+	var rfc4253 = __webpack_require__(354);
 
 	function read(buf) {
 		if (typeof (buf) === 'string') {
@@ -53688,7 +53602,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(255).Buffer))
 
 /***/ },
-/* 351 */
+/* 350 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {// Copyright 2015 Joyent, Inc.
@@ -53698,17 +53612,17 @@
 		write: write
 	};
 
-	var assert = __webpack_require__(333);
-	var asn1 = __webpack_require__(340);
-	var algs = __webpack_require__(334);
-	var utils = __webpack_require__(337);
+	var assert = __webpack_require__(329);
+	var asn1 = __webpack_require__(339);
+	var algs = __webpack_require__(333);
+	var utils = __webpack_require__(336);
 	var Key = __webpack_require__(332);
-	var PrivateKey = __webpack_require__(338);
+	var PrivateKey = __webpack_require__(337);
 
-	var pkcs1 = __webpack_require__(352);
-	var pkcs8 = __webpack_require__(353);
-	var sshpriv = __webpack_require__(354);
-	var rfc4253 = __webpack_require__(355);
+	var pkcs1 = __webpack_require__(351);
+	var pkcs8 = __webpack_require__(352);
+	var sshpriv = __webpack_require__(353);
+	var rfc4253 = __webpack_require__(354);
 
 	/*
 	 * For reading we support both PKCS#1 and PKCS#8. If we find a private key,
@@ -53847,7 +53761,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(255).Buffer))
 
 /***/ },
-/* 352 */
+/* 351 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {// Copyright 2015 Joyent, Inc.
@@ -53859,16 +53773,16 @@
 		writePkcs1: writePkcs1
 	};
 
-	var assert = __webpack_require__(333);
-	var asn1 = __webpack_require__(340);
-	var algs = __webpack_require__(334);
-	var utils = __webpack_require__(337);
+	var assert = __webpack_require__(329);
+	var asn1 = __webpack_require__(339);
+	var algs = __webpack_require__(333);
+	var utils = __webpack_require__(336);
 
 	var Key = __webpack_require__(332);
-	var PrivateKey = __webpack_require__(338);
-	var pem = __webpack_require__(351);
+	var PrivateKey = __webpack_require__(337);
+	var pem = __webpack_require__(350);
 
-	var pkcs8 = __webpack_require__(353);
+	var pkcs8 = __webpack_require__(352);
 	var readECDSACurve = pkcs8.readECDSACurve;
 
 	function read(buf) {
@@ -54174,7 +54088,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(255).Buffer))
 
 /***/ },
-/* 353 */
+/* 352 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {// Copyright 2015 Joyent, Inc.
@@ -54189,13 +54103,13 @@
 		writeECDSACurve: writeECDSACurve
 	};
 
-	var assert = __webpack_require__(333);
-	var asn1 = __webpack_require__(340);
-	var algs = __webpack_require__(334);
-	var utils = __webpack_require__(337);
+	var assert = __webpack_require__(329);
+	var asn1 = __webpack_require__(339);
+	var algs = __webpack_require__(333);
+	var utils = __webpack_require__(336);
 	var Key = __webpack_require__(332);
-	var PrivateKey = __webpack_require__(338);
-	var pem = __webpack_require__(351);
+	var PrivateKey = __webpack_require__(337);
+	var pem = __webpack_require__(350);
 
 	function read(buf) {
 		return (pem.read(buf, 'pkcs8'));
@@ -54691,7 +54605,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(255).Buffer))
 
 /***/ },
-/* 354 */
+/* 353 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {// Copyright 2015 Joyent, Inc.
@@ -54702,17 +54616,17 @@
 		write: write
 	};
 
-	var assert = __webpack_require__(333);
-	var asn1 = __webpack_require__(340);
-	var algs = __webpack_require__(334);
-	var utils = __webpack_require__(337);
+	var assert = __webpack_require__(329);
+	var asn1 = __webpack_require__(339);
+	var algs = __webpack_require__(333);
+	var utils = __webpack_require__(336);
 	var crypto = __webpack_require__(260);
 
 	var Key = __webpack_require__(332);
-	var PrivateKey = __webpack_require__(338);
-	var pem = __webpack_require__(351);
-	var rfc4253 = __webpack_require__(355);
-	var SSHBuffer = __webpack_require__(346);
+	var PrivateKey = __webpack_require__(337);
+	var pem = __webpack_require__(350);
+	var rfc4253 = __webpack_require__(354);
+	var SSHBuffer = __webpack_require__(345);
 
 	function read(buf) {
 		return (pem.read(buf));
@@ -54836,7 +54750,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(255).Buffer))
 
 /***/ },
-/* 355 */
+/* 354 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {// Copyright 2015 Joyent, Inc.
@@ -54854,12 +54768,12 @@
 		algToKeyType: algToKeyType
 	};
 
-	var assert = __webpack_require__(333);
-	var algs = __webpack_require__(334);
-	var utils = __webpack_require__(337);
+	var assert = __webpack_require__(329);
+	var algs = __webpack_require__(333);
+	var utils = __webpack_require__(336);
 	var Key = __webpack_require__(332);
-	var PrivateKey = __webpack_require__(338);
-	var SSHBuffer = __webpack_require__(346);
+	var PrivateKey = __webpack_require__(337);
+	var SSHBuffer = __webpack_require__(345);
 
 	function algToKeyType(alg) {
 		assert.string(alg);
@@ -54988,7 +54902,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(255).Buffer))
 
 /***/ },
-/* 356 */
+/* 355 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {// Copyright 2015 Joyent, Inc.
@@ -54998,13 +54912,13 @@
 		write: write
 	};
 
-	var assert = __webpack_require__(333);
-	var rfc4253 = __webpack_require__(355);
-	var utils = __webpack_require__(337);
+	var assert = __webpack_require__(329);
+	var rfc4253 = __webpack_require__(354);
+	var utils = __webpack_require__(336);
 	var Key = __webpack_require__(332);
-	var PrivateKey = __webpack_require__(338);
+	var PrivateKey = __webpack_require__(337);
 
-	var sshpriv = __webpack_require__(354);
+	var sshpriv = __webpack_require__(353);
 
 	/*JSSTYLED*/
 	var SSHKEY_RE = /^([a-z0-9-]+)[ \t]+([a-zA-Z0-9+\/]+[=]*)([\n \t]+([^\n]+))?$/;
@@ -55109,7 +55023,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(255).Buffer))
 
 /***/ },
-/* 357 */
+/* 356 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -55123,10 +55037,10 @@
 	 * You should have received a copy of the license along with this program.
 	 */
 
-	var dh = __webpack_require__(358);
-	var eddsa = __webpack_require__(362);
-	var curve255 = __webpack_require__(361);
-	var utils = __webpack_require__(360);
+	var dh = __webpack_require__(357);
+	var eddsa = __webpack_require__(361);
+	var curve255 = __webpack_require__(360);
+	var utils = __webpack_require__(359);
 
 	    /**
 	     * @exports jodid25519
@@ -55150,7 +55064,7 @@
 
 
 /***/ },
-/* 358 */
+/* 357 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {"use strict";
@@ -55168,9 +55082,9 @@
 	 * You should have received a copy of the license along with this program.
 	 */
 
-	var core = __webpack_require__(359);
-	var utils = __webpack_require__(360);
-	var curve255 = __webpack_require__(361);
+	var core = __webpack_require__(358);
+	var utils = __webpack_require__(359);
+	var curve255 = __webpack_require__(360);
 
 
 	    /**
@@ -55268,7 +55182,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(255).Buffer))
 
 /***/ },
-/* 359 */
+/* 358 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -55755,7 +55669,7 @@
 
 
 /***/ },
-/* 360 */
+/* 359 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -55775,7 +55689,7 @@
 	 * You should have received a copy of the license along with this program.
 	 */
 
-	var core = __webpack_require__(359);
+	var core = __webpack_require__(358);
 
 	    /**
 	     * @exports jodid25519/utils
@@ -55959,7 +55873,7 @@
 
 
 /***/ },
-/* 361 */
+/* 360 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -55978,8 +55892,8 @@
 	 * You should have received a copy of the license along with this program.
 	 */
 
-	var core = __webpack_require__(359);
-	var utils = __webpack_require__(360);
+	var core = __webpack_require__(358);
+	var utils = __webpack_require__(359);
 
 	    /**
 	     * @exports jodid25519/curve255
@@ -56186,7 +56100,7 @@
 
 
 /***/ },
-/* 362 */
+/* 361 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {"use strict";
@@ -56205,10 +56119,10 @@
 	 * You should have received a copy of the license along with this program.
 	 */
 
-	var core = __webpack_require__(359);
-	var curve255 = __webpack_require__(361);
-	var utils = __webpack_require__(360);
-	var BigInteger = __webpack_require__(363).BigInteger;
+	var core = __webpack_require__(358);
+	var curve255 = __webpack_require__(360);
+	var utils = __webpack_require__(359);
+	var BigInteger = __webpack_require__(362).BigInteger;
 	var crypto = __webpack_require__(260);
 
 	    /**
@@ -56766,7 +56680,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(255).Buffer))
 
 /***/ },
-/* 363 */
+/* 362 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function(){
@@ -58130,21 +58044,21 @@
 
 
 /***/ },
-/* 364 */
+/* 363 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {// Copyright 2015 Joyent, Inc.
 
 	module.exports = DiffieHellman;
 
-	var assert = __webpack_require__(333);
+	var assert = __webpack_require__(329);
 	var crypto = __webpack_require__(260);
-	var algs = __webpack_require__(334);
-	var utils = __webpack_require__(337);
+	var algs = __webpack_require__(333);
+	var utils = __webpack_require__(336);
 	var ed;
 
 	var Key = __webpack_require__(332);
-	var PrivateKey = __webpack_require__(338);
+	var PrivateKey = __webpack_require__(337);
 
 	var CRYPTO_HAVE_ECDH = (crypto.createECDH !== undefined);
 
@@ -58174,11 +58088,11 @@
 		} else if (key.type === 'ecdsa') {
 			if (!CRYPTO_HAVE_ECDH) {
 				if (ecdh === undefined)
-					ecdh = __webpack_require__(365);
+					ecdh = __webpack_require__(364);
 				if (ec === undefined)
-					ec = __webpack_require__(366);
+					ec = __webpack_require__(365);
 				if (jsbn === undefined)
-					jsbn = __webpack_require__(363).BigInteger;
+					jsbn = __webpack_require__(362).BigInteger;
 
 				this._ecParams = new X9ECParameters(this._curve);
 
@@ -58207,7 +58121,7 @@
 
 		} else if (key.type === 'curve25519') {
 			if (ed === undefined)
-				ed = __webpack_require__(357);
+				ed = __webpack_require__(356);
 
 			if (this._isPriv) {
 				this._priv = key.part.r.data;
@@ -58448,13 +58362,13 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(255).Buffer))
 
 /***/ },
-/* 365 */
+/* 364 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {var crypto = __webpack_require__(260);
-	var BigInteger = __webpack_require__(363).BigInteger;
-	var ECPointFp = __webpack_require__(366).ECPointFp;
-	exports.ECCurves = __webpack_require__(367);
+	var BigInteger = __webpack_require__(362).BigInteger;
+	var ECPointFp = __webpack_require__(365).ECPointFp;
+	exports.ECCurves = __webpack_require__(366);
 
 	// zero prepad
 	function unstupid(hex,len)
@@ -58512,7 +58426,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(255).Buffer))
 
 /***/ },
-/* 366 */
+/* 365 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Basic Javascript Elliptic Curve implementation
@@ -58520,7 +58434,7 @@
 	// Only Fp curves implemented for now
 
 	// Requires jsbn.js and jsbn2.js
-	var BigInteger = __webpack_require__(363).BigInteger
+	var BigInteger = __webpack_require__(362).BigInteger
 	var Barrett = BigInteger.prototype.Barrett
 
 	// ----------------
@@ -59079,14 +58993,14 @@
 
 
 /***/ },
-/* 367 */
+/* 366 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Named EC curves
 
 	// Requires ec.js, jsbn.js, and jsbn2.js
-	var BigInteger = __webpack_require__(363).BigInteger
-	var ECCurveFp = __webpack_require__(366).ECCurveFp
+	var BigInteger = __webpack_require__(362).BigInteger
+	var ECCurveFp = __webpack_require__(365).ECCurveFp
 
 
 	// ----------------
@@ -59255,7 +59169,7 @@
 
 
 /***/ },
-/* 368 */
+/* 367 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {// Copyright 2012 Joyent, Inc.  All rights reserved.
@@ -59265,7 +59179,7 @@
 	var http = __webpack_require__(276);
 	var util = __webpack_require__(250);
 	var sshpk = __webpack_require__(331);
-	var jsprim = __webpack_require__(369);
+	var jsprim = __webpack_require__(368);
 	var utils = __webpack_require__(330);
 
 	var sprintf = __webpack_require__(250).format;
@@ -59602,6 +59516,11 @@
 	        stringToSign += '\n';
 	    }
 
+	    /* This is just for unit tests. */
+	    if (request.hasOwnProperty('_stringToSign')) {
+	      request._stringToSign = stringToSign;
+	    }
+
 	    var signature;
 	    if (alg[0] === 'hmac') {
 	      if (typeof (options.key) !== 'string' && !Buffer.isBuffer(options.key))
@@ -59656,7 +59575,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(255).Buffer))
 
 /***/ },
-/* 369 */
+/* 368 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -59666,9 +59585,9 @@
 	var mod_assert = __webpack_require__(316);
 	var mod_util = __webpack_require__(250);
 
-	var mod_extsprintf = __webpack_require__(370);
-	var mod_verror = __webpack_require__(371);
-	var mod_jsonschema = __webpack_require__(372);
+	var mod_extsprintf = __webpack_require__(369);
+	var mod_verror = __webpack_require__(370);
+	var mod_jsonschema = __webpack_require__(371);
 
 	/*
 	 * Public interface
@@ -60140,7 +60059,7 @@
 
 
 /***/ },
-/* 370 */
+/* 369 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -60312,7 +60231,7 @@
 
 
 /***/ },
-/* 371 */
+/* 370 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -60322,7 +60241,7 @@
 	var mod_assert = __webpack_require__(316);
 	var mod_util = __webpack_require__(250);
 
-	var mod_extsprintf = __webpack_require__(370);
+	var mod_extsprintf = __webpack_require__(369);
 
 	/*
 	 * Public interface
@@ -60475,7 +60394,7 @@
 
 
 /***/ },
-/* 372 */
+/* 371 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -60493,7 +60412,7 @@
 	"property" which indicates which property had the error
 	"message" which indicates what the error was
 	 */
-	({define: true?__webpack_require__(373):function(deps, factory){module.exports = factory();}}).
+	({define: true?__webpack_require__(372):function(deps, factory){module.exports = factory();}}).
 	define([], function(){
 	var exports = validate;
 	// setup primitive classes to be JSON Schema types
@@ -60741,14 +60660,14 @@
 
 
 /***/ },
-/* 373 */
+/* 372 */
 /***/ function(module, exports) {
 
 	module.exports = function() { throw new Error("define cannot be used indirect"); };
 
 
 /***/ },
-/* 374 */
+/* 373 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {// Copyright 2015 Joyent, Inc.
@@ -60843,7 +60762,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(255).Buffer))
 
 /***/ },
-/* 375 */
+/* 374 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -60860,8 +60779,8 @@
 	 * @private
 	 */
 
-	var db = __webpack_require__(376)
-	var extname = __webpack_require__(378).extname
+	var db = __webpack_require__(375)
+	var extname = __webpack_require__(377).extname
 
 	/**
 	 * Module variables.
@@ -61037,7 +60956,7 @@
 
 
 /***/ },
-/* 376 */
+/* 375 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -61050,12 +60969,8447 @@
 	 * Module exports.
 	 */
 
-	module.exports = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./db.json\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()))
+	module.exports = __webpack_require__(376)
 
 
 /***/ },
-/* 377 */,
-/* 378 */
+/* 376 */
+/***/ function(module, exports) {
+
+	module.exports = {
+		"application/1d-interleaved-parityfec": {
+			"source": "iana"
+		},
+		"application/3gpdash-qoe-report+xml": {
+			"source": "iana"
+		},
+		"application/3gpp-ims+xml": {
+			"source": "iana"
+		},
+		"application/a2l": {
+			"source": "iana"
+		},
+		"application/activemessage": {
+			"source": "iana"
+		},
+		"application/alto-costmap+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/alto-costmapfilter+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/alto-directory+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/alto-endpointcost+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/alto-endpointcostparams+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/alto-endpointprop+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/alto-endpointpropparams+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/alto-error+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/alto-networkmap+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/alto-networkmapfilter+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/aml": {
+			"source": "iana"
+		},
+		"application/andrew-inset": {
+			"source": "iana",
+			"extensions": [
+				"ez"
+			]
+		},
+		"application/applefile": {
+			"source": "iana"
+		},
+		"application/applixware": {
+			"source": "apache",
+			"extensions": [
+				"aw"
+			]
+		},
+		"application/atf": {
+			"source": "iana"
+		},
+		"application/atfx": {
+			"source": "iana"
+		},
+		"application/atom+xml": {
+			"source": "iana",
+			"compressible": true,
+			"extensions": [
+				"atom"
+			]
+		},
+		"application/atomcat+xml": {
+			"source": "iana",
+			"extensions": [
+				"atomcat"
+			]
+		},
+		"application/atomdeleted+xml": {
+			"source": "iana"
+		},
+		"application/atomicmail": {
+			"source": "iana"
+		},
+		"application/atomsvc+xml": {
+			"source": "iana",
+			"extensions": [
+				"atomsvc"
+			]
+		},
+		"application/atxml": {
+			"source": "iana"
+		},
+		"application/auth-policy+xml": {
+			"source": "iana"
+		},
+		"application/bacnet-xdd+zip": {
+			"source": "iana"
+		},
+		"application/batch-smtp": {
+			"source": "iana"
+		},
+		"application/bdoc": {
+			"compressible": false,
+			"extensions": [
+				"bdoc"
+			]
+		},
+		"application/beep+xml": {
+			"source": "iana"
+		},
+		"application/calendar+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/calendar+xml": {
+			"source": "iana"
+		},
+		"application/call-completion": {
+			"source": "iana"
+		},
+		"application/cals-1840": {
+			"source": "iana"
+		},
+		"application/cbor": {
+			"source": "iana"
+		},
+		"application/ccmp+xml": {
+			"source": "iana"
+		},
+		"application/ccxml+xml": {
+			"source": "iana",
+			"extensions": [
+				"ccxml"
+			]
+		},
+		"application/cdfx+xml": {
+			"source": "iana"
+		},
+		"application/cdmi-capability": {
+			"source": "iana",
+			"extensions": [
+				"cdmia"
+			]
+		},
+		"application/cdmi-container": {
+			"source": "iana",
+			"extensions": [
+				"cdmic"
+			]
+		},
+		"application/cdmi-domain": {
+			"source": "iana",
+			"extensions": [
+				"cdmid"
+			]
+		},
+		"application/cdmi-object": {
+			"source": "iana",
+			"extensions": [
+				"cdmio"
+			]
+		},
+		"application/cdmi-queue": {
+			"source": "iana",
+			"extensions": [
+				"cdmiq"
+			]
+		},
+		"application/cdni": {
+			"source": "iana"
+		},
+		"application/cea": {
+			"source": "iana"
+		},
+		"application/cea-2018+xml": {
+			"source": "iana"
+		},
+		"application/cellml+xml": {
+			"source": "iana"
+		},
+		"application/cfw": {
+			"source": "iana"
+		},
+		"application/cms": {
+			"source": "iana"
+		},
+		"application/cnrp+xml": {
+			"source": "iana"
+		},
+		"application/coap-group+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/commonground": {
+			"source": "iana"
+		},
+		"application/conference-info+xml": {
+			"source": "iana"
+		},
+		"application/cpl+xml": {
+			"source": "iana"
+		},
+		"application/csrattrs": {
+			"source": "iana"
+		},
+		"application/csta+xml": {
+			"source": "iana"
+		},
+		"application/cstadata+xml": {
+			"source": "iana"
+		},
+		"application/csvm+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/cu-seeme": {
+			"source": "apache",
+			"extensions": [
+				"cu"
+			]
+		},
+		"application/cybercash": {
+			"source": "iana"
+		},
+		"application/dart": {
+			"compressible": true
+		},
+		"application/dash+xml": {
+			"source": "iana",
+			"extensions": [
+				"mdp"
+			]
+		},
+		"application/dashdelta": {
+			"source": "iana"
+		},
+		"application/davmount+xml": {
+			"source": "iana",
+			"extensions": [
+				"davmount"
+			]
+		},
+		"application/dca-rft": {
+			"source": "iana"
+		},
+		"application/dcd": {
+			"source": "iana"
+		},
+		"application/dec-dx": {
+			"source": "iana"
+		},
+		"application/dialog-info+xml": {
+			"source": "iana"
+		},
+		"application/dicom": {
+			"source": "iana"
+		},
+		"application/dii": {
+			"source": "iana"
+		},
+		"application/dit": {
+			"source": "iana"
+		},
+		"application/dns": {
+			"source": "iana"
+		},
+		"application/docbook+xml": {
+			"source": "apache",
+			"extensions": [
+				"dbk"
+			]
+		},
+		"application/dskpp+xml": {
+			"source": "iana"
+		},
+		"application/dssc+der": {
+			"source": "iana",
+			"extensions": [
+				"dssc"
+			]
+		},
+		"application/dssc+xml": {
+			"source": "iana",
+			"extensions": [
+				"xdssc"
+			]
+		},
+		"application/dvcs": {
+			"source": "iana"
+		},
+		"application/ecmascript": {
+			"source": "iana",
+			"compressible": true,
+			"extensions": [
+				"ecma"
+			]
+		},
+		"application/edi-consent": {
+			"source": "iana"
+		},
+		"application/edi-x12": {
+			"source": "iana",
+			"compressible": false
+		},
+		"application/edifact": {
+			"source": "iana",
+			"compressible": false
+		},
+		"application/emergencycalldata.comment+xml": {
+			"source": "iana"
+		},
+		"application/emergencycalldata.deviceinfo+xml": {
+			"source": "iana"
+		},
+		"application/emergencycalldata.providerinfo+xml": {
+			"source": "iana"
+		},
+		"application/emergencycalldata.serviceinfo+xml": {
+			"source": "iana"
+		},
+		"application/emergencycalldata.subscriberinfo+xml": {
+			"source": "iana"
+		},
+		"application/emma+xml": {
+			"source": "iana",
+			"extensions": [
+				"emma"
+			]
+		},
+		"application/emotionml+xml": {
+			"source": "iana"
+		},
+		"application/encaprtp": {
+			"source": "iana"
+		},
+		"application/epp+xml": {
+			"source": "iana"
+		},
+		"application/epub+zip": {
+			"source": "iana",
+			"extensions": [
+				"epub"
+			]
+		},
+		"application/eshop": {
+			"source": "iana"
+		},
+		"application/exi": {
+			"source": "iana",
+			"extensions": [
+				"exi"
+			]
+		},
+		"application/fastinfoset": {
+			"source": "iana"
+		},
+		"application/fastsoap": {
+			"source": "iana"
+		},
+		"application/fdt+xml": {
+			"source": "iana"
+		},
+		"application/fits": {
+			"source": "iana"
+		},
+		"application/font-sfnt": {
+			"source": "iana"
+		},
+		"application/font-tdpfr": {
+			"source": "iana",
+			"extensions": [
+				"pfr"
+			]
+		},
+		"application/font-woff": {
+			"source": "iana",
+			"compressible": false,
+			"extensions": [
+				"woff"
+			]
+		},
+		"application/font-woff2": {
+			"compressible": false,
+			"extensions": [
+				"woff2"
+			]
+		},
+		"application/framework-attributes+xml": {
+			"source": "iana"
+		},
+		"application/gml+xml": {
+			"source": "apache",
+			"extensions": [
+				"gml"
+			]
+		},
+		"application/gpx+xml": {
+			"source": "apache",
+			"extensions": [
+				"gpx"
+			]
+		},
+		"application/gxf": {
+			"source": "apache",
+			"extensions": [
+				"gxf"
+			]
+		},
+		"application/gzip": {
+			"source": "iana",
+			"compressible": false
+		},
+		"application/h224": {
+			"source": "iana"
+		},
+		"application/held+xml": {
+			"source": "iana"
+		},
+		"application/http": {
+			"source": "iana"
+		},
+		"application/hyperstudio": {
+			"source": "iana",
+			"extensions": [
+				"stk"
+			]
+		},
+		"application/ibe-key-request+xml": {
+			"source": "iana"
+		},
+		"application/ibe-pkg-reply+xml": {
+			"source": "iana"
+		},
+		"application/ibe-pp-data": {
+			"source": "iana"
+		},
+		"application/iges": {
+			"source": "iana"
+		},
+		"application/im-iscomposing+xml": {
+			"source": "iana"
+		},
+		"application/index": {
+			"source": "iana"
+		},
+		"application/index.cmd": {
+			"source": "iana"
+		},
+		"application/index.obj": {
+			"source": "iana"
+		},
+		"application/index.response": {
+			"source": "iana"
+		},
+		"application/index.vnd": {
+			"source": "iana"
+		},
+		"application/inkml+xml": {
+			"source": "iana",
+			"extensions": [
+				"ink",
+				"inkml"
+			]
+		},
+		"application/iotp": {
+			"source": "iana"
+		},
+		"application/ipfix": {
+			"source": "iana",
+			"extensions": [
+				"ipfix"
+			]
+		},
+		"application/ipp": {
+			"source": "iana"
+		},
+		"application/isup": {
+			"source": "iana"
+		},
+		"application/its+xml": {
+			"source": "iana"
+		},
+		"application/java-archive": {
+			"source": "apache",
+			"compressible": false,
+			"extensions": [
+				"jar",
+				"war",
+				"ear"
+			]
+		},
+		"application/java-serialized-object": {
+			"source": "apache",
+			"compressible": false,
+			"extensions": [
+				"ser"
+			]
+		},
+		"application/java-vm": {
+			"source": "apache",
+			"compressible": false,
+			"extensions": [
+				"class"
+			]
+		},
+		"application/javascript": {
+			"source": "iana",
+			"charset": "UTF-8",
+			"compressible": true,
+			"extensions": [
+				"js"
+			]
+		},
+		"application/jose": {
+			"source": "iana"
+		},
+		"application/jose+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/jrd+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/json": {
+			"source": "iana",
+			"charset": "UTF-8",
+			"compressible": true,
+			"extensions": [
+				"json",
+				"map"
+			]
+		},
+		"application/json-patch+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/json-seq": {
+			"source": "iana"
+		},
+		"application/json5": {
+			"extensions": [
+				"json5"
+			]
+		},
+		"application/jsonml+json": {
+			"source": "apache",
+			"compressible": true,
+			"extensions": [
+				"jsonml"
+			]
+		},
+		"application/jwk+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/jwk-set+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/jwt": {
+			"source": "iana"
+		},
+		"application/kpml-request+xml": {
+			"source": "iana"
+		},
+		"application/kpml-response+xml": {
+			"source": "iana"
+		},
+		"application/ld+json": {
+			"source": "iana",
+			"compressible": true,
+			"extensions": [
+				"jsonld"
+			]
+		},
+		"application/link-format": {
+			"source": "iana"
+		},
+		"application/load-control+xml": {
+			"source": "iana"
+		},
+		"application/lost+xml": {
+			"source": "iana",
+			"extensions": [
+				"lostxml"
+			]
+		},
+		"application/lostsync+xml": {
+			"source": "iana"
+		},
+		"application/lxf": {
+			"source": "iana"
+		},
+		"application/mac-binhex40": {
+			"source": "iana",
+			"extensions": [
+				"hqx"
+			]
+		},
+		"application/mac-compactpro": {
+			"source": "apache",
+			"extensions": [
+				"cpt"
+			]
+		},
+		"application/macwriteii": {
+			"source": "iana"
+		},
+		"application/mads+xml": {
+			"source": "iana",
+			"extensions": [
+				"mads"
+			]
+		},
+		"application/manifest+json": {
+			"charset": "UTF-8",
+			"compressible": true,
+			"extensions": [
+				"webmanifest"
+			]
+		},
+		"application/marc": {
+			"source": "iana",
+			"extensions": [
+				"mrc"
+			]
+		},
+		"application/marcxml+xml": {
+			"source": "iana",
+			"extensions": [
+				"mrcx"
+			]
+		},
+		"application/mathematica": {
+			"source": "iana",
+			"extensions": [
+				"ma",
+				"nb",
+				"mb"
+			]
+		},
+		"application/mathml+xml": {
+			"source": "iana",
+			"extensions": [
+				"mathml"
+			]
+		},
+		"application/mathml-content+xml": {
+			"source": "iana"
+		},
+		"application/mathml-presentation+xml": {
+			"source": "iana"
+		},
+		"application/mbms-associated-procedure-description+xml": {
+			"source": "iana"
+		},
+		"application/mbms-deregister+xml": {
+			"source": "iana"
+		},
+		"application/mbms-envelope+xml": {
+			"source": "iana"
+		},
+		"application/mbms-msk+xml": {
+			"source": "iana"
+		},
+		"application/mbms-msk-response+xml": {
+			"source": "iana"
+		},
+		"application/mbms-protection-description+xml": {
+			"source": "iana"
+		},
+		"application/mbms-reception-report+xml": {
+			"source": "iana"
+		},
+		"application/mbms-register+xml": {
+			"source": "iana"
+		},
+		"application/mbms-register-response+xml": {
+			"source": "iana"
+		},
+		"application/mbms-schedule+xml": {
+			"source": "iana"
+		},
+		"application/mbms-user-service-description+xml": {
+			"source": "iana"
+		},
+		"application/mbox": {
+			"source": "iana",
+			"extensions": [
+				"mbox"
+			]
+		},
+		"application/media-policy-dataset+xml": {
+			"source": "iana"
+		},
+		"application/media_control+xml": {
+			"source": "iana"
+		},
+		"application/mediaservercontrol+xml": {
+			"source": "iana",
+			"extensions": [
+				"mscml"
+			]
+		},
+		"application/merge-patch+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/metalink+xml": {
+			"source": "apache",
+			"extensions": [
+				"metalink"
+			]
+		},
+		"application/metalink4+xml": {
+			"source": "iana",
+			"extensions": [
+				"meta4"
+			]
+		},
+		"application/mets+xml": {
+			"source": "iana",
+			"extensions": [
+				"mets"
+			]
+		},
+		"application/mf4": {
+			"source": "iana"
+		},
+		"application/mikey": {
+			"source": "iana"
+		},
+		"application/mods+xml": {
+			"source": "iana",
+			"extensions": [
+				"mods"
+			]
+		},
+		"application/moss-keys": {
+			"source": "iana"
+		},
+		"application/moss-signature": {
+			"source": "iana"
+		},
+		"application/mosskey-data": {
+			"source": "iana"
+		},
+		"application/mosskey-request": {
+			"source": "iana"
+		},
+		"application/mp21": {
+			"source": "iana",
+			"extensions": [
+				"m21",
+				"mp21"
+			]
+		},
+		"application/mp4": {
+			"source": "iana",
+			"extensions": [
+				"mp4s",
+				"m4p"
+			]
+		},
+		"application/mpeg4-generic": {
+			"source": "iana"
+		},
+		"application/mpeg4-iod": {
+			"source": "iana"
+		},
+		"application/mpeg4-iod-xmt": {
+			"source": "iana"
+		},
+		"application/mrb-consumer+xml": {
+			"source": "iana"
+		},
+		"application/mrb-publish+xml": {
+			"source": "iana"
+		},
+		"application/msc-ivr+xml": {
+			"source": "iana"
+		},
+		"application/msc-mixer+xml": {
+			"source": "iana"
+		},
+		"application/msword": {
+			"source": "iana",
+			"compressible": false,
+			"extensions": [
+				"doc",
+				"dot"
+			]
+		},
+		"application/mxf": {
+			"source": "iana",
+			"extensions": [
+				"mxf"
+			]
+		},
+		"application/nasdata": {
+			"source": "iana"
+		},
+		"application/news-checkgroups": {
+			"source": "iana"
+		},
+		"application/news-groupinfo": {
+			"source": "iana"
+		},
+		"application/news-transmission": {
+			"source": "iana"
+		},
+		"application/nlsml+xml": {
+			"source": "iana"
+		},
+		"application/nss": {
+			"source": "iana"
+		},
+		"application/ocsp-request": {
+			"source": "iana"
+		},
+		"application/ocsp-response": {
+			"source": "iana"
+		},
+		"application/octet-stream": {
+			"source": "iana",
+			"compressible": false,
+			"extensions": [
+				"bin",
+				"dms",
+				"lrf",
+				"mar",
+				"so",
+				"dist",
+				"distz",
+				"pkg",
+				"bpk",
+				"dump",
+				"elc",
+				"deploy",
+				"exe",
+				"dll",
+				"deb",
+				"dmg",
+				"iso",
+				"img",
+				"msi",
+				"msp",
+				"msm",
+				"buffer"
+			]
+		},
+		"application/oda": {
+			"source": "iana",
+			"extensions": [
+				"oda"
+			]
+		},
+		"application/odx": {
+			"source": "iana"
+		},
+		"application/oebps-package+xml": {
+			"source": "iana",
+			"extensions": [
+				"opf"
+			]
+		},
+		"application/ogg": {
+			"source": "iana",
+			"compressible": false,
+			"extensions": [
+				"ogx"
+			]
+		},
+		"application/omdoc+xml": {
+			"source": "apache",
+			"extensions": [
+				"omdoc"
+			]
+		},
+		"application/onenote": {
+			"source": "apache",
+			"extensions": [
+				"onetoc",
+				"onetoc2",
+				"onetmp",
+				"onepkg"
+			]
+		},
+		"application/oxps": {
+			"source": "iana",
+			"extensions": [
+				"oxps"
+			]
+		},
+		"application/p2p-overlay+xml": {
+			"source": "iana"
+		},
+		"application/parityfec": {
+			"source": "iana"
+		},
+		"application/patch-ops-error+xml": {
+			"source": "iana",
+			"extensions": [
+				"xer"
+			]
+		},
+		"application/pdf": {
+			"source": "iana",
+			"compressible": false,
+			"extensions": [
+				"pdf"
+			]
+		},
+		"application/pdx": {
+			"source": "iana"
+		},
+		"application/pgp-encrypted": {
+			"source": "iana",
+			"compressible": false,
+			"extensions": [
+				"pgp"
+			]
+		},
+		"application/pgp-keys": {
+			"source": "iana"
+		},
+		"application/pgp-signature": {
+			"source": "iana",
+			"extensions": [
+				"asc",
+				"sig"
+			]
+		},
+		"application/pics-rules": {
+			"source": "apache",
+			"extensions": [
+				"prf"
+			]
+		},
+		"application/pidf+xml": {
+			"source": "iana"
+		},
+		"application/pidf-diff+xml": {
+			"source": "iana"
+		},
+		"application/pkcs10": {
+			"source": "iana",
+			"extensions": [
+				"p10"
+			]
+		},
+		"application/pkcs12": {
+			"source": "iana"
+		},
+		"application/pkcs7-mime": {
+			"source": "iana",
+			"extensions": [
+				"p7m",
+				"p7c"
+			]
+		},
+		"application/pkcs7-signature": {
+			"source": "iana",
+			"extensions": [
+				"p7s"
+			]
+		},
+		"application/pkcs8": {
+			"source": "iana",
+			"extensions": [
+				"p8"
+			]
+		},
+		"application/pkix-attr-cert": {
+			"source": "iana",
+			"extensions": [
+				"ac"
+			]
+		},
+		"application/pkix-cert": {
+			"source": "iana",
+			"extensions": [
+				"cer"
+			]
+		},
+		"application/pkix-crl": {
+			"source": "iana",
+			"extensions": [
+				"crl"
+			]
+		},
+		"application/pkix-pkipath": {
+			"source": "iana",
+			"extensions": [
+				"pkipath"
+			]
+		},
+		"application/pkixcmp": {
+			"source": "iana",
+			"extensions": [
+				"pki"
+			]
+		},
+		"application/pls+xml": {
+			"source": "iana",
+			"extensions": [
+				"pls"
+			]
+		},
+		"application/poc-settings+xml": {
+			"source": "iana"
+		},
+		"application/postscript": {
+			"source": "iana",
+			"compressible": true,
+			"extensions": [
+				"ai",
+				"eps",
+				"ps"
+			]
+		},
+		"application/provenance+xml": {
+			"source": "iana"
+		},
+		"application/prs.alvestrand.titrax-sheet": {
+			"source": "iana"
+		},
+		"application/prs.cww": {
+			"source": "iana",
+			"extensions": [
+				"cww"
+			]
+		},
+		"application/prs.hpub+zip": {
+			"source": "iana"
+		},
+		"application/prs.nprend": {
+			"source": "iana"
+		},
+		"application/prs.plucker": {
+			"source": "iana"
+		},
+		"application/prs.rdf-xml-crypt": {
+			"source": "iana"
+		},
+		"application/prs.xsf+xml": {
+			"source": "iana"
+		},
+		"application/pskc+xml": {
+			"source": "iana",
+			"extensions": [
+				"pskcxml"
+			]
+		},
+		"application/qsig": {
+			"source": "iana"
+		},
+		"application/raptorfec": {
+			"source": "iana"
+		},
+		"application/rdap+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/rdf+xml": {
+			"source": "iana",
+			"compressible": true,
+			"extensions": [
+				"rdf"
+			]
+		},
+		"application/reginfo+xml": {
+			"source": "iana",
+			"extensions": [
+				"rif"
+			]
+		},
+		"application/relax-ng-compact-syntax": {
+			"source": "iana",
+			"extensions": [
+				"rnc"
+			]
+		},
+		"application/remote-printing": {
+			"source": "iana"
+		},
+		"application/reputon+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/resource-lists+xml": {
+			"source": "iana",
+			"extensions": [
+				"rl"
+			]
+		},
+		"application/resource-lists-diff+xml": {
+			"source": "iana",
+			"extensions": [
+				"rld"
+			]
+		},
+		"application/rfc+xml": {
+			"source": "iana"
+		},
+		"application/riscos": {
+			"source": "iana"
+		},
+		"application/rlmi+xml": {
+			"source": "iana"
+		},
+		"application/rls-services+xml": {
+			"source": "iana",
+			"extensions": [
+				"rs"
+			]
+		},
+		"application/rpki-ghostbusters": {
+			"source": "iana",
+			"extensions": [
+				"gbr"
+			]
+		},
+		"application/rpki-manifest": {
+			"source": "iana",
+			"extensions": [
+				"mft"
+			]
+		},
+		"application/rpki-roa": {
+			"source": "iana",
+			"extensions": [
+				"roa"
+			]
+		},
+		"application/rpki-updown": {
+			"source": "iana"
+		},
+		"application/rsd+xml": {
+			"source": "apache",
+			"extensions": [
+				"rsd"
+			]
+		},
+		"application/rss+xml": {
+			"source": "apache",
+			"compressible": true,
+			"extensions": [
+				"rss"
+			]
+		},
+		"application/rtf": {
+			"source": "iana",
+			"compressible": true,
+			"extensions": [
+				"rtf"
+			]
+		},
+		"application/rtploopback": {
+			"source": "iana"
+		},
+		"application/rtx": {
+			"source": "iana"
+		},
+		"application/samlassertion+xml": {
+			"source": "iana"
+		},
+		"application/samlmetadata+xml": {
+			"source": "iana"
+		},
+		"application/sbml+xml": {
+			"source": "iana",
+			"extensions": [
+				"sbml"
+			]
+		},
+		"application/scaip+xml": {
+			"source": "iana"
+		},
+		"application/scim+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/scvp-cv-request": {
+			"source": "iana",
+			"extensions": [
+				"scq"
+			]
+		},
+		"application/scvp-cv-response": {
+			"source": "iana",
+			"extensions": [
+				"scs"
+			]
+		},
+		"application/scvp-vp-request": {
+			"source": "iana",
+			"extensions": [
+				"spq"
+			]
+		},
+		"application/scvp-vp-response": {
+			"source": "iana",
+			"extensions": [
+				"spp"
+			]
+		},
+		"application/sdp": {
+			"source": "iana",
+			"extensions": [
+				"sdp"
+			]
+		},
+		"application/sep+xml": {
+			"source": "iana"
+		},
+		"application/sep-exi": {
+			"source": "iana"
+		},
+		"application/session-info": {
+			"source": "iana"
+		},
+		"application/set-payment": {
+			"source": "iana"
+		},
+		"application/set-payment-initiation": {
+			"source": "iana",
+			"extensions": [
+				"setpay"
+			]
+		},
+		"application/set-registration": {
+			"source": "iana"
+		},
+		"application/set-registration-initiation": {
+			"source": "iana",
+			"extensions": [
+				"setreg"
+			]
+		},
+		"application/sgml": {
+			"source": "iana"
+		},
+		"application/sgml-open-catalog": {
+			"source": "iana"
+		},
+		"application/shf+xml": {
+			"source": "iana",
+			"extensions": [
+				"shf"
+			]
+		},
+		"application/sieve": {
+			"source": "iana"
+		},
+		"application/simple-filter+xml": {
+			"source": "iana"
+		},
+		"application/simple-message-summary": {
+			"source": "iana"
+		},
+		"application/simplesymbolcontainer": {
+			"source": "iana"
+		},
+		"application/slate": {
+			"source": "iana"
+		},
+		"application/smil": {
+			"source": "iana"
+		},
+		"application/smil+xml": {
+			"source": "iana",
+			"extensions": [
+				"smi",
+				"smil"
+			]
+		},
+		"application/smpte336m": {
+			"source": "iana"
+		},
+		"application/soap+fastinfoset": {
+			"source": "iana"
+		},
+		"application/soap+xml": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/sparql-query": {
+			"source": "iana",
+			"extensions": [
+				"rq"
+			]
+		},
+		"application/sparql-results+xml": {
+			"source": "iana",
+			"extensions": [
+				"srx"
+			]
+		},
+		"application/spirits-event+xml": {
+			"source": "iana"
+		},
+		"application/sql": {
+			"source": "iana"
+		},
+		"application/srgs": {
+			"source": "iana",
+			"extensions": [
+				"gram"
+			]
+		},
+		"application/srgs+xml": {
+			"source": "iana",
+			"extensions": [
+				"grxml"
+			]
+		},
+		"application/sru+xml": {
+			"source": "iana",
+			"extensions": [
+				"sru"
+			]
+		},
+		"application/ssdl+xml": {
+			"source": "apache",
+			"extensions": [
+				"ssdl"
+			]
+		},
+		"application/ssml+xml": {
+			"source": "iana",
+			"extensions": [
+				"ssml"
+			]
+		},
+		"application/tamp-apex-update": {
+			"source": "iana"
+		},
+		"application/tamp-apex-update-confirm": {
+			"source": "iana"
+		},
+		"application/tamp-community-update": {
+			"source": "iana"
+		},
+		"application/tamp-community-update-confirm": {
+			"source": "iana"
+		},
+		"application/tamp-error": {
+			"source": "iana"
+		},
+		"application/tamp-sequence-adjust": {
+			"source": "iana"
+		},
+		"application/tamp-sequence-adjust-confirm": {
+			"source": "iana"
+		},
+		"application/tamp-status-query": {
+			"source": "iana"
+		},
+		"application/tamp-status-response": {
+			"source": "iana"
+		},
+		"application/tamp-update": {
+			"source": "iana"
+		},
+		"application/tamp-update-confirm": {
+			"source": "iana"
+		},
+		"application/tar": {
+			"compressible": true
+		},
+		"application/tei+xml": {
+			"source": "iana",
+			"extensions": [
+				"tei",
+				"teicorpus"
+			]
+		},
+		"application/thraud+xml": {
+			"source": "iana",
+			"extensions": [
+				"tfi"
+			]
+		},
+		"application/timestamp-query": {
+			"source": "iana"
+		},
+		"application/timestamp-reply": {
+			"source": "iana"
+		},
+		"application/timestamped-data": {
+			"source": "iana",
+			"extensions": [
+				"tsd"
+			]
+		},
+		"application/ttml+xml": {
+			"source": "iana"
+		},
+		"application/tve-trigger": {
+			"source": "iana"
+		},
+		"application/ulpfec": {
+			"source": "iana"
+		},
+		"application/urc-grpsheet+xml": {
+			"source": "iana"
+		},
+		"application/urc-ressheet+xml": {
+			"source": "iana"
+		},
+		"application/urc-targetdesc+xml": {
+			"source": "iana"
+		},
+		"application/urc-uisocketdesc+xml": {
+			"source": "iana"
+		},
+		"application/vcard+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/vcard+xml": {
+			"source": "iana"
+		},
+		"application/vemmi": {
+			"source": "iana"
+		},
+		"application/vividence.scriptfile": {
+			"source": "apache"
+		},
+		"application/vnd.3gpp-prose+xml": {
+			"source": "iana"
+		},
+		"application/vnd.3gpp-prose-pc3ch+xml": {
+			"source": "iana"
+		},
+		"application/vnd.3gpp.access-transfer-events+xml": {
+			"source": "iana"
+		},
+		"application/vnd.3gpp.bsf+xml": {
+			"source": "iana"
+		},
+		"application/vnd.3gpp.mid-call+xml": {
+			"source": "iana"
+		},
+		"application/vnd.3gpp.pic-bw-large": {
+			"source": "iana",
+			"extensions": [
+				"plb"
+			]
+		},
+		"application/vnd.3gpp.pic-bw-small": {
+			"source": "iana",
+			"extensions": [
+				"psb"
+			]
+		},
+		"application/vnd.3gpp.pic-bw-var": {
+			"source": "iana",
+			"extensions": [
+				"pvb"
+			]
+		},
+		"application/vnd.3gpp.sms": {
+			"source": "iana"
+		},
+		"application/vnd.3gpp.srvcc-ext+xml": {
+			"source": "iana"
+		},
+		"application/vnd.3gpp.srvcc-info+xml": {
+			"source": "iana"
+		},
+		"application/vnd.3gpp.state-and-event-info+xml": {
+			"source": "iana"
+		},
+		"application/vnd.3gpp.ussd+xml": {
+			"source": "iana"
+		},
+		"application/vnd.3gpp2.bcmcsinfo+xml": {
+			"source": "iana"
+		},
+		"application/vnd.3gpp2.sms": {
+			"source": "iana"
+		},
+		"application/vnd.3gpp2.tcap": {
+			"source": "iana",
+			"extensions": [
+				"tcap"
+			]
+		},
+		"application/vnd.3m.post-it-notes": {
+			"source": "iana",
+			"extensions": [
+				"pwn"
+			]
+		},
+		"application/vnd.accpac.simply.aso": {
+			"source": "iana",
+			"extensions": [
+				"aso"
+			]
+		},
+		"application/vnd.accpac.simply.imp": {
+			"source": "iana",
+			"extensions": [
+				"imp"
+			]
+		},
+		"application/vnd.acucobol": {
+			"source": "iana",
+			"extensions": [
+				"acu"
+			]
+		},
+		"application/vnd.acucorp": {
+			"source": "iana",
+			"extensions": [
+				"atc",
+				"acutc"
+			]
+		},
+		"application/vnd.adobe.air-application-installer-package+zip": {
+			"source": "apache",
+			"extensions": [
+				"air"
+			]
+		},
+		"application/vnd.adobe.flash.movie": {
+			"source": "iana"
+		},
+		"application/vnd.adobe.formscentral.fcdt": {
+			"source": "iana",
+			"extensions": [
+				"fcdt"
+			]
+		},
+		"application/vnd.adobe.fxp": {
+			"source": "iana",
+			"extensions": [
+				"fxp",
+				"fxpl"
+			]
+		},
+		"application/vnd.adobe.partial-upload": {
+			"source": "iana"
+		},
+		"application/vnd.adobe.xdp+xml": {
+			"source": "iana",
+			"extensions": [
+				"xdp"
+			]
+		},
+		"application/vnd.adobe.xfdf": {
+			"source": "iana",
+			"extensions": [
+				"xfdf"
+			]
+		},
+		"application/vnd.aether.imp": {
+			"source": "iana"
+		},
+		"application/vnd.ah-barcode": {
+			"source": "iana"
+		},
+		"application/vnd.ahead.space": {
+			"source": "iana",
+			"extensions": [
+				"ahead"
+			]
+		},
+		"application/vnd.airzip.filesecure.azf": {
+			"source": "iana",
+			"extensions": [
+				"azf"
+			]
+		},
+		"application/vnd.airzip.filesecure.azs": {
+			"source": "iana",
+			"extensions": [
+				"azs"
+			]
+		},
+		"application/vnd.amazon.ebook": {
+			"source": "apache",
+			"extensions": [
+				"azw"
+			]
+		},
+		"application/vnd.americandynamics.acc": {
+			"source": "iana",
+			"extensions": [
+				"acc"
+			]
+		},
+		"application/vnd.amiga.ami": {
+			"source": "iana",
+			"extensions": [
+				"ami"
+			]
+		},
+		"application/vnd.amundsen.maze+xml": {
+			"source": "iana"
+		},
+		"application/vnd.android.package-archive": {
+			"source": "apache",
+			"compressible": false,
+			"extensions": [
+				"apk"
+			]
+		},
+		"application/vnd.anki": {
+			"source": "iana"
+		},
+		"application/vnd.anser-web-certificate-issue-initiation": {
+			"source": "iana",
+			"extensions": [
+				"cii"
+			]
+		},
+		"application/vnd.anser-web-funds-transfer-initiation": {
+			"source": "apache",
+			"extensions": [
+				"fti"
+			]
+		},
+		"application/vnd.antix.game-component": {
+			"source": "iana",
+			"extensions": [
+				"atx"
+			]
+		},
+		"application/vnd.apache.thrift.binary": {
+			"source": "iana"
+		},
+		"application/vnd.apache.thrift.compact": {
+			"source": "iana"
+		},
+		"application/vnd.apache.thrift.json": {
+			"source": "iana"
+		},
+		"application/vnd.api+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/vnd.apple.installer+xml": {
+			"source": "iana",
+			"extensions": [
+				"mpkg"
+			]
+		},
+		"application/vnd.apple.mpegurl": {
+			"source": "iana",
+			"extensions": [
+				"m3u8"
+			]
+		},
+		"application/vnd.apple.pkpass": {
+			"compressible": false,
+			"extensions": [
+				"pkpass"
+			]
+		},
+		"application/vnd.arastra.swi": {
+			"source": "iana"
+		},
+		"application/vnd.aristanetworks.swi": {
+			"source": "iana",
+			"extensions": [
+				"swi"
+			]
+		},
+		"application/vnd.artsquare": {
+			"source": "iana"
+		},
+		"application/vnd.astraea-software.iota": {
+			"source": "iana",
+			"extensions": [
+				"iota"
+			]
+		},
+		"application/vnd.audiograph": {
+			"source": "iana",
+			"extensions": [
+				"aep"
+			]
+		},
+		"application/vnd.autopackage": {
+			"source": "iana"
+		},
+		"application/vnd.avistar+xml": {
+			"source": "iana"
+		},
+		"application/vnd.balsamiq.bmml+xml": {
+			"source": "iana"
+		},
+		"application/vnd.balsamiq.bmpr": {
+			"source": "iana"
+		},
+		"application/vnd.bekitzur-stech+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/vnd.biopax.rdf+xml": {
+			"source": "iana"
+		},
+		"application/vnd.blueice.multipass": {
+			"source": "iana",
+			"extensions": [
+				"mpm"
+			]
+		},
+		"application/vnd.bluetooth.ep.oob": {
+			"source": "iana"
+		},
+		"application/vnd.bluetooth.le.oob": {
+			"source": "iana"
+		},
+		"application/vnd.bmi": {
+			"source": "iana",
+			"extensions": [
+				"bmi"
+			]
+		},
+		"application/vnd.businessobjects": {
+			"source": "iana",
+			"extensions": [
+				"rep"
+			]
+		},
+		"application/vnd.cab-jscript": {
+			"source": "iana"
+		},
+		"application/vnd.canon-cpdl": {
+			"source": "iana"
+		},
+		"application/vnd.canon-lips": {
+			"source": "iana"
+		},
+		"application/vnd.cendio.thinlinc.clientconf": {
+			"source": "iana"
+		},
+		"application/vnd.century-systems.tcp_stream": {
+			"source": "iana"
+		},
+		"application/vnd.chemdraw+xml": {
+			"source": "iana",
+			"extensions": [
+				"cdxml"
+			]
+		},
+		"application/vnd.chipnuts.karaoke-mmd": {
+			"source": "iana",
+			"extensions": [
+				"mmd"
+			]
+		},
+		"application/vnd.cinderella": {
+			"source": "iana",
+			"extensions": [
+				"cdy"
+			]
+		},
+		"application/vnd.cirpack.isdn-ext": {
+			"source": "iana"
+		},
+		"application/vnd.citationstyles.style+xml": {
+			"source": "iana"
+		},
+		"application/vnd.claymore": {
+			"source": "iana",
+			"extensions": [
+				"cla"
+			]
+		},
+		"application/vnd.cloanto.rp9": {
+			"source": "iana",
+			"extensions": [
+				"rp9"
+			]
+		},
+		"application/vnd.clonk.c4group": {
+			"source": "iana",
+			"extensions": [
+				"c4g",
+				"c4d",
+				"c4f",
+				"c4p",
+				"c4u"
+			]
+		},
+		"application/vnd.cluetrust.cartomobile-config": {
+			"source": "iana",
+			"extensions": [
+				"c11amc"
+			]
+		},
+		"application/vnd.cluetrust.cartomobile-config-pkg": {
+			"source": "iana",
+			"extensions": [
+				"c11amz"
+			]
+		},
+		"application/vnd.coffeescript": {
+			"source": "iana"
+		},
+		"application/vnd.collection+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/vnd.collection.doc+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/vnd.collection.next+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/vnd.commerce-battelle": {
+			"source": "iana"
+		},
+		"application/vnd.commonspace": {
+			"source": "iana",
+			"extensions": [
+				"csp"
+			]
+		},
+		"application/vnd.contact.cmsg": {
+			"source": "iana",
+			"extensions": [
+				"cdbcmsg"
+			]
+		},
+		"application/vnd.cosmocaller": {
+			"source": "iana",
+			"extensions": [
+				"cmc"
+			]
+		},
+		"application/vnd.crick.clicker": {
+			"source": "iana",
+			"extensions": [
+				"clkx"
+			]
+		},
+		"application/vnd.crick.clicker.keyboard": {
+			"source": "iana",
+			"extensions": [
+				"clkk"
+			]
+		},
+		"application/vnd.crick.clicker.palette": {
+			"source": "iana",
+			"extensions": [
+				"clkp"
+			]
+		},
+		"application/vnd.crick.clicker.template": {
+			"source": "iana",
+			"extensions": [
+				"clkt"
+			]
+		},
+		"application/vnd.crick.clicker.wordbank": {
+			"source": "iana",
+			"extensions": [
+				"clkw"
+			]
+		},
+		"application/vnd.criticaltools.wbs+xml": {
+			"source": "iana",
+			"extensions": [
+				"wbs"
+			]
+		},
+		"application/vnd.ctc-posml": {
+			"source": "iana",
+			"extensions": [
+				"pml"
+			]
+		},
+		"application/vnd.ctct.ws+xml": {
+			"source": "iana"
+		},
+		"application/vnd.cups-pdf": {
+			"source": "iana"
+		},
+		"application/vnd.cups-postscript": {
+			"source": "iana"
+		},
+		"application/vnd.cups-ppd": {
+			"source": "iana",
+			"extensions": [
+				"ppd"
+			]
+		},
+		"application/vnd.cups-raster": {
+			"source": "iana"
+		},
+		"application/vnd.cups-raw": {
+			"source": "iana"
+		},
+		"application/vnd.curl": {
+			"source": "iana"
+		},
+		"application/vnd.curl.car": {
+			"source": "apache",
+			"extensions": [
+				"car"
+			]
+		},
+		"application/vnd.curl.pcurl": {
+			"source": "apache",
+			"extensions": [
+				"pcurl"
+			]
+		},
+		"application/vnd.cyan.dean.root+xml": {
+			"source": "iana"
+		},
+		"application/vnd.cybank": {
+			"source": "iana"
+		},
+		"application/vnd.dart": {
+			"source": "iana",
+			"compressible": true,
+			"extensions": [
+				"dart"
+			]
+		},
+		"application/vnd.data-vision.rdz": {
+			"source": "iana",
+			"extensions": [
+				"rdz"
+			]
+		},
+		"application/vnd.debian.binary-package": {
+			"source": "iana"
+		},
+		"application/vnd.dece.data": {
+			"source": "iana",
+			"extensions": [
+				"uvf",
+				"uvvf",
+				"uvd",
+				"uvvd"
+			]
+		},
+		"application/vnd.dece.ttml+xml": {
+			"source": "iana",
+			"extensions": [
+				"uvt",
+				"uvvt"
+			]
+		},
+		"application/vnd.dece.unspecified": {
+			"source": "iana",
+			"extensions": [
+				"uvx",
+				"uvvx"
+			]
+		},
+		"application/vnd.dece.zip": {
+			"source": "iana",
+			"extensions": [
+				"uvz",
+				"uvvz"
+			]
+		},
+		"application/vnd.denovo.fcselayout-link": {
+			"source": "iana",
+			"extensions": [
+				"fe_launch"
+			]
+		},
+		"application/vnd.desmume-movie": {
+			"source": "iana"
+		},
+		"application/vnd.dir-bi.plate-dl-nosuffix": {
+			"source": "iana"
+		},
+		"application/vnd.dm.delegation+xml": {
+			"source": "iana"
+		},
+		"application/vnd.dna": {
+			"source": "iana",
+			"extensions": [
+				"dna"
+			]
+		},
+		"application/vnd.document+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/vnd.dolby.mlp": {
+			"source": "apache",
+			"extensions": [
+				"mlp"
+			]
+		},
+		"application/vnd.dolby.mobile.1": {
+			"source": "iana"
+		},
+		"application/vnd.dolby.mobile.2": {
+			"source": "iana"
+		},
+		"application/vnd.doremir.scorecloud-binary-document": {
+			"source": "iana"
+		},
+		"application/vnd.dpgraph": {
+			"source": "iana",
+			"extensions": [
+				"dpg"
+			]
+		},
+		"application/vnd.dreamfactory": {
+			"source": "iana",
+			"extensions": [
+				"dfac"
+			]
+		},
+		"application/vnd.drive+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/vnd.ds-keypoint": {
+			"source": "apache",
+			"extensions": [
+				"kpxx"
+			]
+		},
+		"application/vnd.dtg.local": {
+			"source": "iana"
+		},
+		"application/vnd.dtg.local.flash": {
+			"source": "iana"
+		},
+		"application/vnd.dtg.local.html": {
+			"source": "iana"
+		},
+		"application/vnd.dvb.ait": {
+			"source": "iana",
+			"extensions": [
+				"ait"
+			]
+		},
+		"application/vnd.dvb.dvbj": {
+			"source": "iana"
+		},
+		"application/vnd.dvb.esgcontainer": {
+			"source": "iana"
+		},
+		"application/vnd.dvb.ipdcdftnotifaccess": {
+			"source": "iana"
+		},
+		"application/vnd.dvb.ipdcesgaccess": {
+			"source": "iana"
+		},
+		"application/vnd.dvb.ipdcesgaccess2": {
+			"source": "iana"
+		},
+		"application/vnd.dvb.ipdcesgpdd": {
+			"source": "iana"
+		},
+		"application/vnd.dvb.ipdcroaming": {
+			"source": "iana"
+		},
+		"application/vnd.dvb.iptv.alfec-base": {
+			"source": "iana"
+		},
+		"application/vnd.dvb.iptv.alfec-enhancement": {
+			"source": "iana"
+		},
+		"application/vnd.dvb.notif-aggregate-root+xml": {
+			"source": "iana"
+		},
+		"application/vnd.dvb.notif-container+xml": {
+			"source": "iana"
+		},
+		"application/vnd.dvb.notif-generic+xml": {
+			"source": "iana"
+		},
+		"application/vnd.dvb.notif-ia-msglist+xml": {
+			"source": "iana"
+		},
+		"application/vnd.dvb.notif-ia-registration-request+xml": {
+			"source": "iana"
+		},
+		"application/vnd.dvb.notif-ia-registration-response+xml": {
+			"source": "iana"
+		},
+		"application/vnd.dvb.notif-init+xml": {
+			"source": "iana"
+		},
+		"application/vnd.dvb.pfr": {
+			"source": "iana"
+		},
+		"application/vnd.dvb.service": {
+			"source": "iana",
+			"extensions": [
+				"svc"
+			]
+		},
+		"application/vnd.dxr": {
+			"source": "iana"
+		},
+		"application/vnd.dynageo": {
+			"source": "iana",
+			"extensions": [
+				"geo"
+			]
+		},
+		"application/vnd.dzr": {
+			"source": "iana"
+		},
+		"application/vnd.easykaraoke.cdgdownload": {
+			"source": "iana"
+		},
+		"application/vnd.ecdis-update": {
+			"source": "iana"
+		},
+		"application/vnd.ecowin.chart": {
+			"source": "iana",
+			"extensions": [
+				"mag"
+			]
+		},
+		"application/vnd.ecowin.filerequest": {
+			"source": "iana"
+		},
+		"application/vnd.ecowin.fileupdate": {
+			"source": "iana"
+		},
+		"application/vnd.ecowin.series": {
+			"source": "iana"
+		},
+		"application/vnd.ecowin.seriesrequest": {
+			"source": "iana"
+		},
+		"application/vnd.ecowin.seriesupdate": {
+			"source": "iana"
+		},
+		"application/vnd.emclient.accessrequest+xml": {
+			"source": "iana"
+		},
+		"application/vnd.enliven": {
+			"source": "iana",
+			"extensions": [
+				"nml"
+			]
+		},
+		"application/vnd.enphase.envoy": {
+			"source": "iana"
+		},
+		"application/vnd.eprints.data+xml": {
+			"source": "iana"
+		},
+		"application/vnd.epson.esf": {
+			"source": "iana",
+			"extensions": [
+				"esf"
+			]
+		},
+		"application/vnd.epson.msf": {
+			"source": "iana",
+			"extensions": [
+				"msf"
+			]
+		},
+		"application/vnd.epson.quickanime": {
+			"source": "iana",
+			"extensions": [
+				"qam"
+			]
+		},
+		"application/vnd.epson.salt": {
+			"source": "iana",
+			"extensions": [
+				"slt"
+			]
+		},
+		"application/vnd.epson.ssf": {
+			"source": "iana",
+			"extensions": [
+				"ssf"
+			]
+		},
+		"application/vnd.ericsson.quickcall": {
+			"source": "iana"
+		},
+		"application/vnd.eszigno3+xml": {
+			"source": "iana",
+			"extensions": [
+				"es3",
+				"et3"
+			]
+		},
+		"application/vnd.etsi.aoc+xml": {
+			"source": "iana"
+		},
+		"application/vnd.etsi.asic-e+zip": {
+			"source": "iana"
+		},
+		"application/vnd.etsi.asic-s+zip": {
+			"source": "iana"
+		},
+		"application/vnd.etsi.cug+xml": {
+			"source": "iana"
+		},
+		"application/vnd.etsi.iptvcommand+xml": {
+			"source": "iana"
+		},
+		"application/vnd.etsi.iptvdiscovery+xml": {
+			"source": "iana"
+		},
+		"application/vnd.etsi.iptvprofile+xml": {
+			"source": "iana"
+		},
+		"application/vnd.etsi.iptvsad-bc+xml": {
+			"source": "iana"
+		},
+		"application/vnd.etsi.iptvsad-cod+xml": {
+			"source": "iana"
+		},
+		"application/vnd.etsi.iptvsad-npvr+xml": {
+			"source": "iana"
+		},
+		"application/vnd.etsi.iptvservice+xml": {
+			"source": "iana"
+		},
+		"application/vnd.etsi.iptvsync+xml": {
+			"source": "iana"
+		},
+		"application/vnd.etsi.iptvueprofile+xml": {
+			"source": "iana"
+		},
+		"application/vnd.etsi.mcid+xml": {
+			"source": "iana"
+		},
+		"application/vnd.etsi.mheg5": {
+			"source": "iana"
+		},
+		"application/vnd.etsi.overload-control-policy-dataset+xml": {
+			"source": "iana"
+		},
+		"application/vnd.etsi.pstn+xml": {
+			"source": "iana"
+		},
+		"application/vnd.etsi.sci+xml": {
+			"source": "iana"
+		},
+		"application/vnd.etsi.simservs+xml": {
+			"source": "iana"
+		},
+		"application/vnd.etsi.timestamp-token": {
+			"source": "iana"
+		},
+		"application/vnd.etsi.tsl+xml": {
+			"source": "iana"
+		},
+		"application/vnd.etsi.tsl.der": {
+			"source": "iana"
+		},
+		"application/vnd.eudora.data": {
+			"source": "iana"
+		},
+		"application/vnd.ezpix-album": {
+			"source": "iana",
+			"extensions": [
+				"ez2"
+			]
+		},
+		"application/vnd.ezpix-package": {
+			"source": "iana",
+			"extensions": [
+				"ez3"
+			]
+		},
+		"application/vnd.f-secure.mobile": {
+			"source": "iana"
+		},
+		"application/vnd.fastcopy-disk-image": {
+			"source": "iana"
+		},
+		"application/vnd.fdf": {
+			"source": "iana",
+			"extensions": [
+				"fdf"
+			]
+		},
+		"application/vnd.fdsn.mseed": {
+			"source": "iana",
+			"extensions": [
+				"mseed"
+			]
+		},
+		"application/vnd.fdsn.seed": {
+			"source": "iana",
+			"extensions": [
+				"seed",
+				"dataless"
+			]
+		},
+		"application/vnd.ffsns": {
+			"source": "iana"
+		},
+		"application/vnd.filmit.zfc": {
+			"source": "iana"
+		},
+		"application/vnd.fints": {
+			"source": "iana"
+		},
+		"application/vnd.firemonkeys.cloudcell": {
+			"source": "iana"
+		},
+		"application/vnd.flographit": {
+			"source": "iana",
+			"extensions": [
+				"gph"
+			]
+		},
+		"application/vnd.fluxtime.clip": {
+			"source": "iana",
+			"extensions": [
+				"ftc"
+			]
+		},
+		"application/vnd.font-fontforge-sfd": {
+			"source": "iana"
+		},
+		"application/vnd.framemaker": {
+			"source": "iana",
+			"extensions": [
+				"fm",
+				"frame",
+				"maker",
+				"book"
+			]
+		},
+		"application/vnd.frogans.fnc": {
+			"source": "iana",
+			"extensions": [
+				"fnc"
+			]
+		},
+		"application/vnd.frogans.ltf": {
+			"source": "iana",
+			"extensions": [
+				"ltf"
+			]
+		},
+		"application/vnd.fsc.weblaunch": {
+			"source": "iana",
+			"extensions": [
+				"fsc"
+			]
+		},
+		"application/vnd.fujitsu.oasys": {
+			"source": "iana",
+			"extensions": [
+				"oas"
+			]
+		},
+		"application/vnd.fujitsu.oasys2": {
+			"source": "iana",
+			"extensions": [
+				"oa2"
+			]
+		},
+		"application/vnd.fujitsu.oasys3": {
+			"source": "iana",
+			"extensions": [
+				"oa3"
+			]
+		},
+		"application/vnd.fujitsu.oasysgp": {
+			"source": "iana",
+			"extensions": [
+				"fg5"
+			]
+		},
+		"application/vnd.fujitsu.oasysprs": {
+			"source": "iana",
+			"extensions": [
+				"bh2"
+			]
+		},
+		"application/vnd.fujixerox.art-ex": {
+			"source": "iana"
+		},
+		"application/vnd.fujixerox.art4": {
+			"source": "iana"
+		},
+		"application/vnd.fujixerox.ddd": {
+			"source": "iana",
+			"extensions": [
+				"ddd"
+			]
+		},
+		"application/vnd.fujixerox.docuworks": {
+			"source": "iana",
+			"extensions": [
+				"xdw"
+			]
+		},
+		"application/vnd.fujixerox.docuworks.binder": {
+			"source": "iana",
+			"extensions": [
+				"xbd"
+			]
+		},
+		"application/vnd.fujixerox.docuworks.container": {
+			"source": "iana"
+		},
+		"application/vnd.fujixerox.hbpl": {
+			"source": "iana"
+		},
+		"application/vnd.fut-misnet": {
+			"source": "iana"
+		},
+		"application/vnd.fuzzysheet": {
+			"source": "iana",
+			"extensions": [
+				"fzs"
+			]
+		},
+		"application/vnd.genomatix.tuxedo": {
+			"source": "iana",
+			"extensions": [
+				"txd"
+			]
+		},
+		"application/vnd.geo+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/vnd.geocube+xml": {
+			"source": "iana"
+		},
+		"application/vnd.geogebra.file": {
+			"source": "iana",
+			"extensions": [
+				"ggb"
+			]
+		},
+		"application/vnd.geogebra.tool": {
+			"source": "iana",
+			"extensions": [
+				"ggt"
+			]
+		},
+		"application/vnd.geometry-explorer": {
+			"source": "iana",
+			"extensions": [
+				"gex",
+				"gre"
+			]
+		},
+		"application/vnd.geonext": {
+			"source": "iana",
+			"extensions": [
+				"gxt"
+			]
+		},
+		"application/vnd.geoplan": {
+			"source": "iana",
+			"extensions": [
+				"g2w"
+			]
+		},
+		"application/vnd.geospace": {
+			"source": "iana",
+			"extensions": [
+				"g3w"
+			]
+		},
+		"application/vnd.gerber": {
+			"source": "iana"
+		},
+		"application/vnd.globalplatform.card-content-mgt": {
+			"source": "iana"
+		},
+		"application/vnd.globalplatform.card-content-mgt-response": {
+			"source": "iana"
+		},
+		"application/vnd.gmx": {
+			"source": "iana",
+			"extensions": [
+				"gmx"
+			]
+		},
+		"application/vnd.google-apps.document": {
+			"compressible": false,
+			"extensions": [
+				"gdoc"
+			]
+		},
+		"application/vnd.google-apps.presentation": {
+			"compressible": false,
+			"extensions": [
+				"gslides"
+			]
+		},
+		"application/vnd.google-apps.spreadsheet": {
+			"compressible": false,
+			"extensions": [
+				"gsheet"
+			]
+		},
+		"application/vnd.google-earth.kml+xml": {
+			"source": "iana",
+			"compressible": true,
+			"extensions": [
+				"kml"
+			]
+		},
+		"application/vnd.google-earth.kmz": {
+			"source": "iana",
+			"compressible": false,
+			"extensions": [
+				"kmz"
+			]
+		},
+		"application/vnd.gov.sk.e-form+xml": {
+			"source": "iana"
+		},
+		"application/vnd.gov.sk.e-form+zip": {
+			"source": "iana"
+		},
+		"application/vnd.gov.sk.xmldatacontainer+xml": {
+			"source": "iana"
+		},
+		"application/vnd.grafeq": {
+			"source": "iana",
+			"extensions": [
+				"gqf",
+				"gqs"
+			]
+		},
+		"application/vnd.gridmp": {
+			"source": "iana"
+		},
+		"application/vnd.groove-account": {
+			"source": "iana",
+			"extensions": [
+				"gac"
+			]
+		},
+		"application/vnd.groove-help": {
+			"source": "iana",
+			"extensions": [
+				"ghf"
+			]
+		},
+		"application/vnd.groove-identity-message": {
+			"source": "iana",
+			"extensions": [
+				"gim"
+			]
+		},
+		"application/vnd.groove-injector": {
+			"source": "iana",
+			"extensions": [
+				"grv"
+			]
+		},
+		"application/vnd.groove-tool-message": {
+			"source": "iana",
+			"extensions": [
+				"gtm"
+			]
+		},
+		"application/vnd.groove-tool-template": {
+			"source": "iana",
+			"extensions": [
+				"tpl"
+			]
+		},
+		"application/vnd.groove-vcard": {
+			"source": "iana",
+			"extensions": [
+				"vcg"
+			]
+		},
+		"application/vnd.hal+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/vnd.hal+xml": {
+			"source": "iana",
+			"extensions": [
+				"hal"
+			]
+		},
+		"application/vnd.handheld-entertainment+xml": {
+			"source": "iana",
+			"extensions": [
+				"zmm"
+			]
+		},
+		"application/vnd.hbci": {
+			"source": "iana",
+			"extensions": [
+				"hbci"
+			]
+		},
+		"application/vnd.hcl-bireports": {
+			"source": "iana"
+		},
+		"application/vnd.heroku+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/vnd.hhe.lesson-player": {
+			"source": "iana",
+			"extensions": [
+				"les"
+			]
+		},
+		"application/vnd.hp-hpgl": {
+			"source": "iana",
+			"extensions": [
+				"hpgl"
+			]
+		},
+		"application/vnd.hp-hpid": {
+			"source": "iana",
+			"extensions": [
+				"hpid"
+			]
+		},
+		"application/vnd.hp-hps": {
+			"source": "iana",
+			"extensions": [
+				"hps"
+			]
+		},
+		"application/vnd.hp-jlyt": {
+			"source": "iana",
+			"extensions": [
+				"jlt"
+			]
+		},
+		"application/vnd.hp-pcl": {
+			"source": "iana",
+			"extensions": [
+				"pcl"
+			]
+		},
+		"application/vnd.hp-pclxl": {
+			"source": "iana",
+			"extensions": [
+				"pclxl"
+			]
+		},
+		"application/vnd.httphone": {
+			"source": "iana"
+		},
+		"application/vnd.hydrostatix.sof-data": {
+			"source": "iana",
+			"extensions": [
+				"sfd-hdstx"
+			]
+		},
+		"application/vnd.hyperdrive+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/vnd.hzn-3d-crossword": {
+			"source": "iana"
+		},
+		"application/vnd.ibm.afplinedata": {
+			"source": "iana"
+		},
+		"application/vnd.ibm.electronic-media": {
+			"source": "iana"
+		},
+		"application/vnd.ibm.minipay": {
+			"source": "iana",
+			"extensions": [
+				"mpy"
+			]
+		},
+		"application/vnd.ibm.modcap": {
+			"source": "iana",
+			"extensions": [
+				"afp",
+				"listafp",
+				"list3820"
+			]
+		},
+		"application/vnd.ibm.rights-management": {
+			"source": "iana",
+			"extensions": [
+				"irm"
+			]
+		},
+		"application/vnd.ibm.secure-container": {
+			"source": "iana",
+			"extensions": [
+				"sc"
+			]
+		},
+		"application/vnd.iccprofile": {
+			"source": "iana",
+			"extensions": [
+				"icc",
+				"icm"
+			]
+		},
+		"application/vnd.ieee.1905": {
+			"source": "iana"
+		},
+		"application/vnd.igloader": {
+			"source": "iana",
+			"extensions": [
+				"igl"
+			]
+		},
+		"application/vnd.immervision-ivp": {
+			"source": "iana",
+			"extensions": [
+				"ivp"
+			]
+		},
+		"application/vnd.immervision-ivu": {
+			"source": "iana",
+			"extensions": [
+				"ivu"
+			]
+		},
+		"application/vnd.ims.imsccv1p1": {
+			"source": "iana"
+		},
+		"application/vnd.ims.imsccv1p2": {
+			"source": "iana"
+		},
+		"application/vnd.ims.imsccv1p3": {
+			"source": "iana"
+		},
+		"application/vnd.ims.lis.v2.result+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/vnd.ims.lti.v2.toolconsumerprofile+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/vnd.ims.lti.v2.toolproxy+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/vnd.ims.lti.v2.toolproxy.id+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/vnd.ims.lti.v2.toolsettings+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/vnd.ims.lti.v2.toolsettings.simple+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/vnd.informedcontrol.rms+xml": {
+			"source": "iana"
+		},
+		"application/vnd.informix-visionary": {
+			"source": "iana"
+		},
+		"application/vnd.infotech.project": {
+			"source": "iana"
+		},
+		"application/vnd.infotech.project+xml": {
+			"source": "iana"
+		},
+		"application/vnd.innopath.wamp.notification": {
+			"source": "iana"
+		},
+		"application/vnd.insors.igm": {
+			"source": "iana",
+			"extensions": [
+				"igm"
+			]
+		},
+		"application/vnd.intercon.formnet": {
+			"source": "iana",
+			"extensions": [
+				"xpw",
+				"xpx"
+			]
+		},
+		"application/vnd.intergeo": {
+			"source": "iana",
+			"extensions": [
+				"i2g"
+			]
+		},
+		"application/vnd.intertrust.digibox": {
+			"source": "iana"
+		},
+		"application/vnd.intertrust.nncp": {
+			"source": "iana"
+		},
+		"application/vnd.intu.qbo": {
+			"source": "iana",
+			"extensions": [
+				"qbo"
+			]
+		},
+		"application/vnd.intu.qfx": {
+			"source": "iana",
+			"extensions": [
+				"qfx"
+			]
+		},
+		"application/vnd.iptc.g2.catalogitem+xml": {
+			"source": "iana"
+		},
+		"application/vnd.iptc.g2.conceptitem+xml": {
+			"source": "iana"
+		},
+		"application/vnd.iptc.g2.knowledgeitem+xml": {
+			"source": "iana"
+		},
+		"application/vnd.iptc.g2.newsitem+xml": {
+			"source": "iana"
+		},
+		"application/vnd.iptc.g2.newsmessage+xml": {
+			"source": "iana"
+		},
+		"application/vnd.iptc.g2.packageitem+xml": {
+			"source": "iana"
+		},
+		"application/vnd.iptc.g2.planningitem+xml": {
+			"source": "iana"
+		},
+		"application/vnd.ipunplugged.rcprofile": {
+			"source": "iana",
+			"extensions": [
+				"rcprofile"
+			]
+		},
+		"application/vnd.irepository.package+xml": {
+			"source": "iana",
+			"extensions": [
+				"irp"
+			]
+		},
+		"application/vnd.is-xpr": {
+			"source": "iana",
+			"extensions": [
+				"xpr"
+			]
+		},
+		"application/vnd.isac.fcs": {
+			"source": "iana",
+			"extensions": [
+				"fcs"
+			]
+		},
+		"application/vnd.jam": {
+			"source": "iana",
+			"extensions": [
+				"jam"
+			]
+		},
+		"application/vnd.japannet-directory-service": {
+			"source": "iana"
+		},
+		"application/vnd.japannet-jpnstore-wakeup": {
+			"source": "iana"
+		},
+		"application/vnd.japannet-payment-wakeup": {
+			"source": "iana"
+		},
+		"application/vnd.japannet-registration": {
+			"source": "iana"
+		},
+		"application/vnd.japannet-registration-wakeup": {
+			"source": "iana"
+		},
+		"application/vnd.japannet-setstore-wakeup": {
+			"source": "iana"
+		},
+		"application/vnd.japannet-verification": {
+			"source": "iana"
+		},
+		"application/vnd.japannet-verification-wakeup": {
+			"source": "iana"
+		},
+		"application/vnd.jcp.javame.midlet-rms": {
+			"source": "iana",
+			"extensions": [
+				"rms"
+			]
+		},
+		"application/vnd.jisp": {
+			"source": "iana",
+			"extensions": [
+				"jisp"
+			]
+		},
+		"application/vnd.joost.joda-archive": {
+			"source": "iana",
+			"extensions": [
+				"joda"
+			]
+		},
+		"application/vnd.jsk.isdn-ngn": {
+			"source": "iana"
+		},
+		"application/vnd.kahootz": {
+			"source": "iana",
+			"extensions": [
+				"ktz",
+				"ktr"
+			]
+		},
+		"application/vnd.kde.karbon": {
+			"source": "iana",
+			"extensions": [
+				"karbon"
+			]
+		},
+		"application/vnd.kde.kchart": {
+			"source": "iana",
+			"extensions": [
+				"chrt"
+			]
+		},
+		"application/vnd.kde.kformula": {
+			"source": "iana",
+			"extensions": [
+				"kfo"
+			]
+		},
+		"application/vnd.kde.kivio": {
+			"source": "iana",
+			"extensions": [
+				"flw"
+			]
+		},
+		"application/vnd.kde.kontour": {
+			"source": "iana",
+			"extensions": [
+				"kon"
+			]
+		},
+		"application/vnd.kde.kpresenter": {
+			"source": "iana",
+			"extensions": [
+				"kpr",
+				"kpt"
+			]
+		},
+		"application/vnd.kde.kspread": {
+			"source": "iana",
+			"extensions": [
+				"ksp"
+			]
+		},
+		"application/vnd.kde.kword": {
+			"source": "iana",
+			"extensions": [
+				"kwd",
+				"kwt"
+			]
+		},
+		"application/vnd.kenameaapp": {
+			"source": "iana",
+			"extensions": [
+				"htke"
+			]
+		},
+		"application/vnd.kidspiration": {
+			"source": "iana",
+			"extensions": [
+				"kia"
+			]
+		},
+		"application/vnd.kinar": {
+			"source": "iana",
+			"extensions": [
+				"kne",
+				"knp"
+			]
+		},
+		"application/vnd.koan": {
+			"source": "iana",
+			"extensions": [
+				"skp",
+				"skd",
+				"skt",
+				"skm"
+			]
+		},
+		"application/vnd.kodak-descriptor": {
+			"source": "iana",
+			"extensions": [
+				"sse"
+			]
+		},
+		"application/vnd.las.las+xml": {
+			"source": "iana",
+			"extensions": [
+				"lasxml"
+			]
+		},
+		"application/vnd.liberty-request+xml": {
+			"source": "iana"
+		},
+		"application/vnd.llamagraphics.life-balance.desktop": {
+			"source": "iana",
+			"extensions": [
+				"lbd"
+			]
+		},
+		"application/vnd.llamagraphics.life-balance.exchange+xml": {
+			"source": "iana",
+			"extensions": [
+				"lbe"
+			]
+		},
+		"application/vnd.lotus-1-2-3": {
+			"source": "iana",
+			"extensions": [
+				"123"
+			]
+		},
+		"application/vnd.lotus-approach": {
+			"source": "iana",
+			"extensions": [
+				"apr"
+			]
+		},
+		"application/vnd.lotus-freelance": {
+			"source": "iana",
+			"extensions": [
+				"pre"
+			]
+		},
+		"application/vnd.lotus-notes": {
+			"source": "iana",
+			"extensions": [
+				"nsf"
+			]
+		},
+		"application/vnd.lotus-organizer": {
+			"source": "iana",
+			"extensions": [
+				"org"
+			]
+		},
+		"application/vnd.lotus-screencam": {
+			"source": "iana",
+			"extensions": [
+				"scm"
+			]
+		},
+		"application/vnd.lotus-wordpro": {
+			"source": "iana",
+			"extensions": [
+				"lwp"
+			]
+		},
+		"application/vnd.macports.portpkg": {
+			"source": "iana",
+			"extensions": [
+				"portpkg"
+			]
+		},
+		"application/vnd.mapbox-vector-tile": {
+			"source": "iana"
+		},
+		"application/vnd.marlin.drm.actiontoken+xml": {
+			"source": "iana"
+		},
+		"application/vnd.marlin.drm.conftoken+xml": {
+			"source": "iana"
+		},
+		"application/vnd.marlin.drm.license+xml": {
+			"source": "iana"
+		},
+		"application/vnd.marlin.drm.mdcf": {
+			"source": "iana"
+		},
+		"application/vnd.mason+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/vnd.maxmind.maxmind-db": {
+			"source": "iana"
+		},
+		"application/vnd.mcd": {
+			"source": "iana",
+			"extensions": [
+				"mcd"
+			]
+		},
+		"application/vnd.medcalcdata": {
+			"source": "iana",
+			"extensions": [
+				"mc1"
+			]
+		},
+		"application/vnd.mediastation.cdkey": {
+			"source": "iana",
+			"extensions": [
+				"cdkey"
+			]
+		},
+		"application/vnd.meridian-slingshot": {
+			"source": "iana"
+		},
+		"application/vnd.mfer": {
+			"source": "iana",
+			"extensions": [
+				"mwf"
+			]
+		},
+		"application/vnd.mfmp": {
+			"source": "iana",
+			"extensions": [
+				"mfm"
+			]
+		},
+		"application/vnd.micro+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/vnd.micrografx.flo": {
+			"source": "iana",
+			"extensions": [
+				"flo"
+			]
+		},
+		"application/vnd.micrografx.igx": {
+			"source": "iana",
+			"extensions": [
+				"igx"
+			]
+		},
+		"application/vnd.microsoft.portable-executable": {
+			"source": "iana"
+		},
+		"application/vnd.miele+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/vnd.mif": {
+			"source": "iana",
+			"extensions": [
+				"mif"
+			]
+		},
+		"application/vnd.minisoft-hp3000-save": {
+			"source": "iana"
+		},
+		"application/vnd.mitsubishi.misty-guard.trustweb": {
+			"source": "iana"
+		},
+		"application/vnd.mobius.daf": {
+			"source": "iana",
+			"extensions": [
+				"daf"
+			]
+		},
+		"application/vnd.mobius.dis": {
+			"source": "iana",
+			"extensions": [
+				"dis"
+			]
+		},
+		"application/vnd.mobius.mbk": {
+			"source": "iana",
+			"extensions": [
+				"mbk"
+			]
+		},
+		"application/vnd.mobius.mqy": {
+			"source": "iana",
+			"extensions": [
+				"mqy"
+			]
+		},
+		"application/vnd.mobius.msl": {
+			"source": "iana",
+			"extensions": [
+				"msl"
+			]
+		},
+		"application/vnd.mobius.plc": {
+			"source": "iana",
+			"extensions": [
+				"plc"
+			]
+		},
+		"application/vnd.mobius.txf": {
+			"source": "iana",
+			"extensions": [
+				"txf"
+			]
+		},
+		"application/vnd.mophun.application": {
+			"source": "iana",
+			"extensions": [
+				"mpn"
+			]
+		},
+		"application/vnd.mophun.certificate": {
+			"source": "iana",
+			"extensions": [
+				"mpc"
+			]
+		},
+		"application/vnd.motorola.flexsuite": {
+			"source": "iana"
+		},
+		"application/vnd.motorola.flexsuite.adsi": {
+			"source": "iana"
+		},
+		"application/vnd.motorola.flexsuite.fis": {
+			"source": "iana"
+		},
+		"application/vnd.motorola.flexsuite.gotap": {
+			"source": "iana"
+		},
+		"application/vnd.motorola.flexsuite.kmr": {
+			"source": "iana"
+		},
+		"application/vnd.motorola.flexsuite.ttc": {
+			"source": "iana"
+		},
+		"application/vnd.motorola.flexsuite.wem": {
+			"source": "iana"
+		},
+		"application/vnd.motorola.iprm": {
+			"source": "iana"
+		},
+		"application/vnd.mozilla.xul+xml": {
+			"source": "iana",
+			"compressible": true,
+			"extensions": [
+				"xul"
+			]
+		},
+		"application/vnd.ms-3mfdocument": {
+			"source": "iana"
+		},
+		"application/vnd.ms-artgalry": {
+			"source": "iana",
+			"extensions": [
+				"cil"
+			]
+		},
+		"application/vnd.ms-asf": {
+			"source": "iana"
+		},
+		"application/vnd.ms-cab-compressed": {
+			"source": "iana",
+			"extensions": [
+				"cab"
+			]
+		},
+		"application/vnd.ms-color.iccprofile": {
+			"source": "apache"
+		},
+		"application/vnd.ms-excel": {
+			"source": "iana",
+			"compressible": false,
+			"extensions": [
+				"xls",
+				"xlm",
+				"xla",
+				"xlc",
+				"xlt",
+				"xlw"
+			]
+		},
+		"application/vnd.ms-excel.addin.macroenabled.12": {
+			"source": "iana",
+			"extensions": [
+				"xlam"
+			]
+		},
+		"application/vnd.ms-excel.sheet.binary.macroenabled.12": {
+			"source": "iana",
+			"extensions": [
+				"xlsb"
+			]
+		},
+		"application/vnd.ms-excel.sheet.macroenabled.12": {
+			"source": "iana",
+			"extensions": [
+				"xlsm"
+			]
+		},
+		"application/vnd.ms-excel.template.macroenabled.12": {
+			"source": "iana",
+			"extensions": [
+				"xltm"
+			]
+		},
+		"application/vnd.ms-fontobject": {
+			"source": "iana",
+			"compressible": true,
+			"extensions": [
+				"eot"
+			]
+		},
+		"application/vnd.ms-htmlhelp": {
+			"source": "iana",
+			"extensions": [
+				"chm"
+			]
+		},
+		"application/vnd.ms-ims": {
+			"source": "iana",
+			"extensions": [
+				"ims"
+			]
+		},
+		"application/vnd.ms-lrm": {
+			"source": "iana",
+			"extensions": [
+				"lrm"
+			]
+		},
+		"application/vnd.ms-office.activex+xml": {
+			"source": "iana"
+		},
+		"application/vnd.ms-officetheme": {
+			"source": "iana",
+			"extensions": [
+				"thmx"
+			]
+		},
+		"application/vnd.ms-opentype": {
+			"source": "apache",
+			"compressible": true
+		},
+		"application/vnd.ms-package.obfuscated-opentype": {
+			"source": "apache"
+		},
+		"application/vnd.ms-pki.seccat": {
+			"source": "apache",
+			"extensions": [
+				"cat"
+			]
+		},
+		"application/vnd.ms-pki.stl": {
+			"source": "apache",
+			"extensions": [
+				"stl"
+			]
+		},
+		"application/vnd.ms-playready.initiator+xml": {
+			"source": "iana"
+		},
+		"application/vnd.ms-powerpoint": {
+			"source": "iana",
+			"compressible": false,
+			"extensions": [
+				"ppt",
+				"pps",
+				"pot"
+			]
+		},
+		"application/vnd.ms-powerpoint.addin.macroenabled.12": {
+			"source": "iana",
+			"extensions": [
+				"ppam"
+			]
+		},
+		"application/vnd.ms-powerpoint.presentation.macroenabled.12": {
+			"source": "iana",
+			"extensions": [
+				"pptm"
+			]
+		},
+		"application/vnd.ms-powerpoint.slide.macroenabled.12": {
+			"source": "iana",
+			"extensions": [
+				"sldm"
+			]
+		},
+		"application/vnd.ms-powerpoint.slideshow.macroenabled.12": {
+			"source": "iana",
+			"extensions": [
+				"ppsm"
+			]
+		},
+		"application/vnd.ms-powerpoint.template.macroenabled.12": {
+			"source": "iana",
+			"extensions": [
+				"potm"
+			]
+		},
+		"application/vnd.ms-printdevicecapabilities+xml": {
+			"source": "iana"
+		},
+		"application/vnd.ms-printing.printticket+xml": {
+			"source": "apache"
+		},
+		"application/vnd.ms-project": {
+			"source": "iana",
+			"extensions": [
+				"mpp",
+				"mpt"
+			]
+		},
+		"application/vnd.ms-tnef": {
+			"source": "iana"
+		},
+		"application/vnd.ms-windows.devicepairing": {
+			"source": "iana"
+		},
+		"application/vnd.ms-windows.nwprinting.oob": {
+			"source": "iana"
+		},
+		"application/vnd.ms-windows.printerpairing": {
+			"source": "iana"
+		},
+		"application/vnd.ms-windows.wsd.oob": {
+			"source": "iana"
+		},
+		"application/vnd.ms-wmdrm.lic-chlg-req": {
+			"source": "iana"
+		},
+		"application/vnd.ms-wmdrm.lic-resp": {
+			"source": "iana"
+		},
+		"application/vnd.ms-wmdrm.meter-chlg-req": {
+			"source": "iana"
+		},
+		"application/vnd.ms-wmdrm.meter-resp": {
+			"source": "iana"
+		},
+		"application/vnd.ms-word.document.macroenabled.12": {
+			"source": "iana",
+			"extensions": [
+				"docm"
+			]
+		},
+		"application/vnd.ms-word.template.macroenabled.12": {
+			"source": "iana",
+			"extensions": [
+				"dotm"
+			]
+		},
+		"application/vnd.ms-works": {
+			"source": "iana",
+			"extensions": [
+				"wps",
+				"wks",
+				"wcm",
+				"wdb"
+			]
+		},
+		"application/vnd.ms-wpl": {
+			"source": "iana",
+			"extensions": [
+				"wpl"
+			]
+		},
+		"application/vnd.ms-xpsdocument": {
+			"source": "iana",
+			"compressible": false,
+			"extensions": [
+				"xps"
+			]
+		},
+		"application/vnd.msa-disk-image": {
+			"source": "iana"
+		},
+		"application/vnd.mseq": {
+			"source": "iana",
+			"extensions": [
+				"mseq"
+			]
+		},
+		"application/vnd.msign": {
+			"source": "iana"
+		},
+		"application/vnd.multiad.creator": {
+			"source": "iana"
+		},
+		"application/vnd.multiad.creator.cif": {
+			"source": "iana"
+		},
+		"application/vnd.music-niff": {
+			"source": "iana"
+		},
+		"application/vnd.musician": {
+			"source": "iana",
+			"extensions": [
+				"mus"
+			]
+		},
+		"application/vnd.muvee.style": {
+			"source": "iana",
+			"extensions": [
+				"msty"
+			]
+		},
+		"application/vnd.mynfc": {
+			"source": "iana",
+			"extensions": [
+				"taglet"
+			]
+		},
+		"application/vnd.ncd.control": {
+			"source": "iana"
+		},
+		"application/vnd.ncd.reference": {
+			"source": "iana"
+		},
+		"application/vnd.nervana": {
+			"source": "iana"
+		},
+		"application/vnd.netfpx": {
+			"source": "iana"
+		},
+		"application/vnd.neurolanguage.nlu": {
+			"source": "iana",
+			"extensions": [
+				"nlu"
+			]
+		},
+		"application/vnd.nintendo.nitro.rom": {
+			"source": "iana"
+		},
+		"application/vnd.nintendo.snes.rom": {
+			"source": "iana"
+		},
+		"application/vnd.nitf": {
+			"source": "iana",
+			"extensions": [
+				"ntf",
+				"nitf"
+			]
+		},
+		"application/vnd.noblenet-directory": {
+			"source": "iana",
+			"extensions": [
+				"nnd"
+			]
+		},
+		"application/vnd.noblenet-sealer": {
+			"source": "iana",
+			"extensions": [
+				"nns"
+			]
+		},
+		"application/vnd.noblenet-web": {
+			"source": "iana",
+			"extensions": [
+				"nnw"
+			]
+		},
+		"application/vnd.nokia.catalogs": {
+			"source": "iana"
+		},
+		"application/vnd.nokia.conml+wbxml": {
+			"source": "iana"
+		},
+		"application/vnd.nokia.conml+xml": {
+			"source": "iana"
+		},
+		"application/vnd.nokia.iptv.config+xml": {
+			"source": "iana"
+		},
+		"application/vnd.nokia.isds-radio-presets": {
+			"source": "iana"
+		},
+		"application/vnd.nokia.landmark+wbxml": {
+			"source": "iana"
+		},
+		"application/vnd.nokia.landmark+xml": {
+			"source": "iana"
+		},
+		"application/vnd.nokia.landmarkcollection+xml": {
+			"source": "iana"
+		},
+		"application/vnd.nokia.n-gage.ac+xml": {
+			"source": "iana"
+		},
+		"application/vnd.nokia.n-gage.data": {
+			"source": "iana",
+			"extensions": [
+				"ngdat"
+			]
+		},
+		"application/vnd.nokia.n-gage.symbian.install": {
+			"source": "iana",
+			"extensions": [
+				"n-gage"
+			]
+		},
+		"application/vnd.nokia.ncd": {
+			"source": "iana"
+		},
+		"application/vnd.nokia.pcd+wbxml": {
+			"source": "iana"
+		},
+		"application/vnd.nokia.pcd+xml": {
+			"source": "iana"
+		},
+		"application/vnd.nokia.radio-preset": {
+			"source": "iana",
+			"extensions": [
+				"rpst"
+			]
+		},
+		"application/vnd.nokia.radio-presets": {
+			"source": "iana",
+			"extensions": [
+				"rpss"
+			]
+		},
+		"application/vnd.novadigm.edm": {
+			"source": "iana",
+			"extensions": [
+				"edm"
+			]
+		},
+		"application/vnd.novadigm.edx": {
+			"source": "iana",
+			"extensions": [
+				"edx"
+			]
+		},
+		"application/vnd.novadigm.ext": {
+			"source": "iana",
+			"extensions": [
+				"ext"
+			]
+		},
+		"application/vnd.ntt-local.content-share": {
+			"source": "iana"
+		},
+		"application/vnd.ntt-local.file-transfer": {
+			"source": "iana"
+		},
+		"application/vnd.ntt-local.ogw_remote-access": {
+			"source": "iana"
+		},
+		"application/vnd.ntt-local.sip-ta_remote": {
+			"source": "iana"
+		},
+		"application/vnd.ntt-local.sip-ta_tcp_stream": {
+			"source": "iana"
+		},
+		"application/vnd.oasis.opendocument.chart": {
+			"source": "iana",
+			"extensions": [
+				"odc"
+			]
+		},
+		"application/vnd.oasis.opendocument.chart-template": {
+			"source": "iana",
+			"extensions": [
+				"otc"
+			]
+		},
+		"application/vnd.oasis.opendocument.database": {
+			"source": "iana",
+			"extensions": [
+				"odb"
+			]
+		},
+		"application/vnd.oasis.opendocument.formula": {
+			"source": "iana",
+			"extensions": [
+				"odf"
+			]
+		},
+		"application/vnd.oasis.opendocument.formula-template": {
+			"source": "iana",
+			"extensions": [
+				"odft"
+			]
+		},
+		"application/vnd.oasis.opendocument.graphics": {
+			"source": "iana",
+			"compressible": false,
+			"extensions": [
+				"odg"
+			]
+		},
+		"application/vnd.oasis.opendocument.graphics-template": {
+			"source": "iana",
+			"extensions": [
+				"otg"
+			]
+		},
+		"application/vnd.oasis.opendocument.image": {
+			"source": "iana",
+			"extensions": [
+				"odi"
+			]
+		},
+		"application/vnd.oasis.opendocument.image-template": {
+			"source": "iana",
+			"extensions": [
+				"oti"
+			]
+		},
+		"application/vnd.oasis.opendocument.presentation": {
+			"source": "iana",
+			"compressible": false,
+			"extensions": [
+				"odp"
+			]
+		},
+		"application/vnd.oasis.opendocument.presentation-template": {
+			"source": "iana",
+			"extensions": [
+				"otp"
+			]
+		},
+		"application/vnd.oasis.opendocument.spreadsheet": {
+			"source": "iana",
+			"compressible": false,
+			"extensions": [
+				"ods"
+			]
+		},
+		"application/vnd.oasis.opendocument.spreadsheet-template": {
+			"source": "iana",
+			"extensions": [
+				"ots"
+			]
+		},
+		"application/vnd.oasis.opendocument.text": {
+			"source": "iana",
+			"compressible": false,
+			"extensions": [
+				"odt"
+			]
+		},
+		"application/vnd.oasis.opendocument.text-master": {
+			"source": "iana",
+			"extensions": [
+				"odm"
+			]
+		},
+		"application/vnd.oasis.opendocument.text-template": {
+			"source": "iana",
+			"extensions": [
+				"ott"
+			]
+		},
+		"application/vnd.oasis.opendocument.text-web": {
+			"source": "iana",
+			"extensions": [
+				"oth"
+			]
+		},
+		"application/vnd.obn": {
+			"source": "iana"
+		},
+		"application/vnd.oftn.l10n+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/vnd.oipf.contentaccessdownload+xml": {
+			"source": "iana"
+		},
+		"application/vnd.oipf.contentaccessstreaming+xml": {
+			"source": "iana"
+		},
+		"application/vnd.oipf.cspg-hexbinary": {
+			"source": "iana"
+		},
+		"application/vnd.oipf.dae.svg+xml": {
+			"source": "iana"
+		},
+		"application/vnd.oipf.dae.xhtml+xml": {
+			"source": "iana"
+		},
+		"application/vnd.oipf.mippvcontrolmessage+xml": {
+			"source": "iana"
+		},
+		"application/vnd.oipf.pae.gem": {
+			"source": "iana"
+		},
+		"application/vnd.oipf.spdiscovery+xml": {
+			"source": "iana"
+		},
+		"application/vnd.oipf.spdlist+xml": {
+			"source": "iana"
+		},
+		"application/vnd.oipf.ueprofile+xml": {
+			"source": "iana"
+		},
+		"application/vnd.oipf.userprofile+xml": {
+			"source": "iana"
+		},
+		"application/vnd.olpc-sugar": {
+			"source": "iana",
+			"extensions": [
+				"xo"
+			]
+		},
+		"application/vnd.oma-scws-config": {
+			"source": "iana"
+		},
+		"application/vnd.oma-scws-http-request": {
+			"source": "iana"
+		},
+		"application/vnd.oma-scws-http-response": {
+			"source": "iana"
+		},
+		"application/vnd.oma.bcast.associated-procedure-parameter+xml": {
+			"source": "iana"
+		},
+		"application/vnd.oma.bcast.drm-trigger+xml": {
+			"source": "iana"
+		},
+		"application/vnd.oma.bcast.imd+xml": {
+			"source": "iana"
+		},
+		"application/vnd.oma.bcast.ltkm": {
+			"source": "iana"
+		},
+		"application/vnd.oma.bcast.notification+xml": {
+			"source": "iana"
+		},
+		"application/vnd.oma.bcast.provisioningtrigger": {
+			"source": "iana"
+		},
+		"application/vnd.oma.bcast.sgboot": {
+			"source": "iana"
+		},
+		"application/vnd.oma.bcast.sgdd+xml": {
+			"source": "iana"
+		},
+		"application/vnd.oma.bcast.sgdu": {
+			"source": "iana"
+		},
+		"application/vnd.oma.bcast.simple-symbol-container": {
+			"source": "iana"
+		},
+		"application/vnd.oma.bcast.smartcard-trigger+xml": {
+			"source": "iana"
+		},
+		"application/vnd.oma.bcast.sprov+xml": {
+			"source": "iana"
+		},
+		"application/vnd.oma.bcast.stkm": {
+			"source": "iana"
+		},
+		"application/vnd.oma.cab-address-book+xml": {
+			"source": "iana"
+		},
+		"application/vnd.oma.cab-feature-handler+xml": {
+			"source": "iana"
+		},
+		"application/vnd.oma.cab-pcc+xml": {
+			"source": "iana"
+		},
+		"application/vnd.oma.cab-subs-invite+xml": {
+			"source": "iana"
+		},
+		"application/vnd.oma.cab-user-prefs+xml": {
+			"source": "iana"
+		},
+		"application/vnd.oma.dcd": {
+			"source": "iana"
+		},
+		"application/vnd.oma.dcdc": {
+			"source": "iana"
+		},
+		"application/vnd.oma.dd2+xml": {
+			"source": "iana",
+			"extensions": [
+				"dd2"
+			]
+		},
+		"application/vnd.oma.drm.risd+xml": {
+			"source": "iana"
+		},
+		"application/vnd.oma.group-usage-list+xml": {
+			"source": "iana"
+		},
+		"application/vnd.oma.pal+xml": {
+			"source": "iana"
+		},
+		"application/vnd.oma.poc.detailed-progress-report+xml": {
+			"source": "iana"
+		},
+		"application/vnd.oma.poc.final-report+xml": {
+			"source": "iana"
+		},
+		"application/vnd.oma.poc.groups+xml": {
+			"source": "iana"
+		},
+		"application/vnd.oma.poc.invocation-descriptor+xml": {
+			"source": "iana"
+		},
+		"application/vnd.oma.poc.optimized-progress-report+xml": {
+			"source": "iana"
+		},
+		"application/vnd.oma.push": {
+			"source": "iana"
+		},
+		"application/vnd.oma.scidm.messages+xml": {
+			"source": "iana"
+		},
+		"application/vnd.oma.xcap-directory+xml": {
+			"source": "iana"
+		},
+		"application/vnd.omads-email+xml": {
+			"source": "iana"
+		},
+		"application/vnd.omads-file+xml": {
+			"source": "iana"
+		},
+		"application/vnd.omads-folder+xml": {
+			"source": "iana"
+		},
+		"application/vnd.omaloc-supl-init": {
+			"source": "iana"
+		},
+		"application/vnd.openblox.game+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openblox.game-binary": {
+			"source": "iana"
+		},
+		"application/vnd.openeye.oeb": {
+			"source": "iana"
+		},
+		"application/vnd.openofficeorg.extension": {
+			"source": "apache",
+			"extensions": [
+				"oxt"
+			]
+		},
+		"application/vnd.openxmlformats-officedocument.custom-properties+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.customxmlproperties+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.drawing+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.drawingml.chart+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.drawingml.chartshapes+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.drawingml.diagramcolors+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.drawingml.diagramdata+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.drawingml.diagramlayout+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.drawingml.diagramstyle+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.extended-properties+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.presentationml-template": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.presentationml.commentauthors+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.presentationml.comments+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.presentationml.handoutmaster+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.presentationml.notesmaster+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.presentationml.notesslide+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.presentationml.presentation": {
+			"source": "iana",
+			"compressible": false,
+			"extensions": [
+				"pptx"
+			]
+		},
+		"application/vnd.openxmlformats-officedocument.presentationml.presentation.main+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.presentationml.presprops+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.presentationml.slide": {
+			"source": "iana",
+			"extensions": [
+				"sldx"
+			]
+		},
+		"application/vnd.openxmlformats-officedocument.presentationml.slide+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.presentationml.slidelayout+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.presentationml.slidemaster+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.presentationml.slideshow": {
+			"source": "iana",
+			"extensions": [
+				"ppsx"
+			]
+		},
+		"application/vnd.openxmlformats-officedocument.presentationml.slideshow.main+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.presentationml.slideupdateinfo+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.presentationml.tablestyles+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.presentationml.tags+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.presentationml.template": {
+			"source": "apache",
+			"extensions": [
+				"potx"
+			]
+		},
+		"application/vnd.openxmlformats-officedocument.presentationml.template.main+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.presentationml.viewprops+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.spreadsheetml-template": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.spreadsheetml.calcchain+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.spreadsheetml.chartsheet+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.spreadsheetml.comments+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.spreadsheetml.connections+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.spreadsheetml.dialogsheet+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.spreadsheetml.externallink+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.spreadsheetml.pivotcachedefinition+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.spreadsheetml.pivotcacherecords+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.spreadsheetml.pivottable+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.spreadsheetml.querytable+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.spreadsheetml.revisionheaders+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.spreadsheetml.revisionlog+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.spreadsheetml.sharedstrings+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": {
+			"source": "iana",
+			"compressible": false,
+			"extensions": [
+				"xlsx"
+			]
+		},
+		"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.spreadsheetml.sheetmetadata+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.spreadsheetml.table+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.spreadsheetml.tablesinglecells+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.spreadsheetml.template": {
+			"source": "apache",
+			"extensions": [
+				"xltx"
+			]
+		},
+		"application/vnd.openxmlformats-officedocument.spreadsheetml.template.main+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.spreadsheetml.usernames+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.spreadsheetml.volatiledependencies+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.theme+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.themeoverride+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.vmldrawing": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.wordprocessingml-template": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.wordprocessingml.comments+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.wordprocessingml.document": {
+			"source": "iana",
+			"compressible": false,
+			"extensions": [
+				"docx"
+			]
+		},
+		"application/vnd.openxmlformats-officedocument.wordprocessingml.document.glossary+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.wordprocessingml.endnotes+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.wordprocessingml.fonttable+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.wordprocessingml.footer+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.wordprocessingml.footnotes+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.wordprocessingml.numbering+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.wordprocessingml.settings+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.wordprocessingml.template": {
+			"source": "apache",
+			"extensions": [
+				"dotx"
+			]
+		},
+		"application/vnd.openxmlformats-officedocument.wordprocessingml.template.main+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-officedocument.wordprocessingml.websettings+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-package.core-properties+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-package.digital-signature-xmlsignature+xml": {
+			"source": "iana"
+		},
+		"application/vnd.openxmlformats-package.relationships+xml": {
+			"source": "iana"
+		},
+		"application/vnd.oracle.resource+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/vnd.orange.indata": {
+			"source": "iana"
+		},
+		"application/vnd.osa.netdeploy": {
+			"source": "iana"
+		},
+		"application/vnd.osgeo.mapguide.package": {
+			"source": "iana",
+			"extensions": [
+				"mgp"
+			]
+		},
+		"application/vnd.osgi.bundle": {
+			"source": "iana"
+		},
+		"application/vnd.osgi.dp": {
+			"source": "iana",
+			"extensions": [
+				"dp"
+			]
+		},
+		"application/vnd.osgi.subsystem": {
+			"source": "iana",
+			"extensions": [
+				"esa"
+			]
+		},
+		"application/vnd.otps.ct-kip+xml": {
+			"source": "iana"
+		},
+		"application/vnd.oxli.countgraph": {
+			"source": "iana"
+		},
+		"application/vnd.pagerduty+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/vnd.palm": {
+			"source": "iana",
+			"extensions": [
+				"pdb",
+				"pqa",
+				"oprc"
+			]
+		},
+		"application/vnd.panoply": {
+			"source": "iana"
+		},
+		"application/vnd.paos+xml": {
+			"source": "iana"
+		},
+		"application/vnd.paos.xml": {
+			"source": "apache"
+		},
+		"application/vnd.pawaafile": {
+			"source": "iana",
+			"extensions": [
+				"paw"
+			]
+		},
+		"application/vnd.pcos": {
+			"source": "iana"
+		},
+		"application/vnd.pg.format": {
+			"source": "iana",
+			"extensions": [
+				"str"
+			]
+		},
+		"application/vnd.pg.osasli": {
+			"source": "iana",
+			"extensions": [
+				"ei6"
+			]
+		},
+		"application/vnd.piaccess.application-licence": {
+			"source": "iana"
+		},
+		"application/vnd.picsel": {
+			"source": "iana",
+			"extensions": [
+				"efif"
+			]
+		},
+		"application/vnd.pmi.widget": {
+			"source": "iana",
+			"extensions": [
+				"wg"
+			]
+		},
+		"application/vnd.poc.group-advertisement+xml": {
+			"source": "iana"
+		},
+		"application/vnd.pocketlearn": {
+			"source": "iana",
+			"extensions": [
+				"plf"
+			]
+		},
+		"application/vnd.powerbuilder6": {
+			"source": "iana",
+			"extensions": [
+				"pbd"
+			]
+		},
+		"application/vnd.powerbuilder6-s": {
+			"source": "iana"
+		},
+		"application/vnd.powerbuilder7": {
+			"source": "iana"
+		},
+		"application/vnd.powerbuilder7-s": {
+			"source": "iana"
+		},
+		"application/vnd.powerbuilder75": {
+			"source": "iana"
+		},
+		"application/vnd.powerbuilder75-s": {
+			"source": "iana"
+		},
+		"application/vnd.preminet": {
+			"source": "iana"
+		},
+		"application/vnd.previewsystems.box": {
+			"source": "iana",
+			"extensions": [
+				"box"
+			]
+		},
+		"application/vnd.proteus.magazine": {
+			"source": "iana",
+			"extensions": [
+				"mgz"
+			]
+		},
+		"application/vnd.publishare-delta-tree": {
+			"source": "iana",
+			"extensions": [
+				"qps"
+			]
+		},
+		"application/vnd.pvi.ptid1": {
+			"source": "iana",
+			"extensions": [
+				"ptid"
+			]
+		},
+		"application/vnd.pwg-multiplexed": {
+			"source": "iana"
+		},
+		"application/vnd.pwg-xhtml-print+xml": {
+			"source": "iana"
+		},
+		"application/vnd.qualcomm.brew-app-res": {
+			"source": "iana"
+		},
+		"application/vnd.quark.quarkxpress": {
+			"source": "iana",
+			"extensions": [
+				"qxd",
+				"qxt",
+				"qwd",
+				"qwt",
+				"qxl",
+				"qxb"
+			]
+		},
+		"application/vnd.quobject-quoxdocument": {
+			"source": "iana"
+		},
+		"application/vnd.radisys.moml+xml": {
+			"source": "iana"
+		},
+		"application/vnd.radisys.msml+xml": {
+			"source": "iana"
+		},
+		"application/vnd.radisys.msml-audit+xml": {
+			"source": "iana"
+		},
+		"application/vnd.radisys.msml-audit-conf+xml": {
+			"source": "iana"
+		},
+		"application/vnd.radisys.msml-audit-conn+xml": {
+			"source": "iana"
+		},
+		"application/vnd.radisys.msml-audit-dialog+xml": {
+			"source": "iana"
+		},
+		"application/vnd.radisys.msml-audit-stream+xml": {
+			"source": "iana"
+		},
+		"application/vnd.radisys.msml-conf+xml": {
+			"source": "iana"
+		},
+		"application/vnd.radisys.msml-dialog+xml": {
+			"source": "iana"
+		},
+		"application/vnd.radisys.msml-dialog-base+xml": {
+			"source": "iana"
+		},
+		"application/vnd.radisys.msml-dialog-fax-detect+xml": {
+			"source": "iana"
+		},
+		"application/vnd.radisys.msml-dialog-fax-sendrecv+xml": {
+			"source": "iana"
+		},
+		"application/vnd.radisys.msml-dialog-group+xml": {
+			"source": "iana"
+		},
+		"application/vnd.radisys.msml-dialog-speech+xml": {
+			"source": "iana"
+		},
+		"application/vnd.radisys.msml-dialog-transform+xml": {
+			"source": "iana"
+		},
+		"application/vnd.rainstor.data": {
+			"source": "iana"
+		},
+		"application/vnd.rapid": {
+			"source": "iana"
+		},
+		"application/vnd.realvnc.bed": {
+			"source": "iana",
+			"extensions": [
+				"bed"
+			]
+		},
+		"application/vnd.recordare.musicxml": {
+			"source": "iana",
+			"extensions": [
+				"mxl"
+			]
+		},
+		"application/vnd.recordare.musicxml+xml": {
+			"source": "iana",
+			"extensions": [
+				"musicxml"
+			]
+		},
+		"application/vnd.renlearn.rlprint": {
+			"source": "iana"
+		},
+		"application/vnd.rig.cryptonote": {
+			"source": "iana",
+			"extensions": [
+				"cryptonote"
+			]
+		},
+		"application/vnd.rim.cod": {
+			"source": "apache",
+			"extensions": [
+				"cod"
+			]
+		},
+		"application/vnd.rn-realmedia": {
+			"source": "apache",
+			"extensions": [
+				"rm"
+			]
+		},
+		"application/vnd.rn-realmedia-vbr": {
+			"source": "apache",
+			"extensions": [
+				"rmvb"
+			]
+		},
+		"application/vnd.route66.link66+xml": {
+			"source": "iana",
+			"extensions": [
+				"link66"
+			]
+		},
+		"application/vnd.rs-274x": {
+			"source": "iana"
+		},
+		"application/vnd.ruckus.download": {
+			"source": "iana"
+		},
+		"application/vnd.s3sms": {
+			"source": "iana"
+		},
+		"application/vnd.sailingtracker.track": {
+			"source": "iana",
+			"extensions": [
+				"st"
+			]
+		},
+		"application/vnd.sbm.cid": {
+			"source": "iana"
+		},
+		"application/vnd.sbm.mid2": {
+			"source": "iana"
+		},
+		"application/vnd.scribus": {
+			"source": "iana"
+		},
+		"application/vnd.sealed.3df": {
+			"source": "iana"
+		},
+		"application/vnd.sealed.csf": {
+			"source": "iana"
+		},
+		"application/vnd.sealed.doc": {
+			"source": "iana"
+		},
+		"application/vnd.sealed.eml": {
+			"source": "iana"
+		},
+		"application/vnd.sealed.mht": {
+			"source": "iana"
+		},
+		"application/vnd.sealed.net": {
+			"source": "iana"
+		},
+		"application/vnd.sealed.ppt": {
+			"source": "iana"
+		},
+		"application/vnd.sealed.tiff": {
+			"source": "iana"
+		},
+		"application/vnd.sealed.xls": {
+			"source": "iana"
+		},
+		"application/vnd.sealedmedia.softseal.html": {
+			"source": "iana"
+		},
+		"application/vnd.sealedmedia.softseal.pdf": {
+			"source": "iana"
+		},
+		"application/vnd.seemail": {
+			"source": "iana",
+			"extensions": [
+				"see"
+			]
+		},
+		"application/vnd.sema": {
+			"source": "iana",
+			"extensions": [
+				"sema"
+			]
+		},
+		"application/vnd.semd": {
+			"source": "iana",
+			"extensions": [
+				"semd"
+			]
+		},
+		"application/vnd.semf": {
+			"source": "iana",
+			"extensions": [
+				"semf"
+			]
+		},
+		"application/vnd.shana.informed.formdata": {
+			"source": "iana",
+			"extensions": [
+				"ifm"
+			]
+		},
+		"application/vnd.shana.informed.formtemplate": {
+			"source": "iana",
+			"extensions": [
+				"itp"
+			]
+		},
+		"application/vnd.shana.informed.interchange": {
+			"source": "iana",
+			"extensions": [
+				"iif"
+			]
+		},
+		"application/vnd.shana.informed.package": {
+			"source": "iana",
+			"extensions": [
+				"ipk"
+			]
+		},
+		"application/vnd.simtech-mindmapper": {
+			"source": "iana",
+			"extensions": [
+				"twd",
+				"twds"
+			]
+		},
+		"application/vnd.siren+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/vnd.smaf": {
+			"source": "iana",
+			"extensions": [
+				"mmf"
+			]
+		},
+		"application/vnd.smart.notebook": {
+			"source": "iana"
+		},
+		"application/vnd.smart.teacher": {
+			"source": "iana",
+			"extensions": [
+				"teacher"
+			]
+		},
+		"application/vnd.software602.filler.form+xml": {
+			"source": "iana"
+		},
+		"application/vnd.software602.filler.form-xml-zip": {
+			"source": "iana"
+		},
+		"application/vnd.solent.sdkm+xml": {
+			"source": "iana",
+			"extensions": [
+				"sdkm",
+				"sdkd"
+			]
+		},
+		"application/vnd.spotfire.dxp": {
+			"source": "iana",
+			"extensions": [
+				"dxp"
+			]
+		},
+		"application/vnd.spotfire.sfs": {
+			"source": "iana",
+			"extensions": [
+				"sfs"
+			]
+		},
+		"application/vnd.sss-cod": {
+			"source": "iana"
+		},
+		"application/vnd.sss-dtf": {
+			"source": "iana"
+		},
+		"application/vnd.sss-ntf": {
+			"source": "iana"
+		},
+		"application/vnd.stardivision.calc": {
+			"source": "apache",
+			"extensions": [
+				"sdc"
+			]
+		},
+		"application/vnd.stardivision.draw": {
+			"source": "apache",
+			"extensions": [
+				"sda"
+			]
+		},
+		"application/vnd.stardivision.impress": {
+			"source": "apache",
+			"extensions": [
+				"sdd"
+			]
+		},
+		"application/vnd.stardivision.math": {
+			"source": "apache",
+			"extensions": [
+				"smf"
+			]
+		},
+		"application/vnd.stardivision.writer": {
+			"source": "apache",
+			"extensions": [
+				"sdw",
+				"vor"
+			]
+		},
+		"application/vnd.stardivision.writer-global": {
+			"source": "apache",
+			"extensions": [
+				"sgl"
+			]
+		},
+		"application/vnd.stepmania.package": {
+			"source": "iana",
+			"extensions": [
+				"smzip"
+			]
+		},
+		"application/vnd.stepmania.stepchart": {
+			"source": "iana",
+			"extensions": [
+				"sm"
+			]
+		},
+		"application/vnd.street-stream": {
+			"source": "iana"
+		},
+		"application/vnd.sun.wadl+xml": {
+			"source": "iana"
+		},
+		"application/vnd.sun.xml.calc": {
+			"source": "apache",
+			"extensions": [
+				"sxc"
+			]
+		},
+		"application/vnd.sun.xml.calc.template": {
+			"source": "apache",
+			"extensions": [
+				"stc"
+			]
+		},
+		"application/vnd.sun.xml.draw": {
+			"source": "apache",
+			"extensions": [
+				"sxd"
+			]
+		},
+		"application/vnd.sun.xml.draw.template": {
+			"source": "apache",
+			"extensions": [
+				"std"
+			]
+		},
+		"application/vnd.sun.xml.impress": {
+			"source": "apache",
+			"extensions": [
+				"sxi"
+			]
+		},
+		"application/vnd.sun.xml.impress.template": {
+			"source": "apache",
+			"extensions": [
+				"sti"
+			]
+		},
+		"application/vnd.sun.xml.math": {
+			"source": "apache",
+			"extensions": [
+				"sxm"
+			]
+		},
+		"application/vnd.sun.xml.writer": {
+			"source": "apache",
+			"extensions": [
+				"sxw"
+			]
+		},
+		"application/vnd.sun.xml.writer.global": {
+			"source": "apache",
+			"extensions": [
+				"sxg"
+			]
+		},
+		"application/vnd.sun.xml.writer.template": {
+			"source": "apache",
+			"extensions": [
+				"stw"
+			]
+		},
+		"application/vnd.sus-calendar": {
+			"source": "iana",
+			"extensions": [
+				"sus",
+				"susp"
+			]
+		},
+		"application/vnd.svd": {
+			"source": "iana",
+			"extensions": [
+				"svd"
+			]
+		},
+		"application/vnd.swiftview-ics": {
+			"source": "iana"
+		},
+		"application/vnd.symbian.install": {
+			"source": "apache",
+			"extensions": [
+				"sis",
+				"sisx"
+			]
+		},
+		"application/vnd.syncml+xml": {
+			"source": "iana",
+			"extensions": [
+				"xsm"
+			]
+		},
+		"application/vnd.syncml.dm+wbxml": {
+			"source": "iana",
+			"extensions": [
+				"bdm"
+			]
+		},
+		"application/vnd.syncml.dm+xml": {
+			"source": "iana",
+			"extensions": [
+				"xdm"
+			]
+		},
+		"application/vnd.syncml.dm.notification": {
+			"source": "iana"
+		},
+		"application/vnd.syncml.dmddf+wbxml": {
+			"source": "iana"
+		},
+		"application/vnd.syncml.dmddf+xml": {
+			"source": "iana"
+		},
+		"application/vnd.syncml.dmtnds+wbxml": {
+			"source": "iana"
+		},
+		"application/vnd.syncml.dmtnds+xml": {
+			"source": "iana"
+		},
+		"application/vnd.syncml.ds.notification": {
+			"source": "iana"
+		},
+		"application/vnd.tao.intent-module-archive": {
+			"source": "iana",
+			"extensions": [
+				"tao"
+			]
+		},
+		"application/vnd.tcpdump.pcap": {
+			"source": "iana",
+			"extensions": [
+				"pcap",
+				"cap",
+				"dmp"
+			]
+		},
+		"application/vnd.tmd.mediaflex.api+xml": {
+			"source": "iana"
+		},
+		"application/vnd.tml": {
+			"source": "iana"
+		},
+		"application/vnd.tmobile-livetv": {
+			"source": "iana",
+			"extensions": [
+				"tmo"
+			]
+		},
+		"application/vnd.trid.tpt": {
+			"source": "iana",
+			"extensions": [
+				"tpt"
+			]
+		},
+		"application/vnd.triscape.mxs": {
+			"source": "iana",
+			"extensions": [
+				"mxs"
+			]
+		},
+		"application/vnd.trueapp": {
+			"source": "iana",
+			"extensions": [
+				"tra"
+			]
+		},
+		"application/vnd.truedoc": {
+			"source": "iana"
+		},
+		"application/vnd.ubisoft.webplayer": {
+			"source": "iana"
+		},
+		"application/vnd.ufdl": {
+			"source": "iana",
+			"extensions": [
+				"ufd",
+				"ufdl"
+			]
+		},
+		"application/vnd.uiq.theme": {
+			"source": "iana",
+			"extensions": [
+				"utz"
+			]
+		},
+		"application/vnd.umajin": {
+			"source": "iana",
+			"extensions": [
+				"umj"
+			]
+		},
+		"application/vnd.unity": {
+			"source": "iana",
+			"extensions": [
+				"unityweb"
+			]
+		},
+		"application/vnd.uoml+xml": {
+			"source": "iana",
+			"extensions": [
+				"uoml"
+			]
+		},
+		"application/vnd.uplanet.alert": {
+			"source": "iana"
+		},
+		"application/vnd.uplanet.alert-wbxml": {
+			"source": "iana"
+		},
+		"application/vnd.uplanet.bearer-choice": {
+			"source": "iana"
+		},
+		"application/vnd.uplanet.bearer-choice-wbxml": {
+			"source": "iana"
+		},
+		"application/vnd.uplanet.cacheop": {
+			"source": "iana"
+		},
+		"application/vnd.uplanet.cacheop-wbxml": {
+			"source": "iana"
+		},
+		"application/vnd.uplanet.channel": {
+			"source": "iana"
+		},
+		"application/vnd.uplanet.channel-wbxml": {
+			"source": "iana"
+		},
+		"application/vnd.uplanet.list": {
+			"source": "iana"
+		},
+		"application/vnd.uplanet.list-wbxml": {
+			"source": "iana"
+		},
+		"application/vnd.uplanet.listcmd": {
+			"source": "iana"
+		},
+		"application/vnd.uplanet.listcmd-wbxml": {
+			"source": "iana"
+		},
+		"application/vnd.uplanet.signal": {
+			"source": "iana"
+		},
+		"application/vnd.uri-map": {
+			"source": "iana"
+		},
+		"application/vnd.valve.source.material": {
+			"source": "iana"
+		},
+		"application/vnd.vcx": {
+			"source": "iana",
+			"extensions": [
+				"vcx"
+			]
+		},
+		"application/vnd.vd-study": {
+			"source": "iana"
+		},
+		"application/vnd.vectorworks": {
+			"source": "iana"
+		},
+		"application/vnd.verimatrix.vcas": {
+			"source": "iana"
+		},
+		"application/vnd.vidsoft.vidconference": {
+			"source": "iana"
+		},
+		"application/vnd.visio": {
+			"source": "iana",
+			"extensions": [
+				"vsd",
+				"vst",
+				"vss",
+				"vsw"
+			]
+		},
+		"application/vnd.visionary": {
+			"source": "iana",
+			"extensions": [
+				"vis"
+			]
+		},
+		"application/vnd.vividence.scriptfile": {
+			"source": "iana"
+		},
+		"application/vnd.vsf": {
+			"source": "iana",
+			"extensions": [
+				"vsf"
+			]
+		},
+		"application/vnd.wap.sic": {
+			"source": "iana"
+		},
+		"application/vnd.wap.slc": {
+			"source": "iana"
+		},
+		"application/vnd.wap.wbxml": {
+			"source": "iana",
+			"extensions": [
+				"wbxml"
+			]
+		},
+		"application/vnd.wap.wmlc": {
+			"source": "iana",
+			"extensions": [
+				"wmlc"
+			]
+		},
+		"application/vnd.wap.wmlscriptc": {
+			"source": "iana",
+			"extensions": [
+				"wmlsc"
+			]
+		},
+		"application/vnd.webturbo": {
+			"source": "iana",
+			"extensions": [
+				"wtb"
+			]
+		},
+		"application/vnd.wfa.p2p": {
+			"source": "iana"
+		},
+		"application/vnd.wfa.wsc": {
+			"source": "iana"
+		},
+		"application/vnd.windows.devicepairing": {
+			"source": "iana"
+		},
+		"application/vnd.wmc": {
+			"source": "iana"
+		},
+		"application/vnd.wmf.bootstrap": {
+			"source": "iana"
+		},
+		"application/vnd.wolfram.mathematica": {
+			"source": "iana"
+		},
+		"application/vnd.wolfram.mathematica.package": {
+			"source": "iana"
+		},
+		"application/vnd.wolfram.player": {
+			"source": "iana",
+			"extensions": [
+				"nbp"
+			]
+		},
+		"application/vnd.wordperfect": {
+			"source": "iana",
+			"extensions": [
+				"wpd"
+			]
+		},
+		"application/vnd.wqd": {
+			"source": "iana",
+			"extensions": [
+				"wqd"
+			]
+		},
+		"application/vnd.wrq-hp3000-labelled": {
+			"source": "iana"
+		},
+		"application/vnd.wt.stf": {
+			"source": "iana",
+			"extensions": [
+				"stf"
+			]
+		},
+		"application/vnd.wv.csp+wbxml": {
+			"source": "iana"
+		},
+		"application/vnd.wv.csp+xml": {
+			"source": "iana"
+		},
+		"application/vnd.wv.ssp+xml": {
+			"source": "iana"
+		},
+		"application/vnd.xacml+json": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/vnd.xara": {
+			"source": "iana",
+			"extensions": [
+				"xar"
+			]
+		},
+		"application/vnd.xfdl": {
+			"source": "iana",
+			"extensions": [
+				"xfdl"
+			]
+		},
+		"application/vnd.xfdl.webform": {
+			"source": "iana"
+		},
+		"application/vnd.xmi+xml": {
+			"source": "iana"
+		},
+		"application/vnd.xmpie.cpkg": {
+			"source": "iana"
+		},
+		"application/vnd.xmpie.dpkg": {
+			"source": "iana"
+		},
+		"application/vnd.xmpie.plan": {
+			"source": "iana"
+		},
+		"application/vnd.xmpie.ppkg": {
+			"source": "iana"
+		},
+		"application/vnd.xmpie.xlim": {
+			"source": "iana"
+		},
+		"application/vnd.yamaha.hv-dic": {
+			"source": "iana",
+			"extensions": [
+				"hvd"
+			]
+		},
+		"application/vnd.yamaha.hv-script": {
+			"source": "iana",
+			"extensions": [
+				"hvs"
+			]
+		},
+		"application/vnd.yamaha.hv-voice": {
+			"source": "iana",
+			"extensions": [
+				"hvp"
+			]
+		},
+		"application/vnd.yamaha.openscoreformat": {
+			"source": "iana",
+			"extensions": [
+				"osf"
+			]
+		},
+		"application/vnd.yamaha.openscoreformat.osfpvg+xml": {
+			"source": "iana",
+			"extensions": [
+				"osfpvg"
+			]
+		},
+		"application/vnd.yamaha.remote-setup": {
+			"source": "iana"
+		},
+		"application/vnd.yamaha.smaf-audio": {
+			"source": "iana",
+			"extensions": [
+				"saf"
+			]
+		},
+		"application/vnd.yamaha.smaf-phrase": {
+			"source": "iana",
+			"extensions": [
+				"spf"
+			]
+		},
+		"application/vnd.yamaha.through-ngn": {
+			"source": "iana"
+		},
+		"application/vnd.yamaha.tunnel-udpencap": {
+			"source": "iana"
+		},
+		"application/vnd.yaoweme": {
+			"source": "iana"
+		},
+		"application/vnd.yellowriver-custom-menu": {
+			"source": "iana",
+			"extensions": [
+				"cmp"
+			]
+		},
+		"application/vnd.zul": {
+			"source": "iana",
+			"extensions": [
+				"zir",
+				"zirz"
+			]
+		},
+		"application/vnd.zzazz.deck+xml": {
+			"source": "iana",
+			"extensions": [
+				"zaz"
+			]
+		},
+		"application/voicexml+xml": {
+			"source": "iana",
+			"extensions": [
+				"vxml"
+			]
+		},
+		"application/vq-rtcpxr": {
+			"source": "iana"
+		},
+		"application/watcherinfo+xml": {
+			"source": "iana"
+		},
+		"application/whoispp-query": {
+			"source": "iana"
+		},
+		"application/whoispp-response": {
+			"source": "iana"
+		},
+		"application/widget": {
+			"source": "iana",
+			"extensions": [
+				"wgt"
+			]
+		},
+		"application/winhlp": {
+			"source": "apache",
+			"extensions": [
+				"hlp"
+			]
+		},
+		"application/wita": {
+			"source": "iana"
+		},
+		"application/wordperfect5.1": {
+			"source": "iana"
+		},
+		"application/wsdl+xml": {
+			"source": "iana",
+			"extensions": [
+				"wsdl"
+			]
+		},
+		"application/wspolicy+xml": {
+			"source": "iana",
+			"extensions": [
+				"wspolicy"
+			]
+		},
+		"application/x-7z-compressed": {
+			"source": "apache",
+			"compressible": false,
+			"extensions": [
+				"7z"
+			]
+		},
+		"application/x-abiword": {
+			"source": "apache",
+			"extensions": [
+				"abw"
+			]
+		},
+		"application/x-ace-compressed": {
+			"source": "apache",
+			"extensions": [
+				"ace"
+			]
+		},
+		"application/x-amf": {
+			"source": "apache"
+		},
+		"application/x-apple-diskimage": {
+			"source": "apache",
+			"extensions": [
+				"dmg"
+			]
+		},
+		"application/x-authorware-bin": {
+			"source": "apache",
+			"extensions": [
+				"aab",
+				"x32",
+				"u32",
+				"vox"
+			]
+		},
+		"application/x-authorware-map": {
+			"source": "apache",
+			"extensions": [
+				"aam"
+			]
+		},
+		"application/x-authorware-seg": {
+			"source": "apache",
+			"extensions": [
+				"aas"
+			]
+		},
+		"application/x-bcpio": {
+			"source": "apache",
+			"extensions": [
+				"bcpio"
+			]
+		},
+		"application/x-bdoc": {
+			"compressible": false,
+			"extensions": [
+				"bdoc"
+			]
+		},
+		"application/x-bittorrent": {
+			"source": "apache",
+			"extensions": [
+				"torrent"
+			]
+		},
+		"application/x-blorb": {
+			"source": "apache",
+			"extensions": [
+				"blb",
+				"blorb"
+			]
+		},
+		"application/x-bzip": {
+			"source": "apache",
+			"compressible": false,
+			"extensions": [
+				"bz"
+			]
+		},
+		"application/x-bzip2": {
+			"source": "apache",
+			"compressible": false,
+			"extensions": [
+				"bz2",
+				"boz"
+			]
+		},
+		"application/x-cbr": {
+			"source": "apache",
+			"extensions": [
+				"cbr",
+				"cba",
+				"cbt",
+				"cbz",
+				"cb7"
+			]
+		},
+		"application/x-cdlink": {
+			"source": "apache",
+			"extensions": [
+				"vcd"
+			]
+		},
+		"application/x-cfs-compressed": {
+			"source": "apache",
+			"extensions": [
+				"cfs"
+			]
+		},
+		"application/x-chat": {
+			"source": "apache",
+			"extensions": [
+				"chat"
+			]
+		},
+		"application/x-chess-pgn": {
+			"source": "apache",
+			"extensions": [
+				"pgn"
+			]
+		},
+		"application/x-chrome-extension": {
+			"extensions": [
+				"crx"
+			]
+		},
+		"application/x-cocoa": {
+			"source": "nginx",
+			"extensions": [
+				"cco"
+			]
+		},
+		"application/x-compress": {
+			"source": "apache"
+		},
+		"application/x-conference": {
+			"source": "apache",
+			"extensions": [
+				"nsc"
+			]
+		},
+		"application/x-cpio": {
+			"source": "apache",
+			"extensions": [
+				"cpio"
+			]
+		},
+		"application/x-csh": {
+			"source": "apache",
+			"extensions": [
+				"csh"
+			]
+		},
+		"application/x-deb": {
+			"compressible": false
+		},
+		"application/x-debian-package": {
+			"source": "apache",
+			"extensions": [
+				"deb",
+				"udeb"
+			]
+		},
+		"application/x-dgc-compressed": {
+			"source": "apache",
+			"extensions": [
+				"dgc"
+			]
+		},
+		"application/x-director": {
+			"source": "apache",
+			"extensions": [
+				"dir",
+				"dcr",
+				"dxr",
+				"cst",
+				"cct",
+				"cxt",
+				"w3d",
+				"fgd",
+				"swa"
+			]
+		},
+		"application/x-doom": {
+			"source": "apache",
+			"extensions": [
+				"wad"
+			]
+		},
+		"application/x-dtbncx+xml": {
+			"source": "apache",
+			"extensions": [
+				"ncx"
+			]
+		},
+		"application/x-dtbook+xml": {
+			"source": "apache",
+			"extensions": [
+				"dtb"
+			]
+		},
+		"application/x-dtbresource+xml": {
+			"source": "apache",
+			"extensions": [
+				"res"
+			]
+		},
+		"application/x-dvi": {
+			"source": "apache",
+			"compressible": false,
+			"extensions": [
+				"dvi"
+			]
+		},
+		"application/x-envoy": {
+			"source": "apache",
+			"extensions": [
+				"evy"
+			]
+		},
+		"application/x-eva": {
+			"source": "apache",
+			"extensions": [
+				"eva"
+			]
+		},
+		"application/x-font-bdf": {
+			"source": "apache",
+			"extensions": [
+				"bdf"
+			]
+		},
+		"application/x-font-dos": {
+			"source": "apache"
+		},
+		"application/x-font-framemaker": {
+			"source": "apache"
+		},
+		"application/x-font-ghostscript": {
+			"source": "apache",
+			"extensions": [
+				"gsf"
+			]
+		},
+		"application/x-font-libgrx": {
+			"source": "apache"
+		},
+		"application/x-font-linux-psf": {
+			"source": "apache",
+			"extensions": [
+				"psf"
+			]
+		},
+		"application/x-font-otf": {
+			"source": "apache",
+			"compressible": true,
+			"extensions": [
+				"otf"
+			]
+		},
+		"application/x-font-pcf": {
+			"source": "apache",
+			"extensions": [
+				"pcf"
+			]
+		},
+		"application/x-font-snf": {
+			"source": "apache",
+			"extensions": [
+				"snf"
+			]
+		},
+		"application/x-font-speedo": {
+			"source": "apache"
+		},
+		"application/x-font-sunos-news": {
+			"source": "apache"
+		},
+		"application/x-font-ttf": {
+			"source": "apache",
+			"compressible": true,
+			"extensions": [
+				"ttf",
+				"ttc"
+			]
+		},
+		"application/x-font-type1": {
+			"source": "apache",
+			"extensions": [
+				"pfa",
+				"pfb",
+				"pfm",
+				"afm"
+			]
+		},
+		"application/x-font-vfont": {
+			"source": "apache"
+		},
+		"application/x-freearc": {
+			"source": "apache",
+			"extensions": [
+				"arc"
+			]
+		},
+		"application/x-futuresplash": {
+			"source": "apache",
+			"extensions": [
+				"spl"
+			]
+		},
+		"application/x-gca-compressed": {
+			"source": "apache",
+			"extensions": [
+				"gca"
+			]
+		},
+		"application/x-glulx": {
+			"source": "apache",
+			"extensions": [
+				"ulx"
+			]
+		},
+		"application/x-gnumeric": {
+			"source": "apache",
+			"extensions": [
+				"gnumeric"
+			]
+		},
+		"application/x-gramps-xml": {
+			"source": "apache",
+			"extensions": [
+				"gramps"
+			]
+		},
+		"application/x-gtar": {
+			"source": "apache",
+			"extensions": [
+				"gtar"
+			]
+		},
+		"application/x-gzip": {
+			"source": "apache"
+		},
+		"application/x-hdf": {
+			"source": "apache",
+			"extensions": [
+				"hdf"
+			]
+		},
+		"application/x-httpd-php": {
+			"compressible": true,
+			"extensions": [
+				"php"
+			]
+		},
+		"application/x-install-instructions": {
+			"source": "apache",
+			"extensions": [
+				"install"
+			]
+		},
+		"application/x-iso9660-image": {
+			"source": "apache",
+			"extensions": [
+				"iso"
+			]
+		},
+		"application/x-java-archive-diff": {
+			"source": "nginx",
+			"extensions": [
+				"jardiff"
+			]
+		},
+		"application/x-java-jnlp-file": {
+			"source": "apache",
+			"compressible": false,
+			"extensions": [
+				"jnlp"
+			]
+		},
+		"application/x-javascript": {
+			"compressible": true
+		},
+		"application/x-latex": {
+			"source": "apache",
+			"compressible": false,
+			"extensions": [
+				"latex"
+			]
+		},
+		"application/x-lua-bytecode": {
+			"extensions": [
+				"luac"
+			]
+		},
+		"application/x-lzh-compressed": {
+			"source": "apache",
+			"extensions": [
+				"lzh",
+				"lha"
+			]
+		},
+		"application/x-makeself": {
+			"source": "nginx",
+			"extensions": [
+				"run"
+			]
+		},
+		"application/x-mie": {
+			"source": "apache",
+			"extensions": [
+				"mie"
+			]
+		},
+		"application/x-mobipocket-ebook": {
+			"source": "apache",
+			"extensions": [
+				"prc",
+				"mobi"
+			]
+		},
+		"application/x-mpegurl": {
+			"compressible": false
+		},
+		"application/x-ms-application": {
+			"source": "apache",
+			"extensions": [
+				"application"
+			]
+		},
+		"application/x-ms-shortcut": {
+			"source": "apache",
+			"extensions": [
+				"lnk"
+			]
+		},
+		"application/x-ms-wmd": {
+			"source": "apache",
+			"extensions": [
+				"wmd"
+			]
+		},
+		"application/x-ms-wmz": {
+			"source": "apache",
+			"extensions": [
+				"wmz"
+			]
+		},
+		"application/x-ms-xbap": {
+			"source": "apache",
+			"extensions": [
+				"xbap"
+			]
+		},
+		"application/x-msaccess": {
+			"source": "apache",
+			"extensions": [
+				"mdb"
+			]
+		},
+		"application/x-msbinder": {
+			"source": "apache",
+			"extensions": [
+				"obd"
+			]
+		},
+		"application/x-mscardfile": {
+			"source": "apache",
+			"extensions": [
+				"crd"
+			]
+		},
+		"application/x-msclip": {
+			"source": "apache",
+			"extensions": [
+				"clp"
+			]
+		},
+		"application/x-msdos-program": {
+			"extensions": [
+				"exe"
+			]
+		},
+		"application/x-msdownload": {
+			"source": "apache",
+			"extensions": [
+				"exe",
+				"dll",
+				"com",
+				"bat",
+				"msi"
+			]
+		},
+		"application/x-msmediaview": {
+			"source": "apache",
+			"extensions": [
+				"mvb",
+				"m13",
+				"m14"
+			]
+		},
+		"application/x-msmetafile": {
+			"source": "apache",
+			"extensions": [
+				"wmf",
+				"wmz",
+				"emf",
+				"emz"
+			]
+		},
+		"application/x-msmoney": {
+			"source": "apache",
+			"extensions": [
+				"mny"
+			]
+		},
+		"application/x-mspublisher": {
+			"source": "apache",
+			"extensions": [
+				"pub"
+			]
+		},
+		"application/x-msschedule": {
+			"source": "apache",
+			"extensions": [
+				"scd"
+			]
+		},
+		"application/x-msterminal": {
+			"source": "apache",
+			"extensions": [
+				"trm"
+			]
+		},
+		"application/x-mswrite": {
+			"source": "apache",
+			"extensions": [
+				"wri"
+			]
+		},
+		"application/x-netcdf": {
+			"source": "apache",
+			"extensions": [
+				"nc",
+				"cdf"
+			]
+		},
+		"application/x-ns-proxy-autoconfig": {
+			"compressible": true,
+			"extensions": [
+				"pac"
+			]
+		},
+		"application/x-nzb": {
+			"source": "apache",
+			"extensions": [
+				"nzb"
+			]
+		},
+		"application/x-perl": {
+			"source": "nginx",
+			"extensions": [
+				"pl",
+				"pm"
+			]
+		},
+		"application/x-pilot": {
+			"source": "nginx",
+			"extensions": [
+				"prc",
+				"pdb"
+			]
+		},
+		"application/x-pkcs12": {
+			"source": "apache",
+			"compressible": false,
+			"extensions": [
+				"p12",
+				"pfx"
+			]
+		},
+		"application/x-pkcs7-certificates": {
+			"source": "apache",
+			"extensions": [
+				"p7b",
+				"spc"
+			]
+		},
+		"application/x-pkcs7-certreqresp": {
+			"source": "apache",
+			"extensions": [
+				"p7r"
+			]
+		},
+		"application/x-rar-compressed": {
+			"source": "apache",
+			"compressible": false,
+			"extensions": [
+				"rar"
+			]
+		},
+		"application/x-redhat-package-manager": {
+			"source": "nginx",
+			"extensions": [
+				"rpm"
+			]
+		},
+		"application/x-research-info-systems": {
+			"source": "apache",
+			"extensions": [
+				"ris"
+			]
+		},
+		"application/x-sea": {
+			"source": "nginx",
+			"extensions": [
+				"sea"
+			]
+		},
+		"application/x-sh": {
+			"source": "apache",
+			"compressible": true,
+			"extensions": [
+				"sh"
+			]
+		},
+		"application/x-shar": {
+			"source": "apache",
+			"extensions": [
+				"shar"
+			]
+		},
+		"application/x-shockwave-flash": {
+			"source": "apache",
+			"compressible": false,
+			"extensions": [
+				"swf"
+			]
+		},
+		"application/x-silverlight-app": {
+			"source": "apache",
+			"extensions": [
+				"xap"
+			]
+		},
+		"application/x-sql": {
+			"source": "apache",
+			"extensions": [
+				"sql"
+			]
+		},
+		"application/x-stuffit": {
+			"source": "apache",
+			"compressible": false,
+			"extensions": [
+				"sit"
+			]
+		},
+		"application/x-stuffitx": {
+			"source": "apache",
+			"extensions": [
+				"sitx"
+			]
+		},
+		"application/x-subrip": {
+			"source": "apache",
+			"extensions": [
+				"srt"
+			]
+		},
+		"application/x-sv4cpio": {
+			"source": "apache",
+			"extensions": [
+				"sv4cpio"
+			]
+		},
+		"application/x-sv4crc": {
+			"source": "apache",
+			"extensions": [
+				"sv4crc"
+			]
+		},
+		"application/x-t3vm-image": {
+			"source": "apache",
+			"extensions": [
+				"t3"
+			]
+		},
+		"application/x-tads": {
+			"source": "apache",
+			"extensions": [
+				"gam"
+			]
+		},
+		"application/x-tar": {
+			"source": "apache",
+			"compressible": true,
+			"extensions": [
+				"tar"
+			]
+		},
+		"application/x-tcl": {
+			"source": "apache",
+			"extensions": [
+				"tcl",
+				"tk"
+			]
+		},
+		"application/x-tex": {
+			"source": "apache",
+			"extensions": [
+				"tex"
+			]
+		},
+		"application/x-tex-tfm": {
+			"source": "apache",
+			"extensions": [
+				"tfm"
+			]
+		},
+		"application/x-texinfo": {
+			"source": "apache",
+			"extensions": [
+				"texinfo",
+				"texi"
+			]
+		},
+		"application/x-tgif": {
+			"source": "apache",
+			"extensions": [
+				"obj"
+			]
+		},
+		"application/x-ustar": {
+			"source": "apache",
+			"extensions": [
+				"ustar"
+			]
+		},
+		"application/x-wais-source": {
+			"source": "apache",
+			"extensions": [
+				"src"
+			]
+		},
+		"application/x-web-app-manifest+json": {
+			"compressible": true,
+			"extensions": [
+				"webapp"
+			]
+		},
+		"application/x-www-form-urlencoded": {
+			"source": "iana",
+			"compressible": true
+		},
+		"application/x-x509-ca-cert": {
+			"source": "apache",
+			"extensions": [
+				"der",
+				"crt",
+				"pem"
+			]
+		},
+		"application/x-xfig": {
+			"source": "apache",
+			"extensions": [
+				"fig"
+			]
+		},
+		"application/x-xliff+xml": {
+			"source": "apache",
+			"extensions": [
+				"xlf"
+			]
+		},
+		"application/x-xpinstall": {
+			"source": "apache",
+			"compressible": false,
+			"extensions": [
+				"xpi"
+			]
+		},
+		"application/x-xz": {
+			"source": "apache",
+			"extensions": [
+				"xz"
+			]
+		},
+		"application/x-zmachine": {
+			"source": "apache",
+			"extensions": [
+				"z1",
+				"z2",
+				"z3",
+				"z4",
+				"z5",
+				"z6",
+				"z7",
+				"z8"
+			]
+		},
+		"application/x400-bp": {
+			"source": "iana"
+		},
+		"application/xacml+xml": {
+			"source": "iana"
+		},
+		"application/xaml+xml": {
+			"source": "apache",
+			"extensions": [
+				"xaml"
+			]
+		},
+		"application/xcap-att+xml": {
+			"source": "iana"
+		},
+		"application/xcap-caps+xml": {
+			"source": "iana"
+		},
+		"application/xcap-diff+xml": {
+			"source": "iana",
+			"extensions": [
+				"xdf"
+			]
+		},
+		"application/xcap-el+xml": {
+			"source": "iana"
+		},
+		"application/xcap-error+xml": {
+			"source": "iana"
+		},
+		"application/xcap-ns+xml": {
+			"source": "iana"
+		},
+		"application/xcon-conference-info+xml": {
+			"source": "iana"
+		},
+		"application/xcon-conference-info-diff+xml": {
+			"source": "iana"
+		},
+		"application/xenc+xml": {
+			"source": "iana",
+			"extensions": [
+				"xenc"
+			]
+		},
+		"application/xhtml+xml": {
+			"source": "iana",
+			"compressible": true,
+			"extensions": [
+				"xhtml",
+				"xht"
+			]
+		},
+		"application/xhtml-voice+xml": {
+			"source": "apache"
+		},
+		"application/xml": {
+			"source": "iana",
+			"compressible": true,
+			"extensions": [
+				"xml",
+				"xsl",
+				"xsd"
+			]
+		},
+		"application/xml-dtd": {
+			"source": "iana",
+			"compressible": true,
+			"extensions": [
+				"dtd"
+			]
+		},
+		"application/xml-external-parsed-entity": {
+			"source": "iana"
+		},
+		"application/xml-patch+xml": {
+			"source": "iana"
+		},
+		"application/xmpp+xml": {
+			"source": "iana"
+		},
+		"application/xop+xml": {
+			"source": "iana",
+			"compressible": true,
+			"extensions": [
+				"xop"
+			]
+		},
+		"application/xproc+xml": {
+			"source": "apache",
+			"extensions": [
+				"xpl"
+			]
+		},
+		"application/xslt+xml": {
+			"source": "iana",
+			"extensions": [
+				"xslt"
+			]
+		},
+		"application/xspf+xml": {
+			"source": "apache",
+			"extensions": [
+				"xspf"
+			]
+		},
+		"application/xv+xml": {
+			"source": "iana",
+			"extensions": [
+				"mxml",
+				"xhvml",
+				"xvml",
+				"xvm"
+			]
+		},
+		"application/yang": {
+			"source": "iana",
+			"extensions": [
+				"yang"
+			]
+		},
+		"application/yin+xml": {
+			"source": "iana",
+			"extensions": [
+				"yin"
+			]
+		},
+		"application/zip": {
+			"source": "iana",
+			"compressible": false,
+			"extensions": [
+				"zip"
+			]
+		},
+		"application/zlib": {
+			"source": "iana"
+		},
+		"audio/1d-interleaved-parityfec": {
+			"source": "iana"
+		},
+		"audio/32kadpcm": {
+			"source": "iana"
+		},
+		"audio/3gpp": {
+			"source": "iana"
+		},
+		"audio/3gpp2": {
+			"source": "iana"
+		},
+		"audio/ac3": {
+			"source": "iana"
+		},
+		"audio/adpcm": {
+			"source": "apache",
+			"extensions": [
+				"adp"
+			]
+		},
+		"audio/amr": {
+			"source": "iana"
+		},
+		"audio/amr-wb": {
+			"source": "iana"
+		},
+		"audio/amr-wb+": {
+			"source": "iana"
+		},
+		"audio/aptx": {
+			"source": "iana"
+		},
+		"audio/asc": {
+			"source": "iana"
+		},
+		"audio/atrac-advanced-lossless": {
+			"source": "iana"
+		},
+		"audio/atrac-x": {
+			"source": "iana"
+		},
+		"audio/atrac3": {
+			"source": "iana"
+		},
+		"audio/basic": {
+			"source": "iana",
+			"compressible": false,
+			"extensions": [
+				"au",
+				"snd"
+			]
+		},
+		"audio/bv16": {
+			"source": "iana"
+		},
+		"audio/bv32": {
+			"source": "iana"
+		},
+		"audio/clearmode": {
+			"source": "iana"
+		},
+		"audio/cn": {
+			"source": "iana"
+		},
+		"audio/dat12": {
+			"source": "iana"
+		},
+		"audio/dls": {
+			"source": "iana"
+		},
+		"audio/dsr-es201108": {
+			"source": "iana"
+		},
+		"audio/dsr-es202050": {
+			"source": "iana"
+		},
+		"audio/dsr-es202211": {
+			"source": "iana"
+		},
+		"audio/dsr-es202212": {
+			"source": "iana"
+		},
+		"audio/dv": {
+			"source": "iana"
+		},
+		"audio/dvi4": {
+			"source": "iana"
+		},
+		"audio/eac3": {
+			"source": "iana"
+		},
+		"audio/encaprtp": {
+			"source": "iana"
+		},
+		"audio/evrc": {
+			"source": "iana"
+		},
+		"audio/evrc-qcp": {
+			"source": "iana"
+		},
+		"audio/evrc0": {
+			"source": "iana"
+		},
+		"audio/evrc1": {
+			"source": "iana"
+		},
+		"audio/evrcb": {
+			"source": "iana"
+		},
+		"audio/evrcb0": {
+			"source": "iana"
+		},
+		"audio/evrcb1": {
+			"source": "iana"
+		},
+		"audio/evrcnw": {
+			"source": "iana"
+		},
+		"audio/evrcnw0": {
+			"source": "iana"
+		},
+		"audio/evrcnw1": {
+			"source": "iana"
+		},
+		"audio/evrcwb": {
+			"source": "iana"
+		},
+		"audio/evrcwb0": {
+			"source": "iana"
+		},
+		"audio/evrcwb1": {
+			"source": "iana"
+		},
+		"audio/evs": {
+			"source": "iana"
+		},
+		"audio/fwdred": {
+			"source": "iana"
+		},
+		"audio/g711-0": {
+			"source": "iana"
+		},
+		"audio/g719": {
+			"source": "iana"
+		},
+		"audio/g722": {
+			"source": "iana"
+		},
+		"audio/g7221": {
+			"source": "iana"
+		},
+		"audio/g723": {
+			"source": "iana"
+		},
+		"audio/g726-16": {
+			"source": "iana"
+		},
+		"audio/g726-24": {
+			"source": "iana"
+		},
+		"audio/g726-32": {
+			"source": "iana"
+		},
+		"audio/g726-40": {
+			"source": "iana"
+		},
+		"audio/g728": {
+			"source": "iana"
+		},
+		"audio/g729": {
+			"source": "iana"
+		},
+		"audio/g7291": {
+			"source": "iana"
+		},
+		"audio/g729d": {
+			"source": "iana"
+		},
+		"audio/g729e": {
+			"source": "iana"
+		},
+		"audio/gsm": {
+			"source": "iana"
+		},
+		"audio/gsm-efr": {
+			"source": "iana"
+		},
+		"audio/gsm-hr-08": {
+			"source": "iana"
+		},
+		"audio/ilbc": {
+			"source": "iana"
+		},
+		"audio/ip-mr_v2.5": {
+			"source": "iana"
+		},
+		"audio/isac": {
+			"source": "apache"
+		},
+		"audio/l16": {
+			"source": "iana"
+		},
+		"audio/l20": {
+			"source": "iana"
+		},
+		"audio/l24": {
+			"source": "iana",
+			"compressible": false
+		},
+		"audio/l8": {
+			"source": "iana"
+		},
+		"audio/lpc": {
+			"source": "iana"
+		},
+		"audio/midi": {
+			"source": "apache",
+			"extensions": [
+				"mid",
+				"midi",
+				"kar",
+				"rmi"
+			]
+		},
+		"audio/mobile-xmf": {
+			"source": "iana"
+		},
+		"audio/mp4": {
+			"source": "iana",
+			"compressible": false,
+			"extensions": [
+				"mp4a",
+				"m4a"
+			]
+		},
+		"audio/mp4a-latm": {
+			"source": "iana"
+		},
+		"audio/mpa": {
+			"source": "iana"
+		},
+		"audio/mpa-robust": {
+			"source": "iana"
+		},
+		"audio/mpeg": {
+			"source": "iana",
+			"compressible": false,
+			"extensions": [
+				"mpga",
+				"mp2",
+				"mp2a",
+				"mp3",
+				"m2a",
+				"m3a"
+			]
+		},
+		"audio/mpeg4-generic": {
+			"source": "iana"
+		},
+		"audio/musepack": {
+			"source": "apache"
+		},
+		"audio/ogg": {
+			"source": "iana",
+			"compressible": false,
+			"extensions": [
+				"oga",
+				"ogg",
+				"spx"
+			]
+		},
+		"audio/opus": {
+			"source": "iana"
+		},
+		"audio/parityfec": {
+			"source": "iana"
+		},
+		"audio/pcma": {
+			"source": "iana"
+		},
+		"audio/pcma-wb": {
+			"source": "iana"
+		},
+		"audio/pcmu": {
+			"source": "iana"
+		},
+		"audio/pcmu-wb": {
+			"source": "iana"
+		},
+		"audio/prs.sid": {
+			"source": "iana"
+		},
+		"audio/qcelp": {
+			"source": "iana"
+		},
+		"audio/raptorfec": {
+			"source": "iana"
+		},
+		"audio/red": {
+			"source": "iana"
+		},
+		"audio/rtp-enc-aescm128": {
+			"source": "iana"
+		},
+		"audio/rtp-midi": {
+			"source": "iana"
+		},
+		"audio/rtploopback": {
+			"source": "iana"
+		},
+		"audio/rtx": {
+			"source": "iana"
+		},
+		"audio/s3m": {
+			"source": "apache",
+			"extensions": [
+				"s3m"
+			]
+		},
+		"audio/silk": {
+			"source": "apache",
+			"extensions": [
+				"sil"
+			]
+		},
+		"audio/smv": {
+			"source": "iana"
+		},
+		"audio/smv-qcp": {
+			"source": "iana"
+		},
+		"audio/smv0": {
+			"source": "iana"
+		},
+		"audio/sp-midi": {
+			"source": "iana"
+		},
+		"audio/speex": {
+			"source": "iana"
+		},
+		"audio/t140c": {
+			"source": "iana"
+		},
+		"audio/t38": {
+			"source": "iana"
+		},
+		"audio/telephone-event": {
+			"source": "iana"
+		},
+		"audio/tone": {
+			"source": "iana"
+		},
+		"audio/uemclip": {
+			"source": "iana"
+		},
+		"audio/ulpfec": {
+			"source": "iana"
+		},
+		"audio/vdvi": {
+			"source": "iana"
+		},
+		"audio/vmr-wb": {
+			"source": "iana"
+		},
+		"audio/vnd.3gpp.iufp": {
+			"source": "iana"
+		},
+		"audio/vnd.4sb": {
+			"source": "iana"
+		},
+		"audio/vnd.audiokoz": {
+			"source": "iana"
+		},
+		"audio/vnd.celp": {
+			"source": "iana"
+		},
+		"audio/vnd.cisco.nse": {
+			"source": "iana"
+		},
+		"audio/vnd.cmles.radio-events": {
+			"source": "iana"
+		},
+		"audio/vnd.cns.anp1": {
+			"source": "iana"
+		},
+		"audio/vnd.cns.inf1": {
+			"source": "iana"
+		},
+		"audio/vnd.dece.audio": {
+			"source": "iana",
+			"extensions": [
+				"uva",
+				"uvva"
+			]
+		},
+		"audio/vnd.digital-winds": {
+			"source": "iana",
+			"extensions": [
+				"eol"
+			]
+		},
+		"audio/vnd.dlna.adts": {
+			"source": "iana"
+		},
+		"audio/vnd.dolby.heaac.1": {
+			"source": "iana"
+		},
+		"audio/vnd.dolby.heaac.2": {
+			"source": "iana"
+		},
+		"audio/vnd.dolby.mlp": {
+			"source": "iana"
+		},
+		"audio/vnd.dolby.mps": {
+			"source": "iana"
+		},
+		"audio/vnd.dolby.pl2": {
+			"source": "iana"
+		},
+		"audio/vnd.dolby.pl2x": {
+			"source": "iana"
+		},
+		"audio/vnd.dolby.pl2z": {
+			"source": "iana"
+		},
+		"audio/vnd.dolby.pulse.1": {
+			"source": "iana"
+		},
+		"audio/vnd.dra": {
+			"source": "iana",
+			"extensions": [
+				"dra"
+			]
+		},
+		"audio/vnd.dts": {
+			"source": "iana",
+			"extensions": [
+				"dts"
+			]
+		},
+		"audio/vnd.dts.hd": {
+			"source": "iana",
+			"extensions": [
+				"dtshd"
+			]
+		},
+		"audio/vnd.dvb.file": {
+			"source": "iana"
+		},
+		"audio/vnd.everad.plj": {
+			"source": "iana"
+		},
+		"audio/vnd.hns.audio": {
+			"source": "iana"
+		},
+		"audio/vnd.lucent.voice": {
+			"source": "iana",
+			"extensions": [
+				"lvp"
+			]
+		},
+		"audio/vnd.ms-playready.media.pya": {
+			"source": "iana",
+			"extensions": [
+				"pya"
+			]
+		},
+		"audio/vnd.nokia.mobile-xmf": {
+			"source": "iana"
+		},
+		"audio/vnd.nortel.vbk": {
+			"source": "iana"
+		},
+		"audio/vnd.nuera.ecelp4800": {
+			"source": "iana",
+			"extensions": [
+				"ecelp4800"
+			]
+		},
+		"audio/vnd.nuera.ecelp7470": {
+			"source": "iana",
+			"extensions": [
+				"ecelp7470"
+			]
+		},
+		"audio/vnd.nuera.ecelp9600": {
+			"source": "iana",
+			"extensions": [
+				"ecelp9600"
+			]
+		},
+		"audio/vnd.octel.sbc": {
+			"source": "iana"
+		},
+		"audio/vnd.qcelp": {
+			"source": "iana"
+		},
+		"audio/vnd.rhetorex.32kadpcm": {
+			"source": "iana"
+		},
+		"audio/vnd.rip": {
+			"source": "iana",
+			"extensions": [
+				"rip"
+			]
+		},
+		"audio/vnd.rn-realaudio": {
+			"compressible": false
+		},
+		"audio/vnd.sealedmedia.softseal.mpeg": {
+			"source": "iana"
+		},
+		"audio/vnd.vmx.cvsd": {
+			"source": "iana"
+		},
+		"audio/vnd.wave": {
+			"compressible": false
+		},
+		"audio/vorbis": {
+			"source": "iana",
+			"compressible": false
+		},
+		"audio/vorbis-config": {
+			"source": "iana"
+		},
+		"audio/wav": {
+			"compressible": false,
+			"extensions": [
+				"wav"
+			]
+		},
+		"audio/wave": {
+			"compressible": false,
+			"extensions": [
+				"wav"
+			]
+		},
+		"audio/webm": {
+			"source": "apache",
+			"compressible": false,
+			"extensions": [
+				"weba"
+			]
+		},
+		"audio/x-aac": {
+			"source": "apache",
+			"compressible": false,
+			"extensions": [
+				"aac"
+			]
+		},
+		"audio/x-aiff": {
+			"source": "apache",
+			"extensions": [
+				"aif",
+				"aiff",
+				"aifc"
+			]
+		},
+		"audio/x-caf": {
+			"source": "apache",
+			"compressible": false,
+			"extensions": [
+				"caf"
+			]
+		},
+		"audio/x-flac": {
+			"source": "apache",
+			"extensions": [
+				"flac"
+			]
+		},
+		"audio/x-m4a": {
+			"source": "nginx",
+			"extensions": [
+				"m4a"
+			]
+		},
+		"audio/x-matroska": {
+			"source": "apache",
+			"extensions": [
+				"mka"
+			]
+		},
+		"audio/x-mpegurl": {
+			"source": "apache",
+			"extensions": [
+				"m3u"
+			]
+		},
+		"audio/x-ms-wax": {
+			"source": "apache",
+			"extensions": [
+				"wax"
+			]
+		},
+		"audio/x-ms-wma": {
+			"source": "apache",
+			"extensions": [
+				"wma"
+			]
+		},
+		"audio/x-pn-realaudio": {
+			"source": "apache",
+			"extensions": [
+				"ram",
+				"ra"
+			]
+		},
+		"audio/x-pn-realaudio-plugin": {
+			"source": "apache",
+			"extensions": [
+				"rmp"
+			]
+		},
+		"audio/x-realaudio": {
+			"source": "nginx",
+			"extensions": [
+				"ra"
+			]
+		},
+		"audio/x-tta": {
+			"source": "apache"
+		},
+		"audio/x-wav": {
+			"source": "apache",
+			"extensions": [
+				"wav"
+			]
+		},
+		"audio/xm": {
+			"source": "apache",
+			"extensions": [
+				"xm"
+			]
+		},
+		"chemical/x-cdx": {
+			"source": "apache",
+			"extensions": [
+				"cdx"
+			]
+		},
+		"chemical/x-cif": {
+			"source": "apache",
+			"extensions": [
+				"cif"
+			]
+		},
+		"chemical/x-cmdf": {
+			"source": "apache",
+			"extensions": [
+				"cmdf"
+			]
+		},
+		"chemical/x-cml": {
+			"source": "apache",
+			"extensions": [
+				"cml"
+			]
+		},
+		"chemical/x-csml": {
+			"source": "apache",
+			"extensions": [
+				"csml"
+			]
+		},
+		"chemical/x-pdb": {
+			"source": "apache"
+		},
+		"chemical/x-xyz": {
+			"source": "apache",
+			"extensions": [
+				"xyz"
+			]
+		},
+		"font/opentype": {
+			"compressible": true,
+			"extensions": [
+				"otf"
+			]
+		},
+		"image/bmp": {
+			"source": "apache",
+			"compressible": true,
+			"extensions": [
+				"bmp"
+			]
+		},
+		"image/cgm": {
+			"source": "iana",
+			"extensions": [
+				"cgm"
+			]
+		},
+		"image/fits": {
+			"source": "iana"
+		},
+		"image/g3fax": {
+			"source": "iana",
+			"extensions": [
+				"g3"
+			]
+		},
+		"image/gif": {
+			"source": "iana",
+			"compressible": false,
+			"extensions": [
+				"gif"
+			]
+		},
+		"image/ief": {
+			"source": "iana",
+			"extensions": [
+				"ief"
+			]
+		},
+		"image/jp2": {
+			"source": "iana"
+		},
+		"image/jpeg": {
+			"source": "iana",
+			"compressible": false,
+			"extensions": [
+				"jpeg",
+				"jpg",
+				"jpe"
+			]
+		},
+		"image/jpm": {
+			"source": "iana"
+		},
+		"image/jpx": {
+			"source": "iana"
+		},
+		"image/ktx": {
+			"source": "iana",
+			"extensions": [
+				"ktx"
+			]
+		},
+		"image/naplps": {
+			"source": "iana"
+		},
+		"image/pjpeg": {
+			"compressible": false
+		},
+		"image/png": {
+			"source": "iana",
+			"compressible": false,
+			"extensions": [
+				"png"
+			]
+		},
+		"image/prs.btif": {
+			"source": "iana",
+			"extensions": [
+				"btif"
+			]
+		},
+		"image/prs.pti": {
+			"source": "iana"
+		},
+		"image/pwg-raster": {
+			"source": "iana"
+		},
+		"image/sgi": {
+			"source": "apache",
+			"extensions": [
+				"sgi"
+			]
+		},
+		"image/svg+xml": {
+			"source": "iana",
+			"compressible": true,
+			"extensions": [
+				"svg",
+				"svgz"
+			]
+		},
+		"image/t38": {
+			"source": "iana"
+		},
+		"image/tiff": {
+			"source": "iana",
+			"compressible": false,
+			"extensions": [
+				"tiff",
+				"tif"
+			]
+		},
+		"image/tiff-fx": {
+			"source": "iana"
+		},
+		"image/vnd.adobe.photoshop": {
+			"source": "iana",
+			"compressible": true,
+			"extensions": [
+				"psd"
+			]
+		},
+		"image/vnd.airzip.accelerator.azv": {
+			"source": "iana"
+		},
+		"image/vnd.cns.inf2": {
+			"source": "iana"
+		},
+		"image/vnd.dece.graphic": {
+			"source": "iana",
+			"extensions": [
+				"uvi",
+				"uvvi",
+				"uvg",
+				"uvvg"
+			]
+		},
+		"image/vnd.djvu": {
+			"source": "iana",
+			"extensions": [
+				"djvu",
+				"djv"
+			]
+		},
+		"image/vnd.dvb.subtitle": {
+			"source": "iana",
+			"extensions": [
+				"sub"
+			]
+		},
+		"image/vnd.dwg": {
+			"source": "iana",
+			"extensions": [
+				"dwg"
+			]
+		},
+		"image/vnd.dxf": {
+			"source": "iana",
+			"extensions": [
+				"dxf"
+			]
+		},
+		"image/vnd.fastbidsheet": {
+			"source": "iana",
+			"extensions": [
+				"fbs"
+			]
+		},
+		"image/vnd.fpx": {
+			"source": "iana",
+			"extensions": [
+				"fpx"
+			]
+		},
+		"image/vnd.fst": {
+			"source": "iana",
+			"extensions": [
+				"fst"
+			]
+		},
+		"image/vnd.fujixerox.edmics-mmr": {
+			"source": "iana",
+			"extensions": [
+				"mmr"
+			]
+		},
+		"image/vnd.fujixerox.edmics-rlc": {
+			"source": "iana",
+			"extensions": [
+				"rlc"
+			]
+		},
+		"image/vnd.globalgraphics.pgb": {
+			"source": "iana"
+		},
+		"image/vnd.microsoft.icon": {
+			"source": "iana"
+		},
+		"image/vnd.mix": {
+			"source": "iana"
+		},
+		"image/vnd.mozilla.apng": {
+			"source": "iana"
+		},
+		"image/vnd.ms-modi": {
+			"source": "iana",
+			"extensions": [
+				"mdi"
+			]
+		},
+		"image/vnd.ms-photo": {
+			"source": "apache",
+			"extensions": [
+				"wdp"
+			]
+		},
+		"image/vnd.net-fpx": {
+			"source": "iana",
+			"extensions": [
+				"npx"
+			]
+		},
+		"image/vnd.radiance": {
+			"source": "iana"
+		},
+		"image/vnd.sealed.png": {
+			"source": "iana"
+		},
+		"image/vnd.sealedmedia.softseal.gif": {
+			"source": "iana"
+		},
+		"image/vnd.sealedmedia.softseal.jpg": {
+			"source": "iana"
+		},
+		"image/vnd.svf": {
+			"source": "iana"
+		},
+		"image/vnd.tencent.tap": {
+			"source": "iana"
+		},
+		"image/vnd.valve.source.texture": {
+			"source": "iana"
+		},
+		"image/vnd.wap.wbmp": {
+			"source": "iana",
+			"extensions": [
+				"wbmp"
+			]
+		},
+		"image/vnd.xiff": {
+			"source": "iana",
+			"extensions": [
+				"xif"
+			]
+		},
+		"image/vnd.zbrush.pcx": {
+			"source": "iana"
+		},
+		"image/webp": {
+			"source": "apache",
+			"extensions": [
+				"webp"
+			]
+		},
+		"image/x-3ds": {
+			"source": "apache",
+			"extensions": [
+				"3ds"
+			]
+		},
+		"image/x-cmu-raster": {
+			"source": "apache",
+			"extensions": [
+				"ras"
+			]
+		},
+		"image/x-cmx": {
+			"source": "apache",
+			"extensions": [
+				"cmx"
+			]
+		},
+		"image/x-freehand": {
+			"source": "apache",
+			"extensions": [
+				"fh",
+				"fhc",
+				"fh4",
+				"fh5",
+				"fh7"
+			]
+		},
+		"image/x-icon": {
+			"source": "apache",
+			"compressible": true,
+			"extensions": [
+				"ico"
+			]
+		},
+		"image/x-jng": {
+			"source": "nginx",
+			"extensions": [
+				"jng"
+			]
+		},
+		"image/x-mrsid-image": {
+			"source": "apache",
+			"extensions": [
+				"sid"
+			]
+		},
+		"image/x-ms-bmp": {
+			"source": "nginx",
+			"compressible": true,
+			"extensions": [
+				"bmp"
+			]
+		},
+		"image/x-pcx": {
+			"source": "apache",
+			"extensions": [
+				"pcx"
+			]
+		},
+		"image/x-pict": {
+			"source": "apache",
+			"extensions": [
+				"pic",
+				"pct"
+			]
+		},
+		"image/x-portable-anymap": {
+			"source": "apache",
+			"extensions": [
+				"pnm"
+			]
+		},
+		"image/x-portable-bitmap": {
+			"source": "apache",
+			"extensions": [
+				"pbm"
+			]
+		},
+		"image/x-portable-graymap": {
+			"source": "apache",
+			"extensions": [
+				"pgm"
+			]
+		},
+		"image/x-portable-pixmap": {
+			"source": "apache",
+			"extensions": [
+				"ppm"
+			]
+		},
+		"image/x-rgb": {
+			"source": "apache",
+			"extensions": [
+				"rgb"
+			]
+		},
+		"image/x-tga": {
+			"source": "apache",
+			"extensions": [
+				"tga"
+			]
+		},
+		"image/x-xbitmap": {
+			"source": "apache",
+			"extensions": [
+				"xbm"
+			]
+		},
+		"image/x-xcf": {
+			"compressible": false
+		},
+		"image/x-xpixmap": {
+			"source": "apache",
+			"extensions": [
+				"xpm"
+			]
+		},
+		"image/x-xwindowdump": {
+			"source": "apache",
+			"extensions": [
+				"xwd"
+			]
+		},
+		"message/cpim": {
+			"source": "iana"
+		},
+		"message/delivery-status": {
+			"source": "iana"
+		},
+		"message/disposition-notification": {
+			"source": "iana"
+		},
+		"message/external-body": {
+			"source": "iana"
+		},
+		"message/feedback-report": {
+			"source": "iana"
+		},
+		"message/global": {
+			"source": "iana"
+		},
+		"message/global-delivery-status": {
+			"source": "iana"
+		},
+		"message/global-disposition-notification": {
+			"source": "iana"
+		},
+		"message/global-headers": {
+			"source": "iana"
+		},
+		"message/http": {
+			"source": "iana",
+			"compressible": false
+		},
+		"message/imdn+xml": {
+			"source": "iana",
+			"compressible": true
+		},
+		"message/news": {
+			"source": "iana"
+		},
+		"message/partial": {
+			"source": "iana",
+			"compressible": false
+		},
+		"message/rfc822": {
+			"source": "iana",
+			"compressible": true,
+			"extensions": [
+				"eml",
+				"mime"
+			]
+		},
+		"message/s-http": {
+			"source": "iana"
+		},
+		"message/sip": {
+			"source": "iana"
+		},
+		"message/sipfrag": {
+			"source": "iana"
+		},
+		"message/tracking-status": {
+			"source": "iana"
+		},
+		"message/vnd.si.simp": {
+			"source": "iana"
+		},
+		"message/vnd.wfa.wsc": {
+			"source": "iana"
+		},
+		"model/iges": {
+			"source": "iana",
+			"compressible": false,
+			"extensions": [
+				"igs",
+				"iges"
+			]
+		},
+		"model/mesh": {
+			"source": "iana",
+			"compressible": false,
+			"extensions": [
+				"msh",
+				"mesh",
+				"silo"
+			]
+		},
+		"model/vnd.collada+xml": {
+			"source": "iana",
+			"extensions": [
+				"dae"
+			]
+		},
+		"model/vnd.dwf": {
+			"source": "iana",
+			"extensions": [
+				"dwf"
+			]
+		},
+		"model/vnd.flatland.3dml": {
+			"source": "iana"
+		},
+		"model/vnd.gdl": {
+			"source": "iana",
+			"extensions": [
+				"gdl"
+			]
+		},
+		"model/vnd.gs-gdl": {
+			"source": "apache"
+		},
+		"model/vnd.gs.gdl": {
+			"source": "iana"
+		},
+		"model/vnd.gtw": {
+			"source": "iana",
+			"extensions": [
+				"gtw"
+			]
+		},
+		"model/vnd.moml+xml": {
+			"source": "iana"
+		},
+		"model/vnd.mts": {
+			"source": "iana",
+			"extensions": [
+				"mts"
+			]
+		},
+		"model/vnd.opengex": {
+			"source": "iana"
+		},
+		"model/vnd.parasolid.transmit.binary": {
+			"source": "iana"
+		},
+		"model/vnd.parasolid.transmit.text": {
+			"source": "iana"
+		},
+		"model/vnd.valve.source.compiled-map": {
+			"source": "iana"
+		},
+		"model/vnd.vtu": {
+			"source": "iana",
+			"extensions": [
+				"vtu"
+			]
+		},
+		"model/vrml": {
+			"source": "iana",
+			"compressible": false,
+			"extensions": [
+				"wrl",
+				"vrml"
+			]
+		},
+		"model/x3d+binary": {
+			"source": "apache",
+			"compressible": false,
+			"extensions": [
+				"x3db",
+				"x3dbz"
+			]
+		},
+		"model/x3d+fastinfoset": {
+			"source": "iana"
+		},
+		"model/x3d+vrml": {
+			"source": "apache",
+			"compressible": false,
+			"extensions": [
+				"x3dv",
+				"x3dvz"
+			]
+		},
+		"model/x3d+xml": {
+			"source": "iana",
+			"compressible": true,
+			"extensions": [
+				"x3d",
+				"x3dz"
+			]
+		},
+		"model/x3d-vrml": {
+			"source": "iana"
+		},
+		"multipart/alternative": {
+			"source": "iana",
+			"compressible": false
+		},
+		"multipart/appledouble": {
+			"source": "iana"
+		},
+		"multipart/byteranges": {
+			"source": "iana"
+		},
+		"multipart/digest": {
+			"source": "iana"
+		},
+		"multipart/encrypted": {
+			"source": "iana",
+			"compressible": false
+		},
+		"multipart/form-data": {
+			"source": "iana",
+			"compressible": false
+		},
+		"multipart/header-set": {
+			"source": "iana"
+		},
+		"multipart/mixed": {
+			"source": "iana",
+			"compressible": false
+		},
+		"multipart/parallel": {
+			"source": "iana"
+		},
+		"multipart/related": {
+			"source": "iana",
+			"compressible": false
+		},
+		"multipart/report": {
+			"source": "iana"
+		},
+		"multipart/signed": {
+			"source": "iana",
+			"compressible": false
+		},
+		"multipart/voice-message": {
+			"source": "iana"
+		},
+		"multipart/x-mixed-replace": {
+			"source": "iana"
+		},
+		"text/1d-interleaved-parityfec": {
+			"source": "iana"
+		},
+		"text/cache-manifest": {
+			"source": "iana",
+			"compressible": true,
+			"extensions": [
+				"appcache",
+				"manifest"
+			]
+		},
+		"text/calendar": {
+			"source": "iana",
+			"extensions": [
+				"ics",
+				"ifb"
+			]
+		},
+		"text/calender": {
+			"compressible": true
+		},
+		"text/cmd": {
+			"compressible": true
+		},
+		"text/coffeescript": {
+			"extensions": [
+				"coffee",
+				"litcoffee"
+			]
+		},
+		"text/css": {
+			"source": "iana",
+			"compressible": true,
+			"extensions": [
+				"css"
+			]
+		},
+		"text/csv": {
+			"source": "iana",
+			"compressible": true,
+			"extensions": [
+				"csv"
+			]
+		},
+		"text/csv-schema": {
+			"source": "iana"
+		},
+		"text/directory": {
+			"source": "iana"
+		},
+		"text/dns": {
+			"source": "iana"
+		},
+		"text/ecmascript": {
+			"source": "iana"
+		},
+		"text/encaprtp": {
+			"source": "iana"
+		},
+		"text/enriched": {
+			"source": "iana"
+		},
+		"text/fwdred": {
+			"source": "iana"
+		},
+		"text/grammar-ref-list": {
+			"source": "iana"
+		},
+		"text/hjson": {
+			"extensions": [
+				"hjson"
+			]
+		},
+		"text/html": {
+			"source": "iana",
+			"compressible": true,
+			"extensions": [
+				"html",
+				"htm",
+				"shtml"
+			]
+		},
+		"text/jade": {
+			"extensions": [
+				"jade"
+			]
+		},
+		"text/javascript": {
+			"source": "iana",
+			"compressible": true
+		},
+		"text/jcr-cnd": {
+			"source": "iana"
+		},
+		"text/jsx": {
+			"compressible": true,
+			"extensions": [
+				"jsx"
+			]
+		},
+		"text/less": {
+			"extensions": [
+				"less"
+			]
+		},
+		"text/markdown": {
+			"source": "iana"
+		},
+		"text/mathml": {
+			"source": "nginx",
+			"extensions": [
+				"mml"
+			]
+		},
+		"text/mizar": {
+			"source": "iana"
+		},
+		"text/n3": {
+			"source": "iana",
+			"compressible": true,
+			"extensions": [
+				"n3"
+			]
+		},
+		"text/parameters": {
+			"source": "iana"
+		},
+		"text/parityfec": {
+			"source": "iana"
+		},
+		"text/plain": {
+			"source": "iana",
+			"compressible": true,
+			"extensions": [
+				"txt",
+				"text",
+				"conf",
+				"def",
+				"list",
+				"log",
+				"in",
+				"ini"
+			]
+		},
+		"text/provenance-notation": {
+			"source": "iana"
+		},
+		"text/prs.fallenstein.rst": {
+			"source": "iana"
+		},
+		"text/prs.lines.tag": {
+			"source": "iana",
+			"extensions": [
+				"dsc"
+			]
+		},
+		"text/raptorfec": {
+			"source": "iana"
+		},
+		"text/red": {
+			"source": "iana"
+		},
+		"text/rfc822-headers": {
+			"source": "iana"
+		},
+		"text/richtext": {
+			"source": "iana",
+			"compressible": true,
+			"extensions": [
+				"rtx"
+			]
+		},
+		"text/rtf": {
+			"source": "iana",
+			"compressible": true,
+			"extensions": [
+				"rtf"
+			]
+		},
+		"text/rtp-enc-aescm128": {
+			"source": "iana"
+		},
+		"text/rtploopback": {
+			"source": "iana"
+		},
+		"text/rtx": {
+			"source": "iana"
+		},
+		"text/sgml": {
+			"source": "iana",
+			"extensions": [
+				"sgml",
+				"sgm"
+			]
+		},
+		"text/stylus": {
+			"extensions": [
+				"stylus",
+				"styl"
+			]
+		},
+		"text/t140": {
+			"source": "iana"
+		},
+		"text/tab-separated-values": {
+			"source": "iana",
+			"compressible": true,
+			"extensions": [
+				"tsv"
+			]
+		},
+		"text/troff": {
+			"source": "iana",
+			"extensions": [
+				"t",
+				"tr",
+				"roff",
+				"man",
+				"me",
+				"ms"
+			]
+		},
+		"text/turtle": {
+			"source": "iana",
+			"extensions": [
+				"ttl"
+			]
+		},
+		"text/ulpfec": {
+			"source": "iana"
+		},
+		"text/uri-list": {
+			"source": "iana",
+			"compressible": true,
+			"extensions": [
+				"uri",
+				"uris",
+				"urls"
+			]
+		},
+		"text/vcard": {
+			"source": "iana",
+			"compressible": true,
+			"extensions": [
+				"vcard"
+			]
+		},
+		"text/vnd.a": {
+			"source": "iana"
+		},
+		"text/vnd.abc": {
+			"source": "iana"
+		},
+		"text/vnd.curl": {
+			"source": "iana",
+			"extensions": [
+				"curl"
+			]
+		},
+		"text/vnd.curl.dcurl": {
+			"source": "apache",
+			"extensions": [
+				"dcurl"
+			]
+		},
+		"text/vnd.curl.mcurl": {
+			"source": "apache",
+			"extensions": [
+				"mcurl"
+			]
+		},
+		"text/vnd.curl.scurl": {
+			"source": "apache",
+			"extensions": [
+				"scurl"
+			]
+		},
+		"text/vnd.debian.copyright": {
+			"source": "iana"
+		},
+		"text/vnd.dmclientscript": {
+			"source": "iana"
+		},
+		"text/vnd.dvb.subtitle": {
+			"source": "iana",
+			"extensions": [
+				"sub"
+			]
+		},
+		"text/vnd.esmertec.theme-descriptor": {
+			"source": "iana"
+		},
+		"text/vnd.fly": {
+			"source": "iana",
+			"extensions": [
+				"fly"
+			]
+		},
+		"text/vnd.fmi.flexstor": {
+			"source": "iana",
+			"extensions": [
+				"flx"
+			]
+		},
+		"text/vnd.graphviz": {
+			"source": "iana",
+			"extensions": [
+				"gv"
+			]
+		},
+		"text/vnd.in3d.3dml": {
+			"source": "iana",
+			"extensions": [
+				"3dml"
+			]
+		},
+		"text/vnd.in3d.spot": {
+			"source": "iana",
+			"extensions": [
+				"spot"
+			]
+		},
+		"text/vnd.iptc.newsml": {
+			"source": "iana"
+		},
+		"text/vnd.iptc.nitf": {
+			"source": "iana"
+		},
+		"text/vnd.latex-z": {
+			"source": "iana"
+		},
+		"text/vnd.motorola.reflex": {
+			"source": "iana"
+		},
+		"text/vnd.ms-mediapackage": {
+			"source": "iana"
+		},
+		"text/vnd.net2phone.commcenter.command": {
+			"source": "iana"
+		},
+		"text/vnd.radisys.msml-basic-layout": {
+			"source": "iana"
+		},
+		"text/vnd.si.uricatalogue": {
+			"source": "iana"
+		},
+		"text/vnd.sun.j2me.app-descriptor": {
+			"source": "iana",
+			"extensions": [
+				"jad"
+			]
+		},
+		"text/vnd.trolltech.linguist": {
+			"source": "iana"
+		},
+		"text/vnd.wap.si": {
+			"source": "iana"
+		},
+		"text/vnd.wap.sl": {
+			"source": "iana"
+		},
+		"text/vnd.wap.wml": {
+			"source": "iana",
+			"extensions": [
+				"wml"
+			]
+		},
+		"text/vnd.wap.wmlscript": {
+			"source": "iana",
+			"extensions": [
+				"wmls"
+			]
+		},
+		"text/vtt": {
+			"charset": "UTF-8",
+			"compressible": true,
+			"extensions": [
+				"vtt"
+			]
+		},
+		"text/x-asm": {
+			"source": "apache",
+			"extensions": [
+				"s",
+				"asm"
+			]
+		},
+		"text/x-c": {
+			"source": "apache",
+			"extensions": [
+				"c",
+				"cc",
+				"cxx",
+				"cpp",
+				"h",
+				"hh",
+				"dic"
+			]
+		},
+		"text/x-component": {
+			"source": "nginx",
+			"extensions": [
+				"htc"
+			]
+		},
+		"text/x-fortran": {
+			"source": "apache",
+			"extensions": [
+				"f",
+				"for",
+				"f77",
+				"f90"
+			]
+		},
+		"text/x-gwt-rpc": {
+			"compressible": true
+		},
+		"text/x-handlebars-template": {
+			"extensions": [
+				"hbs"
+			]
+		},
+		"text/x-java-source": {
+			"source": "apache",
+			"extensions": [
+				"java"
+			]
+		},
+		"text/x-jquery-tmpl": {
+			"compressible": true
+		},
+		"text/x-lua": {
+			"extensions": [
+				"lua"
+			]
+		},
+		"text/x-markdown": {
+			"compressible": true,
+			"extensions": [
+				"markdown",
+				"md",
+				"mkd"
+			]
+		},
+		"text/x-nfo": {
+			"source": "apache",
+			"extensions": [
+				"nfo"
+			]
+		},
+		"text/x-opml": {
+			"source": "apache",
+			"extensions": [
+				"opml"
+			]
+		},
+		"text/x-pascal": {
+			"source": "apache",
+			"extensions": [
+				"p",
+				"pas"
+			]
+		},
+		"text/x-processing": {
+			"compressible": true,
+			"extensions": [
+				"pde"
+			]
+		},
+		"text/x-sass": {
+			"extensions": [
+				"sass"
+			]
+		},
+		"text/x-scss": {
+			"extensions": [
+				"scss"
+			]
+		},
+		"text/x-setext": {
+			"source": "apache",
+			"extensions": [
+				"etx"
+			]
+		},
+		"text/x-sfv": {
+			"source": "apache",
+			"extensions": [
+				"sfv"
+			]
+		},
+		"text/x-suse-ymp": {
+			"compressible": true,
+			"extensions": [
+				"ymp"
+			]
+		},
+		"text/x-uuencode": {
+			"source": "apache",
+			"extensions": [
+				"uu"
+			]
+		},
+		"text/x-vcalendar": {
+			"source": "apache",
+			"extensions": [
+				"vcs"
+			]
+		},
+		"text/x-vcard": {
+			"source": "apache",
+			"extensions": [
+				"vcf"
+			]
+		},
+		"text/xml": {
+			"source": "iana",
+			"compressible": true,
+			"extensions": [
+				"xml"
+			]
+		},
+		"text/xml-external-parsed-entity": {
+			"source": "iana"
+		},
+		"text/yaml": {
+			"extensions": [
+				"yaml",
+				"yml"
+			]
+		},
+		"video/1d-interleaved-parityfec": {
+			"source": "apache"
+		},
+		"video/3gpp": {
+			"source": "apache",
+			"extensions": [
+				"3gp",
+				"3gpp"
+			]
+		},
+		"video/3gpp-tt": {
+			"source": "apache"
+		},
+		"video/3gpp2": {
+			"source": "apache",
+			"extensions": [
+				"3g2"
+			]
+		},
+		"video/bmpeg": {
+			"source": "apache"
+		},
+		"video/bt656": {
+			"source": "apache"
+		},
+		"video/celb": {
+			"source": "apache"
+		},
+		"video/dv": {
+			"source": "apache"
+		},
+		"video/h261": {
+			"source": "apache",
+			"extensions": [
+				"h261"
+			]
+		},
+		"video/h263": {
+			"source": "apache",
+			"extensions": [
+				"h263"
+			]
+		},
+		"video/h263-1998": {
+			"source": "apache"
+		},
+		"video/h263-2000": {
+			"source": "apache"
+		},
+		"video/h264": {
+			"source": "apache",
+			"extensions": [
+				"h264"
+			]
+		},
+		"video/h264-rcdo": {
+			"source": "apache"
+		},
+		"video/h264-svc": {
+			"source": "apache"
+		},
+		"video/jpeg": {
+			"source": "apache",
+			"extensions": [
+				"jpgv"
+			]
+		},
+		"video/jpeg2000": {
+			"source": "apache"
+		},
+		"video/jpm": {
+			"source": "apache",
+			"extensions": [
+				"jpm",
+				"jpgm"
+			]
+		},
+		"video/mj2": {
+			"source": "apache",
+			"extensions": [
+				"mj2",
+				"mjp2"
+			]
+		},
+		"video/mp1s": {
+			"source": "apache"
+		},
+		"video/mp2p": {
+			"source": "apache"
+		},
+		"video/mp2t": {
+			"source": "apache",
+			"extensions": [
+				"ts"
+			]
+		},
+		"video/mp4": {
+			"source": "apache",
+			"compressible": false,
+			"extensions": [
+				"mp4",
+				"mp4v",
+				"mpg4"
+			]
+		},
+		"video/mp4v-es": {
+			"source": "apache"
+		},
+		"video/mpeg": {
+			"source": "apache",
+			"compressible": false,
+			"extensions": [
+				"mpeg",
+				"mpg",
+				"mpe",
+				"m1v",
+				"m2v"
+			]
+		},
+		"video/mpeg4-generic": {
+			"source": "apache"
+		},
+		"video/mpv": {
+			"source": "apache"
+		},
+		"video/nv": {
+			"source": "apache"
+		},
+		"video/ogg": {
+			"source": "apache",
+			"compressible": false,
+			"extensions": [
+				"ogv"
+			]
+		},
+		"video/parityfec": {
+			"source": "apache"
+		},
+		"video/pointer": {
+			"source": "apache"
+		},
+		"video/quicktime": {
+			"source": "apache",
+			"compressible": false,
+			"extensions": [
+				"qt",
+				"mov"
+			]
+		},
+		"video/raw": {
+			"source": "apache"
+		},
+		"video/rtp-enc-aescm128": {
+			"source": "apache"
+		},
+		"video/rtx": {
+			"source": "apache"
+		},
+		"video/smpte292m": {
+			"source": "apache"
+		},
+		"video/ulpfec": {
+			"source": "apache"
+		},
+		"video/vc1": {
+			"source": "apache"
+		},
+		"video/vnd.cctv": {
+			"source": "apache"
+		},
+		"video/vnd.dece.hd": {
+			"source": "apache",
+			"extensions": [
+				"uvh",
+				"uvvh"
+			]
+		},
+		"video/vnd.dece.mobile": {
+			"source": "apache",
+			"extensions": [
+				"uvm",
+				"uvvm"
+			]
+		},
+		"video/vnd.dece.mp4": {
+			"source": "apache"
+		},
+		"video/vnd.dece.pd": {
+			"source": "apache",
+			"extensions": [
+				"uvp",
+				"uvvp"
+			]
+		},
+		"video/vnd.dece.sd": {
+			"source": "apache",
+			"extensions": [
+				"uvs",
+				"uvvs"
+			]
+		},
+		"video/vnd.dece.video": {
+			"source": "apache",
+			"extensions": [
+				"uvv",
+				"uvvv"
+			]
+		},
+		"video/vnd.directv.mpeg": {
+			"source": "apache"
+		},
+		"video/vnd.directv.mpeg-tts": {
+			"source": "apache"
+		},
+		"video/vnd.dlna.mpeg-tts": {
+			"source": "apache"
+		},
+		"video/vnd.dvb.file": {
+			"source": "apache",
+			"extensions": [
+				"dvb"
+			]
+		},
+		"video/vnd.fvt": {
+			"source": "apache",
+			"extensions": [
+				"fvt"
+			]
+		},
+		"video/vnd.hns.video": {
+			"source": "apache"
+		},
+		"video/vnd.iptvforum.1dparityfec-1010": {
+			"source": "apache"
+		},
+		"video/vnd.iptvforum.1dparityfec-2005": {
+			"source": "apache"
+		},
+		"video/vnd.iptvforum.2dparityfec-1010": {
+			"source": "apache"
+		},
+		"video/vnd.iptvforum.2dparityfec-2005": {
+			"source": "apache"
+		},
+		"video/vnd.iptvforum.ttsavc": {
+			"source": "apache"
+		},
+		"video/vnd.iptvforum.ttsmpeg2": {
+			"source": "apache"
+		},
+		"video/vnd.motorola.video": {
+			"source": "apache"
+		},
+		"video/vnd.motorola.videop": {
+			"source": "apache"
+		},
+		"video/vnd.mpegurl": {
+			"source": "apache",
+			"extensions": [
+				"mxu",
+				"m4u"
+			]
+		},
+		"video/vnd.ms-playready.media.pyv": {
+			"source": "apache",
+			"extensions": [
+				"pyv"
+			]
+		},
+		"video/vnd.nokia.interleaved-multimedia": {
+			"source": "apache"
+		},
+		"video/vnd.nokia.videovoip": {
+			"source": "apache"
+		},
+		"video/vnd.objectvideo": {
+			"source": "apache"
+		},
+		"video/vnd.sealed.mpeg1": {
+			"source": "apache"
+		},
+		"video/vnd.sealed.mpeg4": {
+			"source": "apache"
+		},
+		"video/vnd.sealed.swf": {
+			"source": "apache"
+		},
+		"video/vnd.sealedmedia.softseal.mov": {
+			"source": "apache"
+		},
+		"video/vnd.uvvu.mp4": {
+			"source": "apache",
+			"extensions": [
+				"uvu",
+				"uvvu"
+			]
+		},
+		"video/vnd.vivo": {
+			"source": "apache",
+			"extensions": [
+				"viv"
+			]
+		},
+		"video/webm": {
+			"source": "apache",
+			"compressible": false,
+			"extensions": [
+				"webm"
+			]
+		},
+		"video/x-f4v": {
+			"source": "apache",
+			"extensions": [
+				"f4v"
+			]
+		},
+		"video/x-fli": {
+			"source": "apache",
+			"extensions": [
+				"fli"
+			]
+		},
+		"video/x-flv": {
+			"source": "apache",
+			"compressible": false,
+			"extensions": [
+				"flv"
+			]
+		},
+		"video/x-m4v": {
+			"source": "apache",
+			"extensions": [
+				"m4v"
+			]
+		},
+		"video/x-matroska": {
+			"source": "apache",
+			"compressible": false,
+			"extensions": [
+				"mkv",
+				"mk3d",
+				"mks"
+			]
+		},
+		"video/x-mng": {
+			"source": "apache",
+			"extensions": [
+				"mng"
+			]
+		},
+		"video/x-ms-asf": {
+			"source": "apache",
+			"extensions": [
+				"asf",
+				"asx"
+			]
+		},
+		"video/x-ms-vob": {
+			"source": "apache",
+			"extensions": [
+				"vob"
+			]
+		},
+		"video/x-ms-wm": {
+			"source": "apache",
+			"extensions": [
+				"wm"
+			]
+		},
+		"video/x-ms-wmv": {
+			"source": "apache",
+			"compressible": false,
+			"extensions": [
+				"wmv"
+			]
+		},
+		"video/x-ms-wmx": {
+			"source": "apache",
+			"extensions": [
+				"wmx"
+			]
+		},
+		"video/x-ms-wvx": {
+			"source": "apache",
+			"extensions": [
+				"wvx"
+			]
+		},
+		"video/x-msvideo": {
+			"source": "apache",
+			"extensions": [
+				"avi"
+			]
+		},
+		"video/x-sgi-movie": {
+			"source": "apache",
+			"extensions": [
+				"movie"
+			]
+		},
+		"video/x-smv": {
+			"source": "apache",
+			"extensions": [
+				"smv"
+			]
+		},
+		"x-conference/x-cooltalk": {
+			"source": "apache",
+			"extensions": [
+				"ice"
+			]
+		},
+		"x-shader/x-fragment": {
+			"compressible": true
+		},
+		"x-shader/x-vertex": {
+			"compressible": true
+		}
+	};
+
+/***/ },
+/* 377 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {// Copyright Joyent, Inc. and other Node contributors.
@@ -61286,7 +69640,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(190)))
 
 /***/ },
-/* 379 */
+/* 378 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {var util = __webpack_require__(250)
@@ -61395,7 +69749,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(255).Buffer))
 
 /***/ },
-/* 380 */
+/* 379 */
 /***/ function(module, exports) {
 
 	function Caseless (dict) {
@@ -61467,7 +69821,7 @@
 
 
 /***/ },
-/* 381 */
+/* 380 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = ForeverAgent
@@ -61611,13 +69965,13 @@
 
 
 /***/ },
-/* 382 */
+/* 381 */
 /***/ function(module, exports) {
 
 	module.exports = FormData;
 
 /***/ },
-/* 383 */
+/* 382 */
 /***/ function(module, exports) {
 
 	module.exports      = isTypedArray
@@ -61664,7 +70018,7 @@
 
 
 /***/ },
-/* 384 */
+/* 383 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict'
@@ -61750,12 +70104,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(190)))
 
 /***/ },
-/* 385 */
+/* 384 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict'
 
-	var qs = __webpack_require__(386)
+	var qs = __webpack_require__(385)
 	  , querystring = __webpack_require__(241)
 
 
@@ -61807,19 +70161,13 @@
 
 
 /***/ },
-/* 386 */
+/* 385 */
 /***/ function(module, exports, __webpack_require__) {
 
-	// Load modules
+	'use strict';
 
-	var Stringify = __webpack_require__(387);
-	var Parse = __webpack_require__(389);
-
-
-	// Declare internals
-
-	var internals = {};
-
+	var Stringify = __webpack_require__(386);
+	var Parse = __webpack_require__(388);
 
 	module.exports = {
 	    stringify: Stringify,
@@ -61828,29 +70176,23 @@
 
 
 /***/ },
-/* 387 */
+/* 386 */
 /***/ function(module, exports, __webpack_require__) {
 
-	// Load modules
+	'use strict';
 
-	var Utils = __webpack_require__(388);
-
-
-	// Declare internals
+	var Utils = __webpack_require__(387);
 
 	var internals = {
 	    delimiter: '&',
 	    arrayPrefixGenerators: {
-	        brackets: function (prefix, key) {
-
+	        brackets: function (prefix) {
 	            return prefix + '[]';
 	        },
 	        indices: function (prefix, key) {
-
 	            return prefix + '[' + key + ']';
 	        },
-	        repeat: function (prefix, key) {
-
+	        repeat: function (prefix) {
 	            return prefix;
 	        }
 	    },
@@ -61859,19 +70201,15 @@
 	    encode: true
 	};
 
-
-	internals.stringify = function (obj, prefix, generateArrayPrefix, strictNullHandling, skipNulls, encode, filter, sort) {
-
+	internals.stringify = function (object, prefix, generateArrayPrefix, strictNullHandling, skipNulls, encode, filter, sort) {
+	    var obj = object;
 	    if (typeof filter === 'function') {
 	        obj = filter(prefix, obj);
-	    }
-	    else if (Utils.isBuffer(obj)) {
-	        obj = obj.toString();
-	    }
-	    else if (obj instanceof Date) {
+	    } else if (Utils.isBuffer(obj)) {
+	        obj = String(obj);
+	    } else if (obj instanceof Date) {
 	        obj = obj.toISOString();
-	    }
-	    else if (obj === null) {
+	    } else if (obj === null) {
 	        if (strictNullHandling) {
 	            return encode ? Utils.encode(prefix) : prefix;
 	        }
@@ -61879,10 +70217,7 @@
 	        obj = '';
 	    }
 
-	    if (typeof obj === 'string' ||
-	        typeof obj === 'number' ||
-	        typeof obj === 'boolean') {
-
+	    if (typeof obj === 'string' || typeof obj === 'number' || typeof obj === 'boolean') {
 	        if (encode) {
 	            return [Utils.encode(prefix) + '=' + Utils.encode(obj)];
 	        }
@@ -61903,19 +70238,16 @@
 	        objKeys = sort ? keys.sort(sort) : keys;
 	    }
 
-	    for (var i = 0, il = objKeys.length; i < il; ++i) {
+	    for (var i = 0; i < objKeys.length; ++i) {
 	        var key = objKeys[i];
 
-	        if (skipNulls &&
-	            obj[key] === null) {
-
+	        if (skipNulls && obj[key] === null) {
 	            continue;
 	        }
 
 	        if (Array.isArray(obj)) {
 	            values = values.concat(internals.stringify(obj[key], generateArrayPrefix(prefix, key), generateArrayPrefix, strictNullHandling, skipNulls, encode, filter));
-	        }
-	        else {
+	        } else {
 	            values = values.concat(internals.stringify(obj[key], prefix + '[' + key + ']', generateArrayPrefix, strictNullHandling, skipNulls, encode, filter));
 	        }
 	    }
@@ -61923,10 +70255,9 @@
 	    return values;
 	};
 
-
-	module.exports = function (obj, options) {
-
-	    options = options || {};
+	module.exports = function (object, opts) {
+	    var obj = object;
+	    var options = opts || {};
 	    var delimiter = typeof options.delimiter === 'undefined' ? internals.delimiter : options.delimiter;
 	    var strictNullHandling = typeof options.strictNullHandling === 'boolean' ? options.strictNullHandling : internals.strictNullHandling;
 	    var skipNulls = typeof options.skipNulls === 'boolean' ? options.skipNulls : internals.skipNulls;
@@ -61937,27 +70268,22 @@
 	    if (typeof options.filter === 'function') {
 	        filter = options.filter;
 	        obj = filter('', obj);
-	    }
-	    else if (Array.isArray(options.filter)) {
+	    } else if (Array.isArray(options.filter)) {
 	        objKeys = filter = options.filter;
 	    }
 
 	    var keys = [];
 
-	    if (typeof obj !== 'object' ||
-	        obj === null) {
-
+	    if (typeof obj !== 'object' || obj === null) {
 	        return '';
 	    }
 
 	    var arrayFormat;
 	    if (options.arrayFormat in internals.arrayPrefixGenerators) {
 	        arrayFormat = options.arrayFormat;
-	    }
-	    else if ('indices' in options) {
+	    } else if ('indices' in options) {
 	        arrayFormat = options.indices ? 'indices' : 'repeat';
-	    }
-	    else {
+	    } else {
 	        arrayFormat = 'indices';
 	    }
 
@@ -61971,12 +70297,10 @@
 	        objKeys.sort(sort);
 	    }
 
-	    for (var i = 0, il = objKeys.length; i < il; ++i) {
+	    for (var i = 0; i < objKeys.length; ++i) {
 	        var key = objKeys[i];
 
-	        if (skipNulls &&
-	            obj[key] === null) {
-
+	        if (skipNulls && obj[key] === null) {
 	            continue;
 	        }
 
@@ -61988,27 +70312,24 @@
 
 
 /***/ },
-/* 388 */
+/* 387 */
 /***/ function(module, exports) {
 
-	// Load modules
+	'use strict';
 
+	var hexTable = (function () {
+	    var array = new Array(256);
+	    for (var i = 0; i < 256; ++i) {
+	        array[i] = '%' + ((i < 16 ? '0' : '') + i.toString(16)).toUpperCase();
+	    }
 
-	// Declare internals
-
-	var internals = {};
-	internals.hexTable = new Array(256);
-	for (var h = 0; h < 256; ++h) {
-	    internals.hexTable[h] = '%' + ((h < 16 ? '0' : '') + h.toString(16)).toUpperCase();
-	}
-
+	    return array;
+	}());
 
 	exports.arrayToObject = function (source, options) {
-
 	    var obj = options.plainObjects ? Object.create(null) : {};
-	    for (var i = 0, il = source.length; i < il; ++i) {
+	    for (var i = 0; i < source.length; ++i) {
 	        if (typeof source[i] !== 'undefined') {
-
 	            obj[i] = source[i];
 	        }
 	    }
@@ -62016,9 +70337,7 @@
 	    return obj;
 	};
 
-
 	exports.merge = function (target, source, options) {
-
 	    if (!source) {
 	        return target;
 	    }
@@ -62026,47 +70345,37 @@
 	    if (typeof source !== 'object') {
 	        if (Array.isArray(target)) {
 	            target.push(source);
-	        }
-	        else if (typeof target === 'object') {
+	        } else if (typeof target === 'object') {
 	            target[source] = true;
-	        }
-	        else {
-	            target = [target, source];
+	        } else {
+	            return [target, source];
 	        }
 
 	        return target;
 	    }
 
 	    if (typeof target !== 'object') {
-	        target = [target].concat(source);
-	        return target;
+	        return [target].concat(source);
 	    }
 
-	    if (Array.isArray(target) &&
-	        !Array.isArray(source)) {
-
-	        target = exports.arrayToObject(target, options);
+	    var mergeTarget = target;
+	    if (Array.isArray(target) && !Array.isArray(source)) {
+	        mergeTarget = exports.arrayToObject(target, options);
 	    }
 
-	    var keys = Object.keys(source);
-	    for (var k = 0, kl = keys.length; k < kl; ++k) {
-	        var key = keys[k];
+		return Object.keys(source).reduce(function (acc, key) {
 	        var value = source[key];
 
-	        if (!Object.prototype.hasOwnProperty.call(target, key)) {
-	            target[key] = value;
+	        if (Object.prototype.hasOwnProperty.call(acc, key)) {
+	            acc[key] = exports.merge(acc[key], value, options);
+	        } else {
+	            acc[key] = value;
 	        }
-	        else {
-	            target[key] = exports.merge(target[key], value, options);
-	        }
-	    }
-
-	    return target;
+			return acc;
+	    }, mergeTarget);
 	};
 
-
 	exports.decode = function (str) {
-
 	    try {
 	        return decodeURIComponent(str.replace(/\+/g, ' '));
 	    } catch (e) {
@@ -62075,65 +70384,60 @@
 	};
 
 	exports.encode = function (str) {
-
 	    // This code was originally written by Brian White (mscdex) for the io.js core querystring library.
 	    // It has been adapted here for stricter adherence to RFC 3986
 	    if (str.length === 0) {
 	        return str;
 	    }
 
-	    if (typeof str !== 'string') {
-	        str = '' + str;
-	    }
+	    var string = typeof str === 'string' ? str : String(str);
 
 	    var out = '';
-	    for (var i = 0, il = str.length; i < il; ++i) {
-	        var c = str.charCodeAt(i);
+	    for (var i = 0; i < string.length; ++i) {
+	        var c = string.charCodeAt(i);
 
-	        if (c === 0x2D || // -
+	        if (
+	            c === 0x2D || // -
 	            c === 0x2E || // .
 	            c === 0x5F || // _
 	            c === 0x7E || // ~
 	            (c >= 0x30 && c <= 0x39) || // 0-9
 	            (c >= 0x41 && c <= 0x5A) || // a-z
-	            (c >= 0x61 && c <= 0x7A)) { // A-Z
-
-	            out += str[i];
+	            (c >= 0x61 && c <= 0x7A) // A-Z
+	        ) {
+	            out += string.charAt(i);
 	            continue;
 	        }
 
 	        if (c < 0x80) {
-	            out += internals.hexTable[c];
+	            out = out + hexTable[c];
 	            continue;
 	        }
 
 	        if (c < 0x800) {
-	            out += internals.hexTable[0xC0 | (c >> 6)] + internals.hexTable[0x80 | (c & 0x3F)];
+	            out = out + (hexTable[0xC0 | (c >> 6)] + hexTable[0x80 | (c & 0x3F)]);
 	            continue;
 	        }
 
 	        if (c < 0xD800 || c >= 0xE000) {
-	            out += internals.hexTable[0xE0 | (c >> 12)] + internals.hexTable[0x80 | ((c >> 6) & 0x3F)] + internals.hexTable[0x80 | (c & 0x3F)];
+	            out = out + (hexTable[0xE0 | (c >> 12)] + hexTable[0x80 | ((c >> 6) & 0x3F)] + hexTable[0x80 | (c & 0x3F)]);
 	            continue;
 	        }
 
-	        ++i;
-	        c = 0x10000 + (((c & 0x3FF) << 10) | (str.charCodeAt(i) & 0x3FF));
-	        out += internals.hexTable[0xF0 | (c >> 18)] + internals.hexTable[0x80 | ((c >> 12) & 0x3F)] + internals.hexTable[0x80 | ((c >> 6) & 0x3F)] + internals.hexTable[0x80 | (c & 0x3F)];
+	        i += 1;
+	        c = 0x10000 + (((c & 0x3FF) << 10) | (string.charCodeAt(i) & 0x3FF));
+	        out += (hexTable[0xF0 | (c >> 18)] + hexTable[0x80 | ((c >> 12) & 0x3F)] + hexTable[0x80 | ((c >> 6) & 0x3F)] + hexTable[0x80 | (c & 0x3F)]);
 	    }
 
 	    return out;
 	};
 
-	exports.compact = function (obj, refs) {
-
-	    if (typeof obj !== 'object' ||
-	        obj === null) {
-
+	exports.compact = function (obj, references) {
+	    if (typeof obj !== 'object' || obj === null) {
 	        return obj;
 	    }
 
-	    refs = refs || [];
+	    var refs = references || [];
 	    var lookup = refs.indexOf(obj);
 	    if (lookup !== -1) {
 	        return refs[lookup];
@@ -62144,7 +70448,7 @@
 	    if (Array.isArray(obj)) {
 	        var compacted = [];
 
-	        for (var i = 0, il = obj.length; i < il; ++i) {
+	        for (var i = 0; i < obj.length; ++i) {
 	            if (typeof obj[i] !== 'undefined') {
 	                compacted.push(obj[i]);
 	            }
@@ -62154,45 +70458,34 @@
 	    }
 
 	    var keys = Object.keys(obj);
-	    for (i = 0, il = keys.length; i < il; ++i) {
-	        var key = keys[i];
+	    for (var j = 0; j < keys.length; ++j) {
+	        var key = keys[j];
 	        obj[key] = exports.compact(obj[key], refs);
 	    }
 
 	    return obj;
 	};
 
-
 	exports.isRegExp = function (obj) {
-
 	    return Object.prototype.toString.call(obj) === '[object RegExp]';
 	};
 
-
 	exports.isBuffer = function (obj) {
-
-	    if (obj === null ||
-	        typeof obj === 'undefined') {
-
+	    if (obj === null || typeof obj === 'undefined') {
 	        return false;
 	    }
 
-	    return !!(obj.constructor &&
-	              obj.constructor.isBuffer &&
-	              obj.constructor.isBuffer(obj));
+	    return !!(obj.constructor && obj.constructor.isBuffer && obj.constructor.isBuffer(obj));
 	};
 
 
 /***/ },
-/* 389 */
+/* 388 */
 /***/ function(module, exports, __webpack_require__) {
 
-	// Load modules
+	'use strict';
 
-	var Utils = __webpack_require__(388);
-
-
-	// Declare internals
+	var Utils = __webpack_require__(387);
 
 	var internals = {
 	    delimiter: '&',
@@ -62205,13 +70498,11 @@
 	    allowDots: false
 	};
 
-
 	internals.parseValues = function (str, options) {
-
 	    var obj = {};
 	    var parts = str.split(options.delimiter, options.parameterLimit === Infinity ? undefined : options.parameterLimit);
 
-	    for (var i = 0, il = parts.length; i < il; ++i) {
+	    for (var i = 0; i < parts.length; ++i) {
 	        var part = parts[i];
 	        var pos = part.indexOf(']=') === -1 ? part.indexOf('=') : part.indexOf(']=') + 1;
 
@@ -62221,16 +70512,14 @@
 	            if (options.strictNullHandling) {
 	                obj[Utils.decode(part)] = null;
 	            }
-	        }
-	        else {
+	        } else {
 	            var key = Utils.decode(part.slice(0, pos));
 	            var val = Utils.decode(part.slice(pos + 1));
 
-	            if (!Object.prototype.hasOwnProperty.call(obj, key)) {
-	                obj[key] = val;
-	            }
-	            else {
+	            if (Object.prototype.hasOwnProperty.call(obj, key)) {
 	                obj[key] = [].concat(obj[key]).concat(val);
+	            } else {
+	                obj[key] = val;
 	            }
 	        }
 	    }
@@ -62238,9 +70527,7 @@
 	    return obj;
 	};
 
-
 	internals.parseObject = function (chain, val, options) {
-
 	    if (!chain.length) {
 	        return val;
 	    }
@@ -62251,23 +70538,20 @@
 	    if (root === '[]') {
 	        obj = [];
 	        obj = obj.concat(internals.parseObject(chain, val, options));
-	    }
-	    else {
+	    } else {
 	        obj = options.plainObjects ? Object.create(null) : {};
 	        var cleanRoot = root[0] === '[' && root[root.length - 1] === ']' ? root.slice(1, root.length - 1) : root;
 	        var index = parseInt(cleanRoot, 10);
-	        var indexString = '' + index;
-	        if (!isNaN(index) &&
+	        if (
+	            !isNaN(index) &&
 	            root !== cleanRoot &&
-	            indexString === cleanRoot &&
+	            String(index) === cleanRoot &&
 	            index >= 0 &&
-	            (options.parseArrays &&
-	             index <= options.arrayLimit)) {
-
+	            (options.parseArrays && index <= options.arrayLimit)
+	        ) {
 	            obj = [];
 	            obj[index] = internals.parseObject(chain, val, options);
-	        }
-	        else {
+	        } else {
 	            obj[cleanRoot] = internals.parseObject(chain, val, options);
 	        }
 	    }
@@ -62275,18 +70559,13 @@
 	    return obj;
 	};
 
-
-	internals.parseKeys = function (key, val, options) {
-
-	    if (!key) {
+	internals.parseKeys = function (givenKey, val, options) {
+	    if (!givenKey) {
 	        return;
 	    }
 
 	    // Transform dot notation to bracket notation
-
-	    if (options.allowDots) {
-	        key = key.replace(/\.([^\.\[]+)/g, '[$1]');
-	    }
+	    var key = options.allowDots ? givenKey.replace(/\.([^\.\[]+)/g, '[$1]') : givenKey;
 
 	    // The regex chunks
 
@@ -62303,9 +70582,7 @@
 	    if (segment[1]) {
 	        // If we aren't using plain objects, optionally prefix keys
 	        // that would overwrite object prototype properties
-	        if (!options.plainObjects &&
-	            Object.prototype.hasOwnProperty(segment[1])) {
-
+	        if (!options.plainObjects && Object.prototype.hasOwnProperty(segment[1])) {
 	            if (!options.allowPrototypes) {
 	                return;
 	            }
@@ -62318,11 +70595,8 @@
 
 	    var i = 0;
 	    while ((segment = child.exec(key)) !== null && i < options.depth) {
-
-	        ++i;
-	        if (!options.plainObjects &&
-	            Object.prototype.hasOwnProperty(segment[1].replace(/\[|\]/g, ''))) {
-
+	        i += 1;
+	        if (!options.plainObjects && Object.prototype.hasOwnProperty(segment[1].replace(/\[|\]/g, ''))) {
 	            if (!options.allowPrototypes) {
 	                continue;
 	            }
@@ -62339,10 +70613,8 @@
 	    return internals.parseObject(keys, val, options);
 	};
 
-
-	module.exports = function (str, options) {
-
-	    options = options || {};
+	module.exports = function (str, opts) {
+	    var options = opts || {};
 	    options.delimiter = typeof options.delimiter === 'string' || Utils.isRegExp(options.delimiter) ? options.delimiter : internals.delimiter;
 	    options.depth = typeof options.depth === 'number' ? options.depth : internals.depth;
 	    options.arrayLimit = typeof options.arrayLimit === 'number' ? options.arrayLimit : internals.arrayLimit;
@@ -62353,10 +70625,11 @@
 	    options.parameterLimit = typeof options.parameterLimit === 'number' ? options.parameterLimit : internals.parameterLimit;
 	    options.strictNullHandling = typeof options.strictNullHandling === 'boolean' ? options.strictNullHandling : internals.strictNullHandling;
 
-	    if (str === '' ||
+	    if (
+	        str === '' ||
 	        str === null ||
-	        typeof str === 'undefined') {
-
+	        typeof str === 'undefined'
+	    ) {
 	        return options.plainObjects ? Object.create(null) : {};
 	    }
 
@@ -62366,7 +70639,7 @@
 	    // Iterate over the keys and setup the new object
 
 	    var keys = Object.keys(tempObj);
-	    for (var i = 0, il = keys.length; i < il; ++i) {
+	    for (var i = 0; i < keys.length; ++i) {
 	        var key = keys[i];
 	        var newObj = internals.parseKeys(key, tempObj[key], options);
 	        obj = Utils.merge(obj, newObj, options);
@@ -62377,15 +70650,15 @@
 
 
 /***/ },
-/* 390 */
+/* 389 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict'
 
 	var fs = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"fs\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()))
 	var qs = __webpack_require__(241)
-	var validate = __webpack_require__(391)
-	var util = __webpack_require__(250)
+	var validate = __webpack_require__(390)
+	var extend = __webpack_require__(236)
 
 	function Har (request) {
 	  this.request = request
@@ -62500,7 +70773,8 @@
 	    return options
 	  }
 
-	  var har = util._extend({}, options.har)
+	  var har = {}
+	  extend(har, options.har)
 
 	  // only process the first entry
 	  if (har.log && har.log.entries) {
@@ -62597,14 +70871,14 @@
 
 
 /***/ },
-/* 391 */
+/* 390 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict'
 
-	var Promise = __webpack_require__(392)
-	var runner = __webpack_require__(394)
-	var schemas = __webpack_require__(395)
+	var Promise = __webpack_require__(391)
+	var runner = __webpack_require__(393)
+	var schemas = __webpack_require__(394)
 
 	var promisify = function (schema) {
 	  return function (data) {
@@ -62625,27 +70899,27 @@
 
 
 /***/ },
-/* 392 */
+/* 391 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
 
-	module.exports = global.Promise || __webpack_require__(393);
+	module.exports = global.Promise || __webpack_require__(392);
 
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 393 */
+/* 392 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process, setImmediate) {'use strict';
+	/* WEBPACK VAR INJECTION */(function(global, setImmediate) {'use strict';
 
 	var PENDING = 'pending';
 	var SETTLED = 'settled';
 	var FULFILLED = 'fulfilled';
 	var REJECTED = 'rejected';
 	var NOOP = function () {};
-	var isNode = typeof process !== 'undefined' && typeof process.emit === 'function';
+	var isNode = typeof global !== 'undefined' && typeof global.process !== 'undefined' && typeof global.process.emit === 'function';
 
 	var asyncSetTimer = typeof setImmediate === 'undefined' ? setTimeout : setImmediate;
 	var asyncQueue = [];
@@ -62796,12 +71070,12 @@
 		promise._state = REJECTED;
 		publish(promise);
 		if (!promise._handled && isNode) {
-			process.emit('unhandledRejection', promise._data, promise);
+			global.process.emit('unhandledRejection', promise._data, promise);
 		}
 	}
 
 	function notifyRejectionHandled(promise) {
-		process.emit('rejectionHandled', promise);
+		global.process.emit('rejectionHandled', promise);
 	}
 
 	/**
@@ -62931,17 +71205,17 @@
 
 	module.exports = Promise;
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(190), __webpack_require__(196).setImmediate))
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(196).setImmediate))
 
 /***/ },
-/* 394 */
+/* 393 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict'
 
-	var schemas = __webpack_require__(395)
-	var ValidationError = __webpack_require__(411)
-	var validator = __webpack_require__(412)
+	var schemas = __webpack_require__(394)
+	var ValidationError = __webpack_require__(410)
+	var validator = __webpack_require__(411)
 
 	module.exports = function (schema, data, cb) {
 	  // default value
@@ -62969,27 +71243,27 @@
 
 
 /***/ },
-/* 395 */
+/* 394 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict'
 
 	var schemas = {
-	  cache: __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./cache.json\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())),
-	  cacheEntry: __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./cacheEntry.json\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())),
-	  content: __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./content.json\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())),
-	  cookie: __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./cookie.json\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())),
-	  creator: __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./creator.json\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())),
-	  entry: __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./entry.json\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())),
-	  har: __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./har.json\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())),
-	  log: __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./log.json\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())),
-	  page: __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./page.json\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())),
-	  pageTimings: __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./pageTimings.json\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())),
-	  postData: __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./postData.json\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())),
-	  record: __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./record.json\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())),
-	  request: __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./request.json\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())),
-	  response: __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./response.json\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())),
-	  timings: __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./timings.json\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()))
+	  cache: __webpack_require__(395),
+	  cacheEntry: __webpack_require__(396),
+	  content: __webpack_require__(397),
+	  cookie: __webpack_require__(398),
+	  creator: __webpack_require__(399),
+	  entry: __webpack_require__(400),
+	  har: __webpack_require__(401),
+	  log: __webpack_require__(402),
+	  page: __webpack_require__(403),
+	  pageTimings: __webpack_require__(404),
+	  postData: __webpack_require__(405),
+	  record: __webpack_require__(406),
+	  request: __webpack_require__(407),
+	  response: __webpack_require__(408),
+	  timings: __webpack_require__(409)
 	}
 
 	// is-my-json-valid does not provide meaningful error messages for external schemas
@@ -63024,22 +71298,563 @@
 
 
 /***/ },
-/* 396 */,
-/* 397 */,
-/* 398 */,
-/* 399 */,
-/* 400 */,
-/* 401 */,
-/* 402 */,
-/* 403 */,
-/* 404 */,
-/* 405 */,
-/* 406 */,
-/* 407 */,
-/* 408 */,
-/* 409 */,
-/* 410 */,
-/* 411 */
+/* 395 */
+/***/ function(module, exports) {
+
+	module.exports = {
+		"properties": {
+			"beforeRequest": {
+				"$ref": "#cacheEntry"
+			},
+			"afterRequest": {
+				"$ref": "#cacheEntry"
+			},
+			"comment": {
+				"type": "string"
+			}
+		}
+	};
+
+/***/ },
+/* 396 */
+/***/ function(module, exports) {
+
+	module.exports = {
+		"oneOf": [
+			{
+				"type": "object",
+				"optional": true,
+				"required": [
+					"lastAccess",
+					"eTag",
+					"hitCount"
+				],
+				"properties": {
+					"expires": {
+						"type": "string"
+					},
+					"lastAccess": {
+						"type": "string"
+					},
+					"eTag": {
+						"type": "string"
+					},
+					"hitCount": {
+						"type": "integer"
+					},
+					"comment": {
+						"type": "string"
+					}
+				}
+			},
+			{
+				"type": null,
+				"additionalProperties": false
+			}
+		]
+	};
+
+/***/ },
+/* 397 */
+/***/ function(module, exports) {
+
+	module.exports = {
+		"type": "object",
+		"required": [
+			"size",
+			"mimeType"
+		],
+		"properties": {
+			"size": {
+				"type": "integer"
+			},
+			"compression": {
+				"type": "integer"
+			},
+			"mimeType": {
+				"type": "string"
+			},
+			"text": {
+				"type": "string"
+			},
+			"encoding": {
+				"type": "string"
+			},
+			"comment": {
+				"type": "string"
+			}
+		}
+	};
+
+/***/ },
+/* 398 */
+/***/ function(module, exports) {
+
+	module.exports = {
+		"type": "object",
+		"required": [
+			"name",
+			"value"
+		],
+		"properties": {
+			"name": {
+				"type": "string"
+			},
+			"value": {
+				"type": "string"
+			},
+			"path": {
+				"type": "string"
+			},
+			"domain": {
+				"type": "string"
+			},
+			"expires": {
+				"type": [
+					"string",
+					"null"
+				],
+				"format": "date-time"
+			},
+			"httpOnly": {
+				"type": "boolean"
+			},
+			"secure": {
+				"type": "boolean"
+			},
+			"comment": {
+				"type": "string"
+			}
+		}
+	};
+
+/***/ },
+/* 399 */
+/***/ function(module, exports) {
+
+	module.exports = {
+		"type": "object",
+		"required": [
+			"name",
+			"version"
+		],
+		"properties": {
+			"name": {
+				"type": "string"
+			},
+			"version": {
+				"type": "string"
+			},
+			"comment": {
+				"type": "string"
+			}
+		}
+	};
+
+/***/ },
+/* 400 */
+/***/ function(module, exports) {
+
+	module.exports = {
+		"type": "object",
+		"optional": true,
+		"required": [
+			"startedDateTime",
+			"time",
+			"request",
+			"response",
+			"cache",
+			"timings"
+		],
+		"properties": {
+			"pageref": {
+				"type": "string"
+			},
+			"startedDateTime": {
+				"type": "string",
+				"format": "date-time",
+				"pattern": "^(\\d{4})(-)?(\\d\\d)(-)?(\\d\\d)(T)?(\\d\\d)(:)?(\\d\\d)(:)?(\\d\\d)(\\.\\d+)?(Z|([+-])(\\d\\d)(:)?(\\d\\d))"
+			},
+			"time": {
+				"type": "number",
+				"min": 0
+			},
+			"request": {
+				"$ref": "#request"
+			},
+			"response": {
+				"$ref": "#response"
+			},
+			"cache": {
+				"$ref": "#cache"
+			},
+			"timings": {
+				"$ref": "#timings"
+			},
+			"serverIPAddress": {
+				"type": "string",
+				"oneOf": [
+					{
+						"format": "ipv4"
+					},
+					{
+						"format": "ipv6"
+					}
+				]
+			},
+			"connection": {
+				"type": "string"
+			},
+			"comment": {
+				"type": "string"
+			}
+		}
+	};
+
+/***/ },
+/* 401 */
+/***/ function(module, exports) {
+
+	module.exports = {
+		"type": "object",
+		"required": [
+			"log"
+		],
+		"properties": {
+			"log": {
+				"$ref": "#log"
+			}
+		}
+	};
+
+/***/ },
+/* 402 */
+/***/ function(module, exports) {
+
+	module.exports = {
+		"type": "object",
+		"required": [
+			"version",
+			"creator",
+			"entries"
+		],
+		"properties": {
+			"version": {
+				"type": "string"
+			},
+			"creator": {
+				"$ref": "#creator"
+			},
+			"browser": {
+				"$ref": "#creator"
+			},
+			"pages": {
+				"type": "array",
+				"items": {
+					"$ref": "#page"
+				}
+			},
+			"entries": {
+				"type": "array",
+				"items": {
+					"$ref": "#entry"
+				}
+			},
+			"comment": {
+				"type": "string"
+			}
+		}
+	};
+
+/***/ },
+/* 403 */
+/***/ function(module, exports) {
+
+	module.exports = {
+		"type": "object",
+		"optional": true,
+		"required": [
+			"startedDateTime",
+			"id",
+			"title",
+			"pageTimings"
+		],
+		"properties": {
+			"startedDateTime": {
+				"type": "string",
+				"format": "date-time",
+				"pattern": "^(\\d{4})(-)?(\\d\\d)(-)?(\\d\\d)(T)?(\\d\\d)(:)?(\\d\\d)(:)?(\\d\\d)(\\.\\d+)?(Z|([+-])(\\d\\d)(:)?(\\d\\d))"
+			},
+			"id": {
+				"type": "string",
+				"unique": true
+			},
+			"title": {
+				"type": "string"
+			},
+			"pageTimings": {
+				"$ref": "#pageTimings"
+			},
+			"comment": {
+				"type": "string"
+			}
+		}
+	};
+
+/***/ },
+/* 404 */
+/***/ function(module, exports) {
+
+	module.exports = {
+		"type": "object",
+		"properties": {
+			"onContentLoad": {
+				"type": "number",
+				"min": -1
+			},
+			"onLoad": {
+				"type": "number",
+				"min": -1
+			},
+			"comment": {
+				"type": "string"
+			}
+		}
+	};
+
+/***/ },
+/* 405 */
+/***/ function(module, exports) {
+
+	module.exports = {
+		"type": "object",
+		"optional": true,
+		"required": [
+			"mimeType"
+		],
+		"properties": {
+			"mimeType": {
+				"type": "string"
+			},
+			"text": {
+				"type": "string"
+			},
+			"params": {
+				"type": "array",
+				"required": [
+					"name"
+				],
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"value": {
+						"type": "string"
+					},
+					"fileName": {
+						"type": "string"
+					},
+					"contentType": {
+						"type": "string"
+					},
+					"comment": {
+						"type": "string"
+					}
+				}
+			},
+			"comment": {
+				"type": "string"
+			}
+		}
+	};
+
+/***/ },
+/* 406 */
+/***/ function(module, exports) {
+
+	module.exports = {
+		"type": "object",
+		"required": [
+			"name",
+			"value"
+		],
+		"properties": {
+			"name": {
+				"type": "string"
+			},
+			"value": {
+				"type": "string"
+			},
+			"comment": {
+				"type": "string"
+			}
+		}
+	};
+
+/***/ },
+/* 407 */
+/***/ function(module, exports) {
+
+	module.exports = {
+		"type": "object",
+		"required": [
+			"method",
+			"url",
+			"httpVersion",
+			"cookies",
+			"headers",
+			"queryString",
+			"headersSize",
+			"bodySize"
+		],
+		"properties": {
+			"method": {
+				"type": "string"
+			},
+			"url": {
+				"type": "string",
+				"format": "uri"
+			},
+			"httpVersion": {
+				"type": "string"
+			},
+			"cookies": {
+				"type": "array",
+				"items": {
+					"$ref": "#cookie"
+				}
+			},
+			"headers": {
+				"type": "array",
+				"items": {
+					"$ref": "#record"
+				}
+			},
+			"queryString": {
+				"type": "array",
+				"items": {
+					"$ref": "#record"
+				}
+			},
+			"postData": {
+				"$ref": "#postData"
+			},
+			"headersSize": {
+				"type": "integer"
+			},
+			"bodySize": {
+				"type": "integer"
+			},
+			"comment": {
+				"type": "string"
+			}
+		}
+	};
+
+/***/ },
+/* 408 */
+/***/ function(module, exports) {
+
+	module.exports = {
+		"type": "object",
+		"required": [
+			"status",
+			"statusText",
+			"httpVersion",
+			"cookies",
+			"headers",
+			"content",
+			"redirectURL",
+			"headersSize",
+			"bodySize"
+		],
+		"properties": {
+			"status": {
+				"type": "integer"
+			},
+			"statusText": {
+				"type": "string"
+			},
+			"httpVersion": {
+				"type": "string"
+			},
+			"cookies": {
+				"type": "array",
+				"items": {
+					"$ref": "#cookie"
+				}
+			},
+			"headers": {
+				"type": "array",
+				"items": {
+					"$ref": "#record"
+				}
+			},
+			"content": {
+				"$ref": "#content"
+			},
+			"redirectURL": {
+				"type": "string"
+			},
+			"headersSize": {
+				"type": "integer"
+			},
+			"bodySize": {
+				"type": "integer"
+			},
+			"comment": {
+				"type": "string"
+			}
+		}
+	};
+
+/***/ },
+/* 409 */
+/***/ function(module, exports) {
+
+	module.exports = {
+		"required": [
+			"send",
+			"wait",
+			"receive"
+		],
+		"properties": {
+			"dns": {
+				"type": "number",
+				"min": -1
+			},
+			"connect": {
+				"type": "number",
+				"min": -1
+			},
+			"blocked": {
+				"type": "number",
+				"min": -1
+			},
+			"send": {
+				"type": "number",
+				"min": -1
+			},
+			"wait": {
+				"type": "number",
+				"min": -1
+			},
+			"receive": {
+				"type": "number",
+				"min": -1
+			},
+			"ssl": {
+				"type": "number",
+				"min": -1
+			},
+			"comment": {
+				"type": "string"
+			}
+		}
+	};
+
+/***/ },
+/* 410 */
 /***/ function(module, exports) {
 
 	'use strict'
@@ -63055,14 +71870,14 @@
 
 
 /***/ },
-/* 412 */
+/* 411 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var genobj = __webpack_require__(413)
-	var genfun = __webpack_require__(415)
-	var jsonpointer = __webpack_require__(416)
-	var xtend = __webpack_require__(417)
-	var formats = __webpack_require__(418)
+	var genobj = __webpack_require__(412)
+	var genfun = __webpack_require__(414)
+	var jsonpointer = __webpack_require__(415)
+	var xtend = __webpack_require__(416)
+	var formats = __webpack_require__(417)
 
 	var get = function(obj, additionalSchemas, ptr) {
 	  if (/^https?:\/\//.test(ptr)) return null
@@ -63636,10 +72451,10 @@
 
 
 /***/ },
-/* 413 */
+/* 412 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isProperty = __webpack_require__(414)
+	var isProperty = __webpack_require__(413)
 
 	var gen = function(obj, prop) {
 	  return isProperty(prop) ? obj+'.'+prop : obj+'['+JSON.stringify(prop)+']'
@@ -63654,7 +72469,7 @@
 
 
 /***/ },
-/* 414 */
+/* 413 */
 /***/ function(module, exports) {
 
 	"use strict"
@@ -63664,7 +72479,7 @@
 	module.exports = isProperty
 
 /***/ },
-/* 415 */
+/* 414 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var util = __webpack_require__(250)
@@ -63731,7 +72546,7 @@
 
 
 /***/ },
-/* 416 */
+/* 415 */
 /***/ function(module, exports) {
 
 	var untilde = function(str) {
@@ -63813,7 +72628,7 @@
 
 
 /***/ },
-/* 417 */
+/* 416 */
 /***/ function(module, exports) {
 
 	module.exports = extend
@@ -63838,7 +72653,7 @@
 
 
 /***/ },
-/* 418 */
+/* 417 */
 /***/ function(module, exports) {
 
 	exports['date-time'] = /^\d{4}-(?:0[0-9]{1}|1[0-2]{1})-[0-9]{2}[tT ]\d{2}:\d{2}:\d{2}(\.\d+)?([zZ]|[+-]\d{2}:\d{2})$/
@@ -63858,13 +72673,13 @@
 
 
 /***/ },
-/* 419 */
+/* 418 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict'
 
-	var caseless = __webpack_require__(380)
-	  , uuid = __webpack_require__(420)
+	var caseless = __webpack_require__(379)
+	  , uuid = __webpack_require__(419)
 	  , helpers = __webpack_require__(254)
 
 	var md5 = helpers.md5
@@ -64032,7 +72847,7 @@
 
 
 /***/ },
-/* 420 */
+/* 419 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(Buffer) {//     uuid.js
@@ -64311,16 +73126,16 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(255).Buffer))
 
 /***/ },
-/* 421 */
+/* 420 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {'use strict'
 
 	var url = __webpack_require__(239)
-	  , qs = __webpack_require__(386)
-	  , caseless = __webpack_require__(380)
-	  , uuid = __webpack_require__(420)
-	  , oauth = __webpack_require__(422)
+	  , qs = __webpack_require__(385)
+	  , caseless = __webpack_require__(379)
+	  , uuid = __webpack_require__(419)
+	  , oauth = __webpack_require__(421)
 	  , crypto = __webpack_require__(260)
 
 
@@ -64465,7 +73280,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(255).Buffer))
 
 /***/ },
-/* 422 */
+/* 421 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var crypto = __webpack_require__(260)
@@ -64602,17 +73417,19 @@
 	exports.plaintext = plaintext
 	exports.sign = sign
 	exports.rfc3986 = rfc3986
+	exports.generateBase = generateBase
+
 
 
 /***/ },
-/* 423 */
+/* 422 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {'use strict'
 
-	var uuid = __webpack_require__(420)
-	  , CombinedStream = __webpack_require__(424)
-	  , isstream = __webpack_require__(426)
+	var uuid = __webpack_require__(419)
+	  , CombinedStream = __webpack_require__(423)
+	  , isstream = __webpack_require__(425)
 
 
 	function Multipart (request) {
@@ -64678,6 +73495,9 @@
 	  var body = chunked ? new CombinedStream() : []
 
 	  function add (part) {
+	    if (typeof part === 'number') {
+	      part = part.toString()
+	    }
 	    return chunked ? body.append(part) : body.push(new Buffer(part))
 	  }
 
@@ -64721,12 +73541,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(255).Buffer))
 
 /***/ },
-/* 424 */
+/* 423 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {var util = __webpack_require__(250);
 	var Stream = __webpack_require__(279).Stream;
-	var DelayedStream = __webpack_require__(425);
+	var DelayedStream = __webpack_require__(424);
 
 	module.exports = CombinedStream;
 	function CombinedStream() {
@@ -64916,7 +73736,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(255).Buffer))
 
 /***/ },
-/* 425 */
+/* 424 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Stream = __webpack_require__(279).Stream;
@@ -65029,7 +73849,7 @@
 
 
 /***/ },
-/* 426 */
+/* 425 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var stream = __webpack_require__(279)
@@ -65062,7 +73882,7 @@
 
 
 /***/ },
-/* 427 */
+/* 426 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict'
@@ -65221,13 +74041,13 @@
 
 
 /***/ },
-/* 428 */
+/* 427 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict'
 
 	var url = __webpack_require__(239)
-	  , tunnel = __webpack_require__(429)
+	  , tunnel = __webpack_require__(428)
 
 	var defaultProxyHeaderWhiteList = [
 	  'accept',
@@ -65238,7 +74058,6 @@
 	  'cache-control',
 	  'content-encoding',
 	  'content-language',
-	  'content-length',
 	  'content-location',
 	  'content-md5',
 	  'content-range',
@@ -65250,7 +74069,6 @@
 	  'pragma',
 	  'referer',
 	  'te',
-	  'transfer-encoding',
 	  'user-agent',
 	  'via'
 	]
@@ -65405,7 +74223,7 @@
 
 
 /***/ },
-/* 429 */
+/* 428 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer, process) {'use strict'
@@ -65653,6 +74471,666 @@
 	exports.debug = debug // for test
 
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(255).Buffer, __webpack_require__(190)))
+
+/***/ },
+/* 429 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(Buffer, process) {var aws4 = exports,
+	    url = __webpack_require__(239),
+	    querystring = __webpack_require__(241),
+	    crypto = __webpack_require__(260),
+	    lru = __webpack_require__(430),
+	    credentialsCache = lru(1000)
+
+	// http://docs.amazonwebservices.com/general/latest/gr/signature-version-4.html
+
+	function hmac(key, string, encoding) {
+	  return crypto.createHmac('sha256', key).update(string, 'utf8').digest(encoding)
+	}
+
+	function hash(string, encoding) {
+	  return crypto.createHash('sha256').update(string, 'utf8').digest(encoding)
+	}
+
+	// This function assumes the string has already been percent encoded
+	function encodeRfc3986(urlEncodedString) {
+	  return urlEncodedString.replace(/[!'()*]/g, function(c) {
+	    return '%' + c.charCodeAt(0).toString(16).toUpperCase()
+	  })
+	}
+
+	// request: { path | body, [host], [method], [headers], [service], [region] }
+	// credentials: { accessKeyId, secretAccessKey, [sessionToken] }
+	function RequestSigner(request, credentials) {
+
+	  if (typeof request === 'string') request = url.parse(request)
+
+	  var headers = request.headers = (request.headers || {}),
+	      hostParts = this.matchHost(request.hostname || request.host || headers.Host || headers.host)
+
+	  this.request = request
+	  this.credentials = credentials || this.defaultCredentials()
+
+	  this.service = request.service || hostParts[0] || ''
+	  this.region = request.region || hostParts[1] || 'us-east-1'
+
+	  // SES uses a different domain from the service name
+	  if (this.service === 'email') this.service = 'ses'
+
+	  if (!request.method && request.body)
+	    request.method = 'POST'
+
+	  if (!headers.Host && !headers.host)
+	    headers.Host = request.hostname || request.host || this.createHost()
+	  if (!request.hostname && !request.host)
+	    request.hostname = headers.Host || headers.host
+	}
+
+	RequestSigner.prototype.matchHost = function(host) {
+	  var match = (host || '').match(/([^\.]+)\.(?:([^\.]*)\.)?amazonaws\.com$/)
+	  var hostParts = (match || []).slice(1, 3)
+
+	  // ES's hostParts are sometimes the other way round, if the value that is expected
+	  // to be region equals ‘es’ switch them back
+	  // e.g. search-cluster-name-aaaa00aaaa0aaa0aaaaaaa0aaa.us-east-1.es.amazonaws.com
+	  if (hostParts[1] === 'es')
+	    hostParts = hostParts.reverse()
+
+	  return hostParts
+	}
+
+	// http://docs.aws.amazon.com/general/latest/gr/rande.html
+	RequestSigner.prototype.isSingleRegion = function() {
+	  // Special case for S3 and SimpleDB in us-east-1
+	  if (['s3', 'sdb'].indexOf(this.service) >= 0 && this.region === 'us-east-1') return true
+
+	  return ['cloudfront', 'ls', 'route53', 'iam', 'importexport', 'sts']
+	    .indexOf(this.service) >= 0
+	}
+
+	RequestSigner.prototype.createHost = function() {
+	  var region = this.isSingleRegion() ? '' :
+	        (this.service === 's3' && this.region !== 'us-east-1' ? '-' : '.') + this.region,
+	      service = this.service === 'ses' ? 'email' : this.service
+	  return service + region + '.amazonaws.com'
+	}
+
+	RequestSigner.prototype.prepareRequest = function() {
+	  this.parsePath()
+
+	  var request = this.request, headers = request.headers, query
+
+	  if (request.signQuery) {
+
+	    this.parsedPath.query = query = this.parsedPath.query || {}
+
+	    if (this.credentials.sessionToken)
+	      query['X-Amz-Security-Token'] = this.credentials.sessionToken
+
+	    if (this.service === 's3' && !query['X-Amz-Expires'])
+	      query['X-Amz-Expires'] = 86400
+
+	    if (query['X-Amz-Date'])
+	      this.datetime = query['X-Amz-Date']
+	    else
+	      query['X-Amz-Date'] = this.getDateTime()
+
+	    query['X-Amz-Algorithm'] = 'AWS4-HMAC-SHA256'
+	    query['X-Amz-Credential'] = this.credentials.accessKeyId + '/' + this.credentialString()
+	    query['X-Amz-SignedHeaders'] = this.signedHeaders()
+
+	  } else {
+
+	    if (!request.doNotModifyHeaders) {
+	      if (request.body && !headers['Content-Type'] && !headers['content-type'])
+	        headers['Content-Type'] = 'application/x-www-form-urlencoded; charset=utf-8'
+
+	      if (request.body && !headers['Content-Length'] && !headers['content-length'])
+	        headers['Content-Length'] = Buffer.byteLength(request.body)
+
+	      if (this.credentials.sessionToken)
+	        headers['X-Amz-Security-Token'] = this.credentials.sessionToken
+
+	      if (this.service === 's3')
+	        headers['X-Amz-Content-Sha256'] = hash(this.request.body || '', 'hex')
+
+	      if (headers['X-Amz-Date'])
+	        this.datetime = headers['X-Amz-Date']
+	      else
+	        headers['X-Amz-Date'] = this.getDateTime()
+	    }
+
+	    delete headers.Authorization
+	    delete headers.authorization
+	  }
+	}
+
+	RequestSigner.prototype.sign = function() {
+	  if (!this.parsedPath) this.prepareRequest()
+
+	  if (this.request.signQuery) {
+	    this.parsedPath.query['X-Amz-Signature'] = this.signature()
+	  } else {
+	    this.request.headers.Authorization = this.authHeader()
+	  }
+
+	  this.request.path = this.formatPath()
+
+	  return this.request
+	}
+
+	RequestSigner.prototype.getDateTime = function() {
+	  if (!this.datetime) {
+	    var headers = this.request.headers,
+	      date = new Date(headers.Date || headers.date || new Date)
+
+	    this.datetime = date.toISOString().replace(/[:\-]|\.\d{3}/g, '')
+	  }
+	  return this.datetime
+	}
+
+	RequestSigner.prototype.getDate = function() {
+	  return this.getDateTime().substr(0, 8)
+	}
+
+	RequestSigner.prototype.authHeader = function() {
+	  return [
+	    'AWS4-HMAC-SHA256 Credential=' + this.credentials.accessKeyId + '/' + this.credentialString(),
+	    'SignedHeaders=' + this.signedHeaders(),
+	    'Signature=' + this.signature(),
+	  ].join(', ')
+	}
+
+	RequestSigner.prototype.signature = function() {
+	  var date = this.getDate(),
+	      cacheKey = [this.credentials.secretAccessKey, date, this.region, this.service].join(),
+	      kDate, kRegion, kService, kCredentials = credentialsCache.get(cacheKey)
+	  if (!kCredentials) {
+	    kDate = hmac('AWS4' + this.credentials.secretAccessKey, date)
+	    kRegion = hmac(kDate, this.region)
+	    kService = hmac(kRegion, this.service)
+	    kCredentials = hmac(kService, 'aws4_request')
+	    credentialsCache.set(cacheKey, kCredentials)
+	  }
+	  return hmac(kCredentials, this.stringToSign(), 'hex')
+	}
+
+	RequestSigner.prototype.stringToSign = function() {
+	  return [
+	    'AWS4-HMAC-SHA256',
+	    this.getDateTime(),
+	    this.credentialString(),
+	    hash(this.canonicalString(), 'hex'),
+	  ].join('\n')
+	}
+
+	RequestSigner.prototype.canonicalString = function() {
+	  if (!this.parsedPath) this.prepareRequest()
+
+	  var pathStr = this.parsedPath.path,
+	      query = this.parsedPath.query,
+	      queryStr = '',
+	      normalizePath = this.service !== 's3',
+	      decodePath = this.service === 's3' || this.request.doNotEncodePath,
+	      decodeSlashesInPath = this.service === 's3',
+	      firstValOnly = this.service === 's3',
+	      bodyHash = this.service === 's3' && this.request.signQuery ?
+	        'UNSIGNED-PAYLOAD' : hash(this.request.body || '', 'hex')
+
+	  if (query) {
+	    queryStr = encodeRfc3986(querystring.stringify(Object.keys(query).sort().reduce(function(obj, key) {
+	      if (!key) return obj
+	      obj[key] = !Array.isArray(query[key]) ? query[key] :
+	        (firstValOnly ? query[key][0] : query[key].slice().sort())
+	      return obj
+	    }, {})))
+	  }
+	  if (pathStr !== '/') {
+	    if (normalizePath) pathStr = pathStr.replace(/\/{2,}/g, '/')
+	    if (pathStr[0] === '/') pathStr = pathStr.slice(1)
+	    pathStr = '/' + pathStr.split('/').reduce(function(path, piece) {
+	      if (normalizePath && piece === '..') {
+	        path.pop()
+	      } else if (!normalizePath || piece !== '.') {
+	        if (decodePath) piece = querystring.unescape(piece)
+	        path.push(encodeRfc3986(querystring.escape(piece)))
+	      }
+	      return path
+	    }, []).join('/')
+	    if (decodeSlashesInPath) pathStr = pathStr.replace(/%2F/g, '/')
+	  }
+
+	  return [
+	    this.request.method || 'GET',
+	    pathStr,
+	    queryStr,
+	    this.canonicalHeaders() + '\n',
+	    this.signedHeaders(),
+	    bodyHash,
+	  ].join('\n')
+	}
+
+	RequestSigner.prototype.canonicalHeaders = function() {
+	  var headers = this.request.headers
+	  function trimAll(header) {
+	    return header.toString().trim().replace(/\s+/g, ' ')
+	  }
+	  return Object.keys(headers)
+	    .sort(function(a, b) { return a.toLowerCase() < b.toLowerCase() ? -1 : 1 })
+	    .map(function(key) { return key.toLowerCase() + ':' + trimAll(headers[key]) })
+	    .join('\n')
+	}
+
+	RequestSigner.prototype.signedHeaders = function() {
+	  return Object.keys(this.request.headers)
+	    .map(function(key) { return key.toLowerCase() })
+	    .sort()
+	    .join(';')
+	}
+
+	RequestSigner.prototype.credentialString = function() {
+	  return [
+	    this.getDate(),
+	    this.region,
+	    this.service,
+	    'aws4_request',
+	  ].join('/')
+	}
+
+	RequestSigner.prototype.defaultCredentials = function() {
+	  var env = process.env
+	  return {
+	    accessKeyId: env.AWS_ACCESS_KEY_ID || env.AWS_ACCESS_KEY,
+	    secretAccessKey: env.AWS_SECRET_ACCESS_KEY || env.AWS_SECRET_KEY,
+	    sessionToken: env.AWS_SESSION_TOKEN,
+	  }
+	}
+
+	RequestSigner.prototype.parsePath = function() {
+	  var path = this.request.path || '/',
+	      queryIx = path.indexOf('?'),
+	      query = null
+
+	  if (queryIx >= 0) {
+	    query = querystring.parse(path.slice(queryIx + 1))
+	    path = path.slice(0, queryIx)
+	  }
+
+	  // S3 doesn't always encode characters > 127 correctly and
+	  // all services don't encode characters > 255 correctly
+	  // So if there are non-reserved chars (and it's not already all % encoded), just encode them all
+	  if (/[^0-9A-Za-z!'()*\-._~%/]/.test(path)) {
+	    path = path.split('/').map(function(piece) {
+	      return querystring.escape(querystring.unescape(piece))
+	    }).join('/')
+	  }
+
+	  this.parsedPath = {
+	    path: path,
+	    query: query,
+	  }
+	}
+
+	RequestSigner.prototype.formatPath = function() {
+	  var path = this.parsedPath.path,
+	      query = this.parsedPath.query
+
+	  if (!query) return path
+
+	  // Services don't support empty query string keys
+	  if (query[''] != null) delete query['']
+
+	  return path + '?' + encodeRfc3986(querystring.stringify(query))
+	}
+
+	aws4.RequestSigner = RequestSigner
+
+	aws4.sign = function(request, credentials) {
+	  return new RequestSigner(request, credentials).sign()
+	}
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(255).Buffer, __webpack_require__(190)))
+
+/***/ },
+/* 430 */
+/***/ function(module, exports) {
+
+	;(function () { // closure for web browsers
+
+	if (typeof module === 'object' && module.exports) {
+	  module.exports = LRUCache
+	} else {
+	  // just set the global for non-node platforms.
+	  this.LRUCache = LRUCache
+	}
+
+	function hOP (obj, key) {
+	  return Object.prototype.hasOwnProperty.call(obj, key)
+	}
+
+	function naiveLength () { return 1 }
+
+	var didTypeWarning = false
+	function typeCheckKey(key) {
+	  if (!didTypeWarning && typeof key !== 'string' && typeof key !== 'number') {
+	    didTypeWarning = true
+	    console.error(new TypeError("LRU: key must be a string or number. Almost certainly a bug! " + typeof key).stack)
+	  }
+	}
+
+	function LRUCache (options) {
+	  if (!(this instanceof LRUCache))
+	    return new LRUCache(options)
+
+	  if (typeof options === 'number')
+	    options = { max: options }
+
+	  if (!options)
+	    options = {}
+
+	  this._max = options.max
+	  // Kind of weird to have a default max of Infinity, but oh well.
+	  if (!this._max || !(typeof this._max === "number") || this._max <= 0 )
+	    this._max = Infinity
+
+	  this._lengthCalculator = options.length || naiveLength
+	  if (typeof this._lengthCalculator !== "function")
+	    this._lengthCalculator = naiveLength
+
+	  this._allowStale = options.stale || false
+	  this._maxAge = options.maxAge || null
+	  this._dispose = options.dispose
+	  this.reset()
+	}
+
+	// resize the cache when the max changes.
+	Object.defineProperty(LRUCache.prototype, "max",
+	  { set : function (mL) {
+	      if (!mL || !(typeof mL === "number") || mL <= 0 ) mL = Infinity
+	      this._max = mL
+	      if (this._length > this._max) trim(this)
+	    }
+	  , get : function () { return this._max }
+	  , enumerable : true
+	  })
+
+	// resize the cache when the lengthCalculator changes.
+	Object.defineProperty(LRUCache.prototype, "lengthCalculator",
+	  { set : function (lC) {
+	      if (typeof lC !== "function") {
+	        this._lengthCalculator = naiveLength
+	        this._length = this._itemCount
+	        for (var key in this._cache) {
+	          this._cache[key].length = 1
+	        }
+	      } else {
+	        this._lengthCalculator = lC
+	        this._length = 0
+	        for (var key in this._cache) {
+	          this._cache[key].length = this._lengthCalculator(this._cache[key].value)
+	          this._length += this._cache[key].length
+	        }
+	      }
+
+	      if (this._length > this._max) trim(this)
+	    }
+	  , get : function () { return this._lengthCalculator }
+	  , enumerable : true
+	  })
+
+	Object.defineProperty(LRUCache.prototype, "length",
+	  { get : function () { return this._length }
+	  , enumerable : true
+	  })
+
+
+	Object.defineProperty(LRUCache.prototype, "itemCount",
+	  { get : function () { return this._itemCount }
+	  , enumerable : true
+	  })
+
+	LRUCache.prototype.forEach = function (fn, thisp) {
+	  thisp = thisp || this
+	  var i = 0
+	  var itemCount = this._itemCount
+
+	  for (var k = this._mru - 1; k >= 0 && i < itemCount; k--) if (this._lruList[k]) {
+	    i++
+	    var hit = this._lruList[k]
+	    if (isStale(this, hit)) {
+	      del(this, hit)
+	      if (!this._allowStale) hit = undefined
+	    }
+	    if (hit) {
+	      fn.call(thisp, hit.value, hit.key, this)
+	    }
+	  }
+	}
+
+	LRUCache.prototype.keys = function () {
+	  var keys = new Array(this._itemCount)
+	  var i = 0
+	  for (var k = this._mru - 1; k >= 0 && i < this._itemCount; k--) if (this._lruList[k]) {
+	    var hit = this._lruList[k]
+	    keys[i++] = hit.key
+	  }
+	  return keys
+	}
+
+	LRUCache.prototype.values = function () {
+	  var values = new Array(this._itemCount)
+	  var i = 0
+	  for (var k = this._mru - 1; k >= 0 && i < this._itemCount; k--) if (this._lruList[k]) {
+	    var hit = this._lruList[k]
+	    values[i++] = hit.value
+	  }
+	  return values
+	}
+
+	LRUCache.prototype.reset = function () {
+	  if (this._dispose && this._cache) {
+	    for (var k in this._cache) {
+	      this._dispose(k, this._cache[k].value)
+	    }
+	  }
+
+	  this._cache = Object.create(null) // hash of items by key
+	  this._lruList = Object.create(null) // list of items in order of use recency
+	  this._mru = 0 // most recently used
+	  this._lru = 0 // least recently used
+	  this._length = 0 // number of items in the list
+	  this._itemCount = 0
+	}
+
+	LRUCache.prototype.dump = function () {
+	  var arr = []
+	  var i = 0
+
+	  for (var k = this._mru - 1; k >= 0 && i < this._itemCount; k--) if (this._lruList[k]) {
+	    var hit = this._lruList[k]
+	    if (!isStale(this, hit)) {
+	      //Do not store staled hits
+	      ++i
+	      arr.push({
+	        k: hit.key,
+	        v: hit.value,
+	        e: hit.now + (hit.maxAge || 0)
+	      });
+	    }
+	  }
+	  //arr has the most read first
+	  return arr
+	}
+
+	LRUCache.prototype.dumpLru = function () {
+	  return this._lruList
+	}
+
+	LRUCache.prototype.set = function (key, value, maxAge) {
+	  maxAge = maxAge || this._maxAge
+	  typeCheckKey(key)
+
+	  var now = maxAge ? Date.now() : 0
+	  var len = this._lengthCalculator(value)
+
+	  if (hOP(this._cache, key)) {
+	    if (len > this._max) {
+	      del(this, this._cache[key])
+	      return false
+	    }
+	    // dispose of the old one before overwriting
+	    if (this._dispose)
+	      this._dispose(key, this._cache[key].value)
+
+	    this._cache[key].now = now
+	    this._cache[key].maxAge = maxAge
+	    this._cache[key].value = value
+	    this._length += (len - this._cache[key].length)
+	    this._cache[key].length = len
+	    this.get(key)
+
+	    if (this._length > this._max)
+	      trim(this)
+
+	    return true
+	  }
+
+	  var hit = new Entry(key, value, this._mru++, len, now, maxAge)
+
+	  // oversized objects fall out of cache automatically.
+	  if (hit.length > this._max) {
+	    if (this._dispose) this._dispose(key, value)
+	    return false
+	  }
+
+	  this._length += hit.length
+	  this._lruList[hit.lu] = this._cache[key] = hit
+	  this._itemCount ++
+
+	  if (this._length > this._max)
+	    trim(this)
+
+	  return true
+	}
+
+	LRUCache.prototype.has = function (key) {
+	  typeCheckKey(key)
+	  if (!hOP(this._cache, key)) return false
+	  var hit = this._cache[key]
+	  if (isStale(this, hit)) {
+	    return false
+	  }
+	  return true
+	}
+
+	LRUCache.prototype.get = function (key) {
+	  typeCheckKey(key)
+	  return get(this, key, true)
+	}
+
+	LRUCache.prototype.peek = function (key) {
+	  typeCheckKey(key)
+	  return get(this, key, false)
+	}
+
+	LRUCache.prototype.pop = function () {
+	  var hit = this._lruList[this._lru]
+	  del(this, hit)
+	  return hit || null
+	}
+
+	LRUCache.prototype.del = function (key) {
+	  typeCheckKey(key)
+	  del(this, this._cache[key])
+	}
+
+	LRUCache.prototype.load = function (arr) {
+	  //reset the cache
+	  this.reset();
+
+	  var now = Date.now()
+	  //A previous serialized cache has the most recent items first
+	  for (var l = arr.length - 1; l >= 0; l-- ) {
+	    var hit = arr[l]
+	    typeCheckKey(hit.k)
+	    var expiresAt = hit.e || 0
+	    if (expiresAt === 0) {
+	      //the item was created without expiration in a non aged cache
+	      this.set(hit.k, hit.v)
+	    } else {
+	      var maxAge = expiresAt - now
+	      //dont add already expired items
+	      if (maxAge > 0) this.set(hit.k, hit.v, maxAge)
+	    }
+	  }
+	}
+
+	function get (self, key, doUse) {
+	  typeCheckKey(key)
+	  var hit = self._cache[key]
+	  if (hit) {
+	    if (isStale(self, hit)) {
+	      del(self, hit)
+	      if (!self._allowStale) hit = undefined
+	    } else {
+	      if (doUse) use(self, hit)
+	    }
+	    if (hit) hit = hit.value
+	  }
+	  return hit
+	}
+
+	function isStale(self, hit) {
+	  if (!hit || (!hit.maxAge && !self._maxAge)) return false
+	  var stale = false;
+	  var diff = Date.now() - hit.now
+	  if (hit.maxAge) {
+	    stale = diff > hit.maxAge
+	  } else {
+	    stale = self._maxAge && (diff > self._maxAge)
+	  }
+	  return stale;
+	}
+
+	function use (self, hit) {
+	  shiftLU(self, hit)
+	  hit.lu = self._mru ++
+	  self._lruList[hit.lu] = hit
+	}
+
+	function trim (self) {
+	  while (self._lru < self._mru && self._length > self._max)
+	    del(self, self._lruList[self._lru])
+	}
+
+	function shiftLU (self, hit) {
+	  delete self._lruList[ hit.lu ]
+	  while (self._lru < self._mru && !self._lruList[self._lru]) self._lru ++
+	}
+
+	function del (self, hit) {
+	  if (hit) {
+	    if (self._dispose) self._dispose(hit.key, hit.value)
+	    self._length -= hit.length
+	    self._itemCount --
+	    delete self._cache[ hit.key ]
+	    shiftLU(self, hit)
+	  }
+	}
+
+	// classy, since V8 prefers predictable objects.
+	function Entry (key, value, lu, length, now, maxAge) {
+	  this.key = key
+	  this.value = value
+	  this.lu = lu
+	  this.length = length
+	  this.now = now
+	  if (maxAge) this.maxAge = maxAge
+	}
+
+	})()
+
 
 /***/ }
 /******/ ]);

@@ -23,9 +23,9 @@ requestStream.subscribe(function (requestUrl) {
 			.catch(error => {
 				console.log('error: ', error);
 			})
-			.always(() => {
-				observer.onComplete();
-			})
+//			.always(() => {
+//				observer.onComplete();
+//			})
 			//			.done(response => {
 			//				observer.onNext(response)
 			//			})

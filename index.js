@@ -12,38 +12,26 @@ const options = {
 	json: true // Automatically parses the JSON string in the response
 };
 
-let requestStream = Rx.Observable.just(requestUrl);
+/* Get the refresh button */
+let refreshButton = document.querySelector('.refresh');
 
-requestStream.subscribe(function (requestUrl) {
-	let responseStream = Rx.Observable.create(function (observer) {
-		rp(options)
-			.then(resp => {
-				observer.onNext(resp);
-				observer.onCompleted();
-			})
-			.catch(error => {
-				console.log('error: ', error);
-				observer.onError(error);
-			})
-	});
+/* Creates stream from refreshButton from the 'click' event */
+let refreshClickStream = Rx.Observable.fromEvent(refreshButton, 'click');
 
-	responseStream.subscribe(response => {
-		console.log('response:', response);
-	})
+let startupRequestStream = Rx.Observable.just('https://api.github.com/users');
+
+/* Maps to each click a new index to search */
+let requestOnRefreshStream = refreshClickStream.map(() => {
+	let randomOffset = Math.floor(Math.random() * 500);
+	return `https://api.github.com/users?since=${randomOffset}`;
 });
+
+let requestStream = Rx.Observable.merge(startupRequestStream, requestOnRefreshStream);
 
 let responseStream = requestStream.flatMap((options) => {
 	return Rx.Observable.fromPromise(rp(options))
 });
 
 responseStream.subscribe(response => {
-	console.log('response:', response);
-});
-
-let refreshButton = document.querySelector('.refresh');
-let refreshClickStream = Rx.Observable.fromEvent(refreshButton, 'click');
-
-let requestStream = refreshClickStream.map(() => {
-	let randomOffset = Math.floor(Math.random() * 500);
-	return 'https://api.github.com/users?since=' + randomOffset;
+	console.log(`response: ${response}`);
 });

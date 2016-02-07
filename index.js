@@ -48,3 +48,33 @@ let suggestion3Stream = responseStream.map((listUsers) => {
 	return listUsers[Math.floor(Math.random() * listUsers.length)];
 });
 
+
+
+
+/* -------------------- Rendering -------------------- */
+function renderSuggestion(suggestedUser, selector) {
+	let suggestionEl = document.querySelector(selector);
+	if (suggestedUser === null) {
+		suggestionEl.style.visibility = 'hidden';
+	} else {
+		suggestionEl.style.visibility = 'visible';
+		let usernameEl = suggestionEl.querySelector('.username');
+		usernameEl.href = suggestedUser.html_url;
+		usernameEl.textContent = suggestedUser.login;
+		let imgEl = suggestionEl.querySelector('img');
+		imgEl.src = "";
+		imgEl.src = suggestedUser.avatar_url;
+	}
+}
+
+suggestion1Stream.subscribe((suggestedUser) => {
+	renderSuggestion(suggestedUser, '.suggestion1');
+});
+
+suggestion2Stream.subscribe((suggestedUser) => {
+	renderSuggestion(suggestedUser, '.suggestion2');
+});
+
+suggestion3Stream.subscribe((suggestedUser) => {
+	renderSuggestion(suggestedUser, '.suggestion3');
+});

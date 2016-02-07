@@ -18,15 +18,12 @@ let refreshButton = document.querySelector('.refresh');
 /* Creates stream from refreshButton from the 'click' event */
 let refreshClickStream = Rx.Observable.fromEvent(refreshButton, 'click');
 
-let startupRequestStream = Rx.Observable.just('https://api.github.com/users');
-
-/* Maps to each click a new index to search */
-let requestOnRefreshStream = refreshClickStream.map(() => {
-	let randomOffset = Math.floor(Math.random() * 500);
-	return `https://api.github.com/users?since=${randomOffset}`;
-});
-
-let requestStream = Rx.Observable.merge(startupRequestStream, requestOnRefreshStream);
+let requestStream = refreshClickStream
+	.map(() => {
+		let randomOffset = Math.floor(Math.random() * 500);
+		return `https://api.github.com/users?since=${randomOffset}`;
+	})
+	.startWith(`https://api.github.com/users`); // note: change to refreshClickStream.startWith('startup click').map()...
 
 let responseStream = requestStream.flatMap((options) => {
 	return Rx.Observable.fromPromise(rp(options))
@@ -35,3 +32,19 @@ let responseStream = requestStream.flatMap((options) => {
 responseStream.subscribe(response => {
 	console.log(`response: ${response}`);
 });
+
+let suggestion1Stream = responseStream.map((listUsers) => {
+	// Get a random user from the list
+	return listUsers[Math.floor(Math.random() * listUsers.length)];
+});
+
+let suggestion2Stream = responseStream.map((listUsers) => {
+	// Get a random user from the list
+	return listUsers[Math.floor(Math.random() * listUsers.length)];
+});
+
+let suggestion3Stream = responseStream.map((listUsers) => {
+	// Get a random user from the list
+	return listUsers[Math.floor(Math.random() * listUsers.length)];
+});
+

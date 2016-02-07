@@ -3,9 +3,9 @@ var webpack = require('webpack');
 
 module.exports = {
 	entry: [
-    'babel-polyfill',
-    './index'
-  ],
+		'babel-polyfill',
+		'./index'
+	],
 	output: {
 		publicPath: '/',
 		filename: './es5-index.js'
@@ -20,12 +20,18 @@ module.exports = {
 				query: {
 					presets: ["es2015", "stage-0"],
 				}
-      },
+			},
 			{
 				test: /\.json$/,
 				loader: "json-loader"
 			}
-    ]
+		]
+	},
+	node: {
+		console: 'empty',
+		fs: 'empty',
+		net: 'empty',
+		tls: 'empty'
 	},
 	debug: true
 };
